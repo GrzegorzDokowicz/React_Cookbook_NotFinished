@@ -94,7 +94,7 @@ module.exports = {
     devServer: {
         open: true,
         port: 3000,
-        publicPath: '/',
-        historyApiFallback: true,
+        publicPath: 'http://localhost:3000/',
+        historyApiFallback: true
     }
 };
