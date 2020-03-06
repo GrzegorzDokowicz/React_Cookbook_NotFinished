@@ -1,15 +1,18 @@
-import {SCROLL_TO_TOP} from "./actions";
+import {SCROLL_TO} from "./actions";
 
 const initialState = {
-    fixedPageHeader: false,
-    scrollToTop: false
+    scrollTo: {
+        state: false,
+        name: ""
+    }
 };
 
 const pageReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case SCROLL_TO_TOP:
+        case SCROLL_TO:
             return {
-                scrollToTop: payload
+                ...state,
+                scrollTo: {...payload}
             };
         default:
             return state;
