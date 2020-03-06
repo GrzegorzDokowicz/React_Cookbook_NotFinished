@@ -1,18 +1,26 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import './style.scss';
+import ResponsiveAppContainer from "../responsive-app-container";
+
 const NavBar = () => {
-    return <ul className="page-header__list">
-        <li className="page-header__list-element">
-            <Link to="/">Main page</Link>
-        </li>
-        <li className="page-header__list-element">
-            <Link to="/recipe-categories">Przepis</Link>
-        </li>
-        <li className="page-header__list-element">
-            <Link to="/recipe-category/1">Kategorie przepisow</Link>
-        </li>
-    </ul>
+    return <nav className={"nav-bar"}>
+        <ResponsiveAppContainer>
+            <ul className="nav-bar__list">
+                <li className="nav-bar__element">
+                    <Link to="/">Main page</Link>
+                </li>
+                <li className="nav-bar__element">
+                    <Link to="/recipe-category/1">Przepis</Link>
+                </li>
+                <li className="nav-bar__element">
+                    <Link to="/recipe-categories">Kategorie przepisow</Link>
+                </li>
+            </ul>
+        </ResponsiveAppContainer>
+    </nav>
+
 };
 
 export default NavBar;

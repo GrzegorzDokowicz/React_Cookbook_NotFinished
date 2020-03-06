@@ -29,7 +29,7 @@ module.exports = {
     mode: 'development',
 
     entry: {
-        app: ['./frontend/index.js']
+        app: ['./frontend/index.js', './node_modules/reset-css/sass/_reset.scss']
     },
 
     output: {

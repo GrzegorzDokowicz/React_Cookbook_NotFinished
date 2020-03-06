@@ -1,0 +1,26 @@
+.text {
+  font-family: "sans-serif";
+  font-weight: 500;
+
+  &--h1 {
+    font-size: 32px;
+  }
+
+  &--h2 {
+    font-size: 26px;
+  }
+
+  &--title {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  &--paragraph {
+    font-size: 16px;
+  }
+
+  &--span {
+    font-size: 12px;
+  }
+
+}

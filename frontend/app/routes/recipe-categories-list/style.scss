@@ -3,5 +3,13 @@
 @import "../../../styles/variables";
 
 .recipe-categories-list {
+    &__elements {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
 
+    &__element {
+      width: calc(25% - 30px);
+    }
 }
