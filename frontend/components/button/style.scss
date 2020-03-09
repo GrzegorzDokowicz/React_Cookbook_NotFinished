@@ -1,0 +1,28 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+@import "../../styles/variables";
+@import "../../styles/form";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 20px 30px;
+
+  &--default {
+    color: black;
+    background-color: white;
+  }
+
+  &--icon {
+    padding: unset;
+    min-width: unset;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    background: black;
+    color: white;
+    height: 40px;
+    width: 40px;
+  }
+}

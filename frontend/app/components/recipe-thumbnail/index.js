@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.scss';
 
-import Text from "../text";
-import IconText from "../icon-text";
+import Text from "../../../components/text";
+import IconText from "../../../components/icon-text";
 
 const RecipeThumbnail = ({title, time, energyValue}) => {
     return <div className="recipe-thumbnail">

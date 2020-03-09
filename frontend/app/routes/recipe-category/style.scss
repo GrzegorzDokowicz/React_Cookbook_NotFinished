@@ -3,6 +3,10 @@
 @import "../../../styles/variables";
 
 .recipe-category {
+  &__action-bar {
+
+  }
+
   &__elements {
     display: flex;
     justify-content: space-between;

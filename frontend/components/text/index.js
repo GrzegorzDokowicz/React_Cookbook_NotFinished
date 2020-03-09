@@ -10,7 +10,9 @@ const Text = ({type, children}) => {
         case "title":
             return <h3 className={'text text--title'}>{children}</h3>;
         case "icon":
-            return <span className={"text text--icon-description"}>{children}</span>
+            return <span className={"text text--icon-description"}>{children}</span>;
+        case "button":
+            return <span className={"text text--icon-description"}>{children}</span>;
         case "paragraph":
             return <p className={'text text--paragraph'}>{children}</p>;
         default:

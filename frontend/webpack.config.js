@@ -49,7 +49,10 @@ module.exports = {
                 loader: 'babel-loader',
 
                 options: {
-                    plugins: ['syntax-dynamic-import'],
+                    plugins: ['syntax-dynamic-import',
+                        "@babel/plugin-transform-runtime",
+                        "@babel/plugin-proposal-class-properties"
+                    ],
 
                     presets: [
                         [
@@ -57,7 +60,8 @@ module.exports = {
                             {
                                 modules: false
                             }
-                        ]
+                        ],
+                        "@babel/preset-react"
                     ]
                 }
             },

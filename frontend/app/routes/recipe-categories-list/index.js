@@ -3,11 +3,16 @@ import {connect} from "react-redux";
 import './style.scss';
 
 import CategoryThumbnail from "../../components/category-thumbnail";
-import Text from "../../components/text";
+import Text from "../../../components/text";
 import {Link} from 'react-router-dom';
 import ResponsiveAppContainer from "../../components/responsive-app-container";
+import ActionBar from "../../components/action-bar";
 
 class RecipeCategoriesList extends React.Component {
+    addCategory() {
+        console.log("add category");
+    }
+
     render() {
         return <ResponsiveAppContainer>
             <div className="recipe-categories-list">
@@ -15,6 +20,9 @@ class RecipeCategoriesList extends React.Component {
                     <Text type={"header"}>
                         Kategorie przepisow
                     </Text>
+                </div>
+                <div className="recipe-categories-list__action-bar">
+                    <ActionBar onClick={this.addCategory.bind(this)}/>
                 </div>
                 <ul className="recipe-categories-list__elements">
                     <li className="recipe-categories-list__element">

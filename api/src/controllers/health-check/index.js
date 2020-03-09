@@ -7,4 +7,6 @@ const healthCheckRouter = new express.Router().get('', (req, res) => {
   });
 });
 
+console.log(healthCheckRouter);
+
 export default healthCheckRouter;

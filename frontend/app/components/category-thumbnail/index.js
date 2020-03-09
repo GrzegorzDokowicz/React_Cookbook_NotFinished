@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Text from "../text";
+import Text from "../../../components/text";
 
 const CategoryThumbnail = ({title}) => {
     return <div className="category-thumbnail">

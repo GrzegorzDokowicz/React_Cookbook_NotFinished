@@ -9,7 +9,7 @@ import RecipeComponent from "./recipe";
 const StateComponent = () => {
     return <React.Fragment>
         <Route exact path="/" component={MainComponent}/>
-        <Route path="/recipe" component={RecipeComponent}/>
+        <Route path="/recipe/1" component={RecipeComponent}/>
         <Route path="/recipe-categories" component={RecipeCategoriesListComponent}/>
         <Route path="/recipe-category/1" component={RecipeCategoryComponent}/>
     </React.Fragment>

@@ -26,50 +26,39 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  */
 
 module.exports = {
-	mode: 'development',
-	watch: false,
-	target: 'node',
-	entry: './api/src/index.js',
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist')
-	},
-	module: {
-		rules: [
-			{
-				test: /.(js|jsx)$/,
-				include: [path.resolve(__dirname, 'src')],
-				loader: 'babel-loader',
+    mode: 'development',
+    watch: false,
+    target: 'node',
+    entry: './api/src/index.js',
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        rules: [
+            {
+                test: /.(js|jsx)$/,
+                include: [path.resolve(__dirname, 'src')],
+                loader: 'babel-loader',
+                options: {
+                    plugins: [
+                        'syntax-dynamic-import',
+                        [
+                            "@babel/plugin-proposal-class-properties", { "loose": true }
+                        ]
+                    ],
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                // caller.target will be the same as the target option from webpack
+                                targets: { node: "current" }
+                            }
+                        ]
+                    ]
+                }
+            }
+        ]
+    },
 
-				options: {
-					plugins: ['syntax-dynamic-import'],
-
-					presets: [
-						[
-							'@babel/preset-env',
-							{
-								modules: false
-							}
-						]
-					]
-				}
-			}
-		]
-	},
-
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				vendors: {
-					priority: -10,
-					test: /[\\/]node_modules[\\/]/
-				}
-			},
-
-			chunks: 'async',
-			minChunks: 1,
-			minSize: 30000,
-			name: true
-		}
-	}
 };

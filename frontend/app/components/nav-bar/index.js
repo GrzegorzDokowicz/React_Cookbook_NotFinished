@@ -12,10 +12,13 @@ const NavBar = () => {
                     <Link to="/">Main page</Link>
                 </li>
                 <li className="nav-bar__element">
-                    <Link to="/recipe-category/1">Przepis</Link>
+                    <Link to="/recipe-categories">Kategorie przepisow</Link>
                 </li>
                 <li className="nav-bar__element">
-                    <Link to="/recipe-categories">Kategorie przepisow</Link>
+                    <Link to="/recipe-category/1">Kategoria</Link>
+                </li>
+                <li className="nav-bar__element">
+                    <Link to="/recipe/1">Przepis</Link>
                 </li>
             </ul>
         </ResponsiveAppContainer>

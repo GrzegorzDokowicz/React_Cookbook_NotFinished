@@ -86,6 +86,42 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./api/core/Action.js":
+/*!****************************!*\
+  !*** ./api/core/Action.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Action {\n    setFunctionArguments(request, response) {\n        this.request = request;\n        this.response = response;\n    }\n\n    getRequestData() {\n        if (this.request) {\n            const {body, query, params} = this.request;\n            const variables = [\n                body,\n                query,\n                params\n            ];\n\n            for (let param of variables) {\n                if (param && Object.keys(param).length > 0) {\n                    return param;\n                }\n            }\n        }\n\n        return {};\n\n\n        console.log(this.request.params);\n\n        return this.request && this.request.body ? this.request.body :\n            (this.request && this.request.query ? this.request.query : false);\n    }\n\n    render() {\n\n\n    }\n\n    static toFunction() {\n        return (request, response) => {\n            const instance = new this();\n\n            instance.setFunctionArguments(request, response);\n            instance.render();\n\n            return instance;\n        }\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Action);\n\n\n//# sourceURL=webpack:///./api/core/Action.js?");
+
+/***/ }),
+
+/***/ "./api/core/ExtendedRouter.js":
+/*!************************************!*\
+  !*** ./api/core/ExtendedRouter.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return ExtendedRouter; });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! body-parser */ \"./node_modules/body-parser/index.js\");\n/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(body_parser__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nclass ExtendedRouter {\n    constructor() {\n        this.routerFunc = new express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\n    }\n\n    getAction(url, action) {\n        this.routerFunc.get(url, action.toFunction());\n    }\n\n    postAction(url, action) {\n        this.routerFunc.post(url, body_parser__WEBPACK_IMPORTED_MODULE_1___default.a.json(), action.toFunction());\n    }\n\n    putAction(url, action) {\n        this.routerFunc.put(url, body_parser__WEBPACK_IMPORTED_MODULE_1___default.a.json(), action.toFunction());\n    }\n\n    toFunction() {\n        return this.routerFunc;\n    }\n}\n\n\n//# sourceURL=webpack:///./api/core/ExtendedRouter.js?");
+
+/***/ }),
+
+/***/ "./api/core/Model.js":
+/*!***************************!*\
+  !*** ./api/core/Model.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_MysqlConnection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/MysqlConnection */ \"./api/core/MysqlConnection.js\");\n/* harmony import */ var _core_Query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/Query */ \"./api/core/Query.js\");\n/* harmony import */ var _core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/helpers/mysqlDatabseHelpers */ \"./api/core/helpers/mysqlDatabseHelpers.js\");\n\n\n\n\nclass Model {\n    constructor(table, data, fieldsValidation) {\n        this.data = data;\n        this.tableName = Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_2__[\"queryString\"])(table);\n        this.fieldsValidation = fieldsValidation;\n        this.connection = _core_MysqlConnection__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getInstance();\n        this.validationErrors = {};\n    }\n\n    validate() {\n        this.validationErrors = this.fieldsValidation.filter(field => {\n            return !this.data.hasOwnProperty(field) || (!this.data[field] && this.data[field] !== 0);\n        });\n\n        return this.validationErrors.length === 0;\n    }\n\n    setData(data) {\n        this.data = data;\n    }\n\n    create() {\n        const data = this.getCreationData();\n        const fields = Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_2__[\"fieldsObjectToQueryFields\"])(Object.keys(data)).join(\", \");\n        const values = Object.values(data).join(\", \");\n        const string = `INSERT INTO ${this.tableName} (${fields}) VALUES (${values})`;\n\n        return Object(_core_Query__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(string);\n    }\n\n\n    getBy(field, value, parse = true) {\n        const string = `SELECT * FROM ${this.tableName} WHERE ${Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_2__[\"queryString\"])(field)} = ${Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_2__[\"toStringForQuery\"])(value)}`;\n\n        return Object(_core_Query__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(string).then(results => parse && results ? (results.length >= 1 ? results[0] : {}) : results);\n    }\n\n    getSingleBy(field, name) {\n        return this.getBy(field, name, true).then(response => {\n            if (response[field]) {\n                return response\n            }\n\n            throw new Error(\"Object not found\");\n        })\n    }\n\n    getAll() {\n        const string = `SELECT * FROM ${this.tableName}`;\n\n        return Object(_core_Query__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(string)\n    }\n\n    getCreationData() {\n        return {};\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Model);\n\n\n//# sourceURL=webpack:///./api/core/Model.js?");
+
+/***/ }),
+
 /***/ "./api/core/MysqlConnection.js":
 /*!*************************************!*\
   !*** ./api/core/MysqlConnection.js ***!
@@ -95,6 +131,42 @@
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mysql */ \"./node_modules/mysql/index.js\");\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql__WEBPACK_IMPORTED_MODULE_0__);\n\n\nlet connectionInstance = false;\n\nclass Connection {\n    static getInstance(config = false) {\n        if (!connectionInstance && config) {\n            const connection = mysql__WEBPACK_IMPORTED_MODULE_0___default.a.createConnection(config);\n\n            try {\n                connection.connect();\n                connectionInstance = connection;\n            } catch (error) {\n                console.error(error);\n                return false;\n            }\n        }\n\n        return connectionInstance;\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Connection);\n\n\n//# sourceURL=webpack:///./api/core/MysqlConnection.js?");
+
+/***/ }),
+
+/***/ "./api/core/MysqlError.js":
+/*!********************************!*\
+  !*** ./api/core/MysqlError.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass MysqlError {\n    static get VALIDATION_ERROR() {\n        return 'Model validation error';\n    }\n\n    static get CANNOT_FIND_OBJECT() {\n        return 'Cannot find object error';\n    }\n\n    static get CANNOT_CREATE_OBJECT() {\n        return 'Cannot create object error';\n    }\n\n    static get WRONG_QUERY() {\n        return 'Wrong in query logic';\n    }\n\n    constructor(type, details = {}) {\n        this.type = type;\n        this.details = details;\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MysqlError);\n\n\n//# sourceURL=webpack:///./api/core/MysqlError.js?");
+
+/***/ }),
+
+/***/ "./api/core/Query.js":
+/*!***************************!*\
+  !*** ./api/core/Query.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MysqlConnection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MysqlConnection */ \"./api/core/MysqlConnection.js\");\n\n\nconst Query = (string = '') => {\n    return new Promise((resolve, reject) => {\n        _MysqlConnection__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getInstance().query(string, (error, results) => {\n\n            if (error) {\n                return reject(error);\n            }\n\n            return resolve(results);\n        })\n    });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Query);\n\n\n//# sourceURL=webpack:///./api/core/Query.js?");
+
+/***/ }),
+
+/***/ "./api/core/helpers/mysqlDatabseHelpers.js":
+/*!*************************************************!*\
+  !*** ./api/core/helpers/mysqlDatabseHelpers.js ***!
+  \*************************************************/
+/*! exports provided: toStringForQuery, queryString, fieldsObjectToQueryFields */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toStringForQuery\", function() { return toStringForQuery; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"queryString\", function() { return queryString; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fieldsObjectToQueryFields\", function() { return fieldsObjectToQueryFields; });\nconst toStringForQuery = string => `\"${string}\"`;\nconst queryString = string => `\\`${string}\\``;\nconst fieldsObjectToQueryFields = data => data.map(element => queryString(element));\n\n\n//# sourceURL=webpack:///./api/core/helpers/mysqlDatabseHelpers.js?");
 
 /***/ }),
 
@@ -118,7 +190,103 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _con
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nvar healthCheckRouter = new express__WEBPACK_IMPORTED_MODULE_0___default.a.Router().get('', function (req, res) {\n  res.send({\n    connection: true,\n    version: '0.01223'\n  });\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (healthCheckRouter);\n\n//# sourceURL=webpack:///./api/src/controllers/health-check/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nconst healthCheckRouter = new express__WEBPACK_IMPORTED_MODULE_0___default.a.Router().get('', (req, res) => {\n  res.send({\n    connection: true,\n    version: '0.01223'\n  });\n});\nconsole.log(healthCheckRouter);\n/* harmony default export */ __webpack_exports__[\"default\"] = (healthCheckRouter);\n\n//# sourceURL=webpack:///./api/src/controllers/health-check/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/product/create/index.js":
+/*!*****************************************************!*\
+  !*** ./api/src/controllers/product/create/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/category */ \"./api/src/model/category.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass CreateProductAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const requestData = { ...this.getRequestData(),\n      type: _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"].RECIPE_TYPE\n    };\n    const categoryModel = new _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"](requestData);\n\n    if (categoryModel.validate()) {\n      categoryModel.create().then(() => {\n        this.response.status(200).send();\n      }).catch(error => {\n        this.response.status(400).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_CREATE_OBJECT, error));\n      });\n      return;\n    }\n\n    this.response.status(400).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].VALIDATION_ERROR, categoryModel.validationErrors));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (CreateProductAction);\n\n//# sourceURL=webpack:///./api/src/controllers/product/create/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/product/get-all/index.js":
+/*!******************************************************!*\
+  !*** ./api/src/controllers/product/get-all/index.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/product */ \"./api/src/model/product.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass GetAllProductAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const model = new _model_product__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n    model.getAll().then(response => {\n      this.response.status(200).send(response);\n    }).catch(error => {\n      this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, error));\n    });\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GetAllProductAction);\n\n//# sourceURL=webpack:///./api/src/controllers/product/get-all/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/product/get/index.js":
+/*!**************************************************!*\
+  !*** ./api/src/controllers/product/get/index.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/product */ \"./api/src/model/product.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass GetProductAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const model = new _model_product__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n    const {\n      id\n    } = this.getRequestData();\n\n    if (id) {\n      model.getSingleBy(\"id\", id).then(response => {\n        this.response.status(200).send(response);\n      }).catch(error => {\n        this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, error));\n      });\n      return;\n    }\n\n    this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, {\n      message: 'Id isn\\'t defined.'\n    }));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GetProductAction);\n\n//# sourceURL=webpack:///./api/src/controllers/product/get/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/product/index.js":
+/*!**********************************************!*\
+  !*** ./api/src/controllers/product/index.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_ExtendedRouter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../core/ExtendedRouter */ \"./api/core/ExtendedRouter.js\");\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create */ \"./api/src/controllers/product/create/index.js\");\n/* harmony import */ var _get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./get */ \"./api/src/controllers/product/get/index.js\");\n/* harmony import */ var _get_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./get-all */ \"./api/src/controllers/product/get-all/index.js\");\n\n\n\n\nconst productRouter = new _core_ExtendedRouter__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nproductRouter.putAction('', _create__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\nproductRouter.getAction('/:id', _get__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\nproductRouter.getAction('', _get_all__WEBPACK_IMPORTED_MODULE_3__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (productRouter.toFunction());\n\n//# sourceURL=webpack:///./api/src/controllers/product/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/recipe-category/create/index.js":
+/*!*************************************************************!*\
+  !*** ./api/src/controllers/recipe-category/create/index.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/category */ \"./api/src/model/category.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass CreateRecipeCategoryAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const requestData = { ...this.getRequestData(),\n      type: _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"].RECIPE_TYPE\n    };\n    const categoryModel = new _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"](requestData);\n\n    if (categoryModel.validate()) {\n      categoryModel.create().then(() => {\n        this.response.status(200).send();\n      }).catch(error => {\n        this.response.status(400).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_CREATE_OBJECT, error));\n      });\n      return;\n    }\n\n    this.response.status(400).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].VALIDATION_ERROR, categoryModel.validationErrors));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (CreateRecipeCategoryAction);\n\n//# sourceURL=webpack:///./api/src/controllers/recipe-category/create/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/recipe-category/get-all/index.js":
+/*!**************************************************************!*\
+  !*** ./api/src/controllers/recipe-category/get-all/index.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/category */ \"./api/src/model/category.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass GetAllRecipeCategoryAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const model = new _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n    model.getBy(\"type\", _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"].RECIPE_TYPE, false).then(response => {\n      this.response.status(200).send(response);\n    }).catch(error => {\n      this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, error));\n    });\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GetAllRecipeCategoryAction);\n\n//# sourceURL=webpack:///./api/src/controllers/recipe-category/get-all/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/recipe-category/get/index.js":
+/*!**********************************************************!*\
+  !*** ./api/src/controllers/recipe-category/get/index.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/Action */ \"./api/core/Action.js\");\n/* harmony import */ var _model_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../model/category */ \"./api/src/model/category.js\");\n/* harmony import */ var _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../core/MysqlError */ \"./api/core/MysqlError.js\");\n\n\n\n\nclass GetRecipeCategoryAction extends _core_Action__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  render() {\n    const model = new _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n    const {\n      id\n    } = this.getRequestData();\n    console.log(this.getRequestData());\n\n    if (id) {\n      model.getBy(\"id\", id).then(response => {\n        if (response.type !== _model_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"].RECIPE_TYPE) {\n          this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].WRONG_QUERY, {\n            message: 'Wrong category type.'\n          }));\n        } else {\n          this.response.status(200).send(response);\n        }\n      }).catch(error => {\n        this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, error));\n      });\n      return;\n    }\n\n    this.response.status(404).send(new _core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](_core_MysqlError__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CANNOT_FIND_OBJECT, {\n      message: 'Id isn\\'t defined.'\n    }));\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GetRecipeCategoryAction);\n\n//# sourceURL=webpack:///./api/src/controllers/recipe-category/get/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/controllers/recipe-category/index.js":
+/*!******************************************************!*\
+  !*** ./api/src/controllers/recipe-category/index.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_ExtendedRouter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../core/ExtendedRouter */ \"./api/core/ExtendedRouter.js\");\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./create */ \"./api/src/controllers/recipe-category/create/index.js\");\n/* harmony import */ var _get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./get */ \"./api/src/controllers/recipe-category/get/index.js\");\n/* harmony import */ var _get_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./get-all */ \"./api/src/controllers/recipe-category/get-all/index.js\");\n\n\n\n\nconst recipeCategoryRouter = new _core_ExtendedRouter__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\nrecipeCategoryRouter.putAction('', _create__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\nrecipeCategoryRouter.getAction('/:id', _get__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\nrecipeCategoryRouter.getAction('', _get_all__WEBPACK_IMPORTED_MODULE_3__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (recipeCategoryRouter.toFunction());\n\n//# sourceURL=webpack:///./api/src/controllers/recipe-category/index.js?");
 
 /***/ }),
 
@@ -130,7 +298,31 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"./node_modules/cors/lib/index.js\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config */ \"./config.js\");\n/* harmony import */ var _config_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config/database */ \"./api/src/config/database.js\");\n/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ \"./api/src/router/index.js\");\n/* harmony import */ var _core_MysqlConnection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/MysqlConnection */ \"./api/core/MysqlConnection.js\");\n\n\n\n\n\n\n\nif (_config__WEBPACK_IMPORTED_MODULE_2__[\"default\"].runMysql && !_core_MysqlConnection__WEBPACK_IMPORTED_MODULE_5__[\"default\"].getInstance(_config_database__WEBPACK_IMPORTED_MODULE_3__[\"default\"])) {\n  throw new Error('Cannot initialize database.');\n}\n\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.listen(\"8080\", function () {\n  console.log('app started');\n});\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use('', _router__WEBPACK_IMPORTED_MODULE_4__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (app);\n\n//# sourceURL=webpack:///./api/src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"./node_modules/cors/lib/index.js\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config */ \"./config.js\");\n/* harmony import */ var _config_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./config/database */ \"./api/src/config/database.js\");\n/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ \"./api/src/router/index.js\");\n/* harmony import */ var _core_MysqlConnection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/MysqlConnection */ \"./api/core/MysqlConnection.js\");\n\n\n\n\n\n\n\nif (_config__WEBPACK_IMPORTED_MODULE_2__[\"default\"].runMysql && !_core_MysqlConnection__WEBPACK_IMPORTED_MODULE_5__[\"default\"].getInstance(_config_database__WEBPACK_IMPORTED_MODULE_3__[\"default\"])) {\n  throw new Error('Cannot initialize database.');\n}\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.listen(\"8080\", function () {\n  console.log('app started');\n});\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use('', _router__WEBPACK_IMPORTED_MODULE_4__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (app);\n\n//# sourceURL=webpack:///./api/src/index.js?");
+
+/***/ }),
+
+/***/ "./api/src/model/category.js":
+/*!***********************************!*\
+  !*** ./api/src/model/category.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/Model */ \"./api/core/Model.js\");\n/* harmony import */ var _core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/helpers/mysqlDatabseHelpers */ \"./api/core/helpers/mysqlDatabseHelpers.js\");\n\n\nconst fields = ['type', 'name', 'image'];\n\nclass Category extends _core_Model__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  static get RECIPE_TYPE() {\n    return 'RECIPE_TYPE';\n  }\n\n  constructor(data) {\n    super(\"category\", data, fields);\n  }\n\n  getCreationData() {\n    return {\n      type: Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__[\"toStringForQuery\"])(this.data.type),\n      name: Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__[\"toStringForQuery\"])(this.data.name),\n      image: Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__[\"toStringForQuery\"])(this.data.image)\n    };\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Category);\n\n//# sourceURL=webpack:///./api/src/model/category.js?");
+
+/***/ }),
+
+/***/ "./api/src/model/product.js":
+/*!**********************************!*\
+  !*** ./api/src/model/product.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/Model */ \"./api/core/Model.js\");\n/* harmony import */ var _core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/helpers/mysqlDatabseHelpers */ \"./api/core/helpers/mysqlDatabseHelpers.js\");\n\n\nconst fields = ['name', 'kcal', 'carbo', 'protein', 'fat'];\n\nclass Category extends _core_Model__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n  constructor(data) {\n    super(\"product\", data, fields);\n  }\n\n  getCreationData() {\n    return {\n      'name': Object(_core_helpers_mysqlDatabseHelpers__WEBPACK_IMPORTED_MODULE_1__[\"toStringForQuery\"])(this.data.name),\n      'kcal': parseFloat(this.data.kcal),\n      'carbo': parseFloat(this.data.carbo),\n      'protein': parseFloat(this.data.protein),\n      'fat': parseFloat(this.data.fat)\n    };\n  }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Category);\n\n//# sourceURL=webpack:///./api/src/model/product.js?");
 
 /***/ }),
 
@@ -142,7 +334,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ \"./api/src/router/routes.js\");\n\n\nvar router = new express__WEBPACK_IMPORTED_MODULE_0___default.a.Router();\n_routes__WEBPACK_IMPORTED_MODULE_1__[\"default\"].forEach(function (_ref) {\n  var path = _ref.path,\n      controller = _ref.controller;\n  router.use(\"/\".concat(path), controller);\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./api/src/router/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ \"./api/src/router/routes.js\");\n\n\nconst router = new express__WEBPACK_IMPORTED_MODULE_0___default.a.Router();\n_routes__WEBPACK_IMPORTED_MODULE_1__[\"default\"].forEach(({\n  path,\n  controller\n}) => {\n  router.use(`/${path}`, controller);\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./api/src/router/index.js?");
 
 /***/ }),
 
@@ -154,7 +346,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _controllers_health_check__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controllers/health-check */ \"./api/src/controllers/health-check/index.js\");\n\nvar applicationRoutes = [{\n  path: 'health',\n  controller: _controllers_health_check__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (applicationRoutes);\n\n//# sourceURL=webpack:///./api/src/router/routes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _controllers_health_check__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controllers/health-check */ \"./api/src/controllers/health-check/index.js\");\n/* harmony import */ var _controllers_recipe_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/recipe-category */ \"./api/src/controllers/recipe-category/index.js\");\n/* harmony import */ var _controllers_product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controllers/product */ \"./api/src/controllers/product/index.js\");\n\n\n\nconst applicationRoutes = [{\n  path: 'health',\n  controller: _controllers_health_check__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n}, {\n  path: 'category',\n  controller: _controllers_recipe_category__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n}, {\n  path: 'product',\n  controller: _controllers_product__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n}];\n/* harmony default export */ __webpack_exports__[\"default\"] = (applicationRoutes);\n\n//# sourceURL=webpack:///./api/src/router/routes.js?");
 
 /***/ }),
 
@@ -166,7 +358,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _con
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst ApplicationConfig = {\n    runMysql: false,\n    host: \"localhost\",\n    backendUrl: \"localhost:8080\",\n    user: 'root',\n    password: 'MyNewPass',\n    database: 'tfs'\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (ApplicationConfig);\n\n\n//# sourceURL=webpack:///./config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst ApplicationConfig = {\n    runMysql: true,\n    host: \"localhost\",\n    backendUrl: \"localhost:8080\",\n    user: 'root',\n    password: 'MyNewPass',\n    database: 'cookbook_app'\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (ApplicationConfig);\n\n\n//# sourceURL=webpack:///./config.js?");
 
 /***/ }),
 
