@@ -3,7 +3,9 @@ import './style.scss';
 
 import Text from "../../../components/text";
 import IconText from "../../../components/icon-text";
+import Rating from '../../../components/rating';
 
+//TODO Change maxRating actualRating in Rating component to properties
 const RecipeThumbnail = ({title, time, energyValue}) => {
     return <div className="recipe-thumbnail">
         <div className="recipe-thumbnail__image">
@@ -18,6 +20,9 @@ const RecipeThumbnail = ({title, time, energyValue}) => {
             <div className="recipe-thumbnail__info">
                 <IconText icon="coffee">{time}</IconText>
                 <IconText icon="coffee">{energyValue}</IconText>
+            </div>
+            <div className="recipe-thumbnail__rating">
+                <Rating iconName="star" maxRating={5} actualRating={2}/>
             </div>
         </div>
     </div>;
