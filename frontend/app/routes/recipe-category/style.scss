@@ -16,4 +16,10 @@
   &__element {
     width: calc(20% - 30px);
   }
+
+  &__create-form {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
 }

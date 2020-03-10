@@ -11,6 +11,7 @@ class Category extends Model {
     static get RECIPE_TYPE (){
         return 'RECIPE_TYPE';
     }
+
     constructor(data) {
         super("category", data, fields);
     }

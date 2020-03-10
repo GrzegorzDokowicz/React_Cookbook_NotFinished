@@ -21,12 +21,6 @@ class Action {
         }
 
         return {};
-
-
-        console.log(this.request.params);
-
-        return this.request && this.request.body ? this.request.body :
-            (this.request && this.request.query ? this.request.query : false);
     }
 
     render() {

@@ -1,0 +1,24 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+@import "../../styles/variables";
+@import "../../styles/form";
+
+.modal {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.55); /* Black w/ opacity */
+
+  &--open {
+    display: block;
+  }
+
+  &__content {
+    margin: 5%;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,14 @@
+.recipe-category-form {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &__form {
+    width: 65%;
+  }
+
+  &__preview {
+    width: 35%;
+  }
+
+}

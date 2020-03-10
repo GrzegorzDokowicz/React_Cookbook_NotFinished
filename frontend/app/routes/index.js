@@ -11,7 +11,7 @@ const StateComponent = () => {
         <Route exact path="/" component={MainComponent}/>
         <Route path="/recipe/1" component={RecipeComponent}/>
         <Route path="/recipe-categories" component={RecipeCategoriesListComponent}/>
-        <Route path="/recipe-category/1" component={RecipeCategoryComponent}/>
+        <Route path="/recipe-category/:id" component={RecipeCategoryComponent}/>
     </React.Fragment>
 };
 

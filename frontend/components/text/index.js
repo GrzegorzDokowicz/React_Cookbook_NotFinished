@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 
-const Text = ({type, children}) => {
+const Text = ({type, children, htmlFor=''}) => {
     switch (type) {
         case "header":
             return <h1 className={'text text--h1'}>{children}</h1>;
@@ -15,6 +15,8 @@ const Text = ({type, children}) => {
             return <span className={"text text--icon-description"}>{children}</span>;
         case "paragraph":
             return <p className={'text text--paragraph'}>{children}</p>;
+        case "label":
+            return <label className={'text text---label'} htmlFor={htmlFor}>{children}</label>
         default:
             return <span className={'text text--span'}>{children}</span>
     }

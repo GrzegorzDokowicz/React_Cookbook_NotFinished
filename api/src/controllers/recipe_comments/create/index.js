@@ -1,10 +1,10 @@
 import CreateAction from "../../../../core/actions/CreateAction";
-import ProductModel from "../../../model/product";
+import RecipeCommentsModel from "../../../model/recipe-comments";
 
-class CreateProductAction extends CreateAction {
+class CreateRecipeCommentAction extends CreateAction {
     getConfiguration() {
         return {
-            model: ProductModel,
+            model: RecipeCommentsModel,
             data: {
                 ...this.getRequestData()
             }
@@ -13,4 +13,4 @@ class CreateProductAction extends CreateAction {
     }
 }
 
-export default CreateProductAction;
+export default CreateRecipeCommentAction;

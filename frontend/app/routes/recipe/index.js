@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import './style.scss';
 import ResponsiveAppContainer from "../../components/responsive-app-container";
 import Text from "../../../components/text";
-import RecipeProducts from "./recipe-products";
-import RecipeSteps from "./recipe-steps";
-import RecipeNotes from "./recipe-notes";
+import RecipeProducts from "../../components/recipe-products";
+import RecipeSteps from "../../components/recipe-steps";
+import RecipeNotes from "../../components/recipe-notes";
 import Comments from "../../components/comments";
-import RecipeImages from "./recipe-images";
+import RecipeImages from "../../components/recipe-images";
 
 class Recipe extends React.Component {
     render() {

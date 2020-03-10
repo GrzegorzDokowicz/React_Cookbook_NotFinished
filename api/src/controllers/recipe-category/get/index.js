@@ -7,8 +7,6 @@ class GetRecipeCategoryAction extends Action {
         const model = new CategoryModel();
         const {id} = this.getRequestData();
 
-        console.log(this.getRequestData());
-
         if (id) {
             model.getBy("id", id).then(response => {
                 if(response.type !== CategoryModel.RECIPE_TYPE) {

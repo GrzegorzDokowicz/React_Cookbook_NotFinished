@@ -4,10 +4,10 @@ import './style.scss';
 import Text from "../../../components/text";
 import IconText from "../../../components/icon-text";
 
-const RecipeThumbnail = ({title, time, energyValue}) => {
+const RecipeThumbnail = ({title, time, energyValue, image}) => {
     return <div className="recipe-thumbnail">
         <div className="recipe-thumbnail__image">
-            <img src={""} alt="Not found"/>
+            <img src={image} alt="Not found"/>
         </div>
         <div className="recipe-thumbnail__content">
             <div className="recipe-thumbnail__title">
