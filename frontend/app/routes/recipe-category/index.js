@@ -8,8 +8,6 @@ import ResponsiveAppContainer from "../../components/responsive-app-container";
 import RecipeThumbnail from "../../components/recipe-thumbnail";
 import Text from "../../../components/text";
 import ActionBar from "../../components/action-bar";
-import RecipeCategoryForm from "../../components/recipe-category-form";
-import Modal from "../../../components/modal";
 import NotFound from "../../components/not-found";
 
 const mapStateToProps = (state) => ({
@@ -111,11 +109,6 @@ class RecipeCategory extends React.Component {
                     <RecipesThumbnailsCollection recipes={this.getRecipes()}/>
                 </div>
             </div>
-            <Modal isOpen={this.state.isOpen} onClose={() => this.setModalState(false)}>
-                <div className="recipe-category__create-form">
-                    <RecipeCategoryForm/>
-                </div>
-            </Modal>
         </ResponsiveAppContainer>
     }
 }

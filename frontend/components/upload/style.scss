@@ -4,5 +4,15 @@
 @import "../../styles/form";
 
 .upload {
+  padding: 16px 16px;
+  border: 1px solid black;
+  cursor: pointer;
 
+  div[tabindex]{
+    outline: none;
+  }
+
+  label {
+    cursor: pointer;
+  }
 }

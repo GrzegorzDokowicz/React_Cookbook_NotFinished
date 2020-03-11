@@ -1,3 +1,5 @@
+import {ADD_RECIPE_CATEGORY_ACTION} from "./actions";
+
 const initialState = [
     {
         id: 1,
@@ -75,8 +77,19 @@ const initialState = [
     },
 ];
 
+let id = 5;
+
 const categoriesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
+        case ADD_RECIPE_CATEGORY_ACTION:
+            return [
+                ...state,
+                {
+                    ...payload,
+                    id: id++,
+                    recipes: []
+                }
+            ];
         default:
             return state;
     }
