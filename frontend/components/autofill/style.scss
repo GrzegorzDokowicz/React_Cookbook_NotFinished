@@ -1,0 +1,14 @@
+.auto-fill {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__container {
+    display: none;
+    flex-direction: column;
+
+    &--active {
+      display: flex;
+    }
+  }
+}
