@@ -13,7 +13,7 @@ const RecipeCategoryForm = ({callback}) => {
     const onChange = $event => setName($event.currentTarget.value);
     const onLoad = ({file}) => setFile(file.name);
     const submit = () => {
-        if(callback) {
+        if (callback) {
             callback({
                 name,
                 file
@@ -24,18 +24,20 @@ const RecipeCategoryForm = ({callback}) => {
     return <div className="recipe-category-form">
         <div className="recipe-category-form__form">
             <Text type={"subheader"}>Dodaj kategorie przepisow</Text>
-            <div className="recipe-category-form__title">
-                <Input name={"title"} text={"Nazwa kategorii"} onChange={onChange}/>
-            </div>
-            <div className="recipe-category-form__image">
-                <Upload onLoad={onLoad}/>
-            </div>
+            <form>
+                <div className="recipe-category-form__title">
+                    <Input name={"title"} text={"Nazwa kategorii"} onChange={onChange}/>
+                </div>
+                <div className="recipe-category-form__image">
+                    <Upload onLoad={onLoad}/>
+                </div>
+                <Button onClick={submit}>Submit</Button>
+            </form>
         </div>
         <div className="recipe-category-form__preview">
             <Text type={"subheader"}>Podglad dodawanej kategorii</Text>
             <CategoryThumbnail title={name}/>
         </div>
-        <Button onClick={submit}>Submit</Button>
     </div>
 };
 

@@ -3,12 +3,10 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import './style.scss';
-
-import ResponsiveAppContainer from "../../components/responsive-app-container";
 import RecipeThumbnail from "../../components/recipe-thumbnail";
 import Text from "../../../components/text";
-import ActionBar from "../../components/action-bar";
 import NotFound from "../../components/not-found";
+import ActionBarPageContainer from "../../components/action-bar-page-container";
 
 const mapStateToProps = (state) => ({
     categories: state.categories
@@ -95,21 +93,15 @@ class RecipeCategory extends React.Component {
             return <NotFound/>
         }
 
-        return <ResponsiveAppContainer>
+        return <ActionBarPageContainer onSearch={this.searchCategory.bind(this)}
+                                       onClick={this.addRecipe.bind(this)}
+                                       title={`Lista przepisow w kategorii ${this.state.category.name}`}>
             <div className="recipe-category">
-                <div className="recipe-category__header">
-                    <Text type={"header"}>
-                        Lista przepisow w kategorii {this.state.category.name}
-                    </Text>
-                </div>
-                <div className="recipe-category__action-bar">
-                    <ActionBar onSearch={this.searchCategory.bind(this)} onClick={this.addRecipe.bind(this)}/>
-                </div>
                 <div className="recipe-category__elements">
                     <RecipesThumbnailsCollection recipes={this.getRecipes()}/>
                 </div>
             </div>
-        </ResponsiveAppContainer>
+        </ActionBarPageContainer>
     }
 }
 

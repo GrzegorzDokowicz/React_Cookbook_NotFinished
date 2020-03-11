@@ -3,13 +3,11 @@ import {connect} from "react-redux";
 import './style.scss';
 
 import CategoryThumbnail from "../../components/category-thumbnail";
-import Text from "../../../components/text";
 import {Link} from 'react-router-dom';
-import ResponsiveAppContainer from "../../components/responsive-app-container";
-import ActionBar from "../../components/action-bar";
 import RecipeCategoryForm from "../../components/recipe-category-form";
 import Modal from "../../../components/modal";
 import {addRecipeCategory} from "../../data-layer/recipe-categories/actions";
+import ActionBarPageContainer from "../../components/action-bar-page-container";
 const mapStateToProps = state => ({
     categories: state.categories
 });
@@ -50,16 +48,10 @@ class RecipeCategoriesList extends React.Component {
     }
 
     render() {
-        return <ResponsiveAppContainer>
+        return <ActionBarPageContainer title={"Kategorie przepisow"}
+                                       onClick={this.addCategory.bind(this)}
+                                       onSearch={this.searchCategory.bind(this)}>
             <div className="recipe-categories-list">
-                <div className={"recipe-categories-list__header"}>
-                    <Text type={"header"}>
-                        Kategorie przepisow
-                    </Text>
-                </div>
-                <div className="recipe-categories-list__action-bar">
-                    <ActionBar onSearch={this.searchCategory.bind(this)} onClick={this.addCategory.bind(this)}/>
-                </div>
                 <ul className="recipe-categories-list__elements">
                     {
                         (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
@@ -71,7 +63,7 @@ class RecipeCategoriesList extends React.Component {
                     <RecipeCategoryForm callback={this.addCategoryCallback.bind(this)}/>
                 </div>
             </Modal>
-        </ResponsiveAppContainer>
+        </ActionBarPageContainer>;
     }
 }
 

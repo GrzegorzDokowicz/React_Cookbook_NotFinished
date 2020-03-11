@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import './style.scss';
+import Text from "../text";
 
 const Select = ({title, value, onChange, data}) => {
-    const renderOptions = options => options.map((option, index) =>
-        <option key={index} value={option}>{option}</option>);
+    const renderOptions = options => options ? options.map((option, index) =>
+        <option key={index} value={option}>{option}</option>) : [];
 
     return <div className="select">
-        <span className="select__title">{title}</span>
+        <Text>{title}</Text>
         <select className="select__input" onChange={onChange} value={value}>
             {renderOptions(data)}
         </select>
