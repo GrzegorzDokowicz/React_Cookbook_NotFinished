@@ -1,0 +1,23 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+@import "../../styles/variables";
+@import "../../styles/form";
+
+.stepper {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+
+  &__step {
+    width: 45px;
+    height: 45px;
+    background-color: $grey3;
+    border-radius: 50%;
+    align-content: center;
+    justify-content: center;
+  }
+
+  & * {
+    margin: 1rem 0.5rem  1rem 0.5rem ;
+  }
+}
