@@ -4,20 +4,24 @@
 @import "../../styles/form";
 
 .stepper {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto auto;
+  display: flex;
+  flex-direction: column;
 
   &__step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__step-index {
+    display: flex;
     width: 45px;
     height: 45px;
     background-color: $grey3;
     border-radius: 50%;
-    align-content: center;
+    align-items: center;
     justify-content: center;
-  }
-
-  & * {
-    margin: 1rem 0.5rem  1rem 0.5rem ;
+    margin-right: 10px;
   }
 }

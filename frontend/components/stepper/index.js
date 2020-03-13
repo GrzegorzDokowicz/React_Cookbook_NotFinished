@@ -1,15 +1,15 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import './style.scss';
+import Text from '../text';
 
 const Stepper = ({textArray = []}) => {
-    const singleStep = (number) => <div key={number} className={'stepper stepper__step'}>{number}</div>;
-    let stepperComponent = [];
-    textArray.forEach((element, index) => stepperComponent.push([singleStep(index + 1), element]));
+    const SingleStep = ({number, children}) => <div key={number} className={'stepper__step'}>
+        <div className={'stepper__step-index'}>{number + 1}</div>
+        <Text>{children}</Text>
+    </div>;
 
-    console.log(stepperComponent);
     return <div className="stepper">
-        {stepperComponent}
+        {textArray.map((element, index) => <SingleStep number={index}>{element}</SingleStep>)}
     </div>
 };
 
