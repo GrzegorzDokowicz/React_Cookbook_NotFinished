@@ -8,6 +8,8 @@ import RecipeCategoryForm from "../../components/recipe-category-form";
 import Modal from "../../../components/modal";
 import {addRecipeCategory} from "../../data-layer/recipe-categories/actions";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
+import Pagination from '../../../components/pagination';
+
 const mapStateToProps = state => ({
     categories: state.categories
 });
@@ -25,6 +27,7 @@ class RecipeCategoriesList extends React.Component {
 
         this.state = {
             isOpen: false,
+            currentPage: 1
         };
     }
 
@@ -57,6 +60,12 @@ class RecipeCategoriesList extends React.Component {
                         (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
                     }
                 </ul>
+                <Pagination elements={this.props.categories.length}
+                            callback={(page) => this.setState(state => ({
+                                ...state,
+                                currentPage: page
+                            }))}
+                            currentItem={this.state.currentPage}/>
             </div>
             <Modal isOpen={this.state.isOpen} onClose={() => this.setModalState(false)}>
                 <div className="recipe-category__create-form">
