@@ -44,7 +44,6 @@ class CommentForm extends React.Component {
                        value={this.state.commentBody}/>
             </div>
             <Button children={'Dodaj komentarz'} onClick={this._handleClick}/>
-            {JSON.stringify(this.state, null, 2)}
         </form>
     }
 };
