@@ -10,6 +10,7 @@ import Comments from "../../components/comments";
 import RecipeImages from "../../components/recipe-images";
 import NotFound from "../../components/not-found";
 import Rating from "../../../components/rating";
+import CommentForm from '../../components/comment-form';
 
 const mapStateToProps = state => ({
     recipes: state.recipes
@@ -53,7 +54,10 @@ class Recipe extends React.Component {
             </div> : '',
             recipe.comments ? <div key={3} className="recipe__comments">
                 <Comments/>
-            </div> : ''
+                <CommentForm/>
+            </div> : <div key={3} className="recipe__comments">
+                <CommentForm/>
+            </div>
         ];
 
         return <div className="recipe">
@@ -74,7 +78,7 @@ class Recipe extends React.Component {
                     </div>
                 </div>
                 {sections}
-            </ResponsiveAppContainer>;
+            </ResponsiveAppContainer>
         </div>
 
     }
