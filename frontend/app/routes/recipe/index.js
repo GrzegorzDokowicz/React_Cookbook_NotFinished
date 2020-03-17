@@ -7,6 +7,7 @@ import RecipeProducts from "../../components/recipe-products";
 import RecipeSteps from "../../components/recipe-steps";
 import RecipeNotes from "../../components/recipe-notes";
 import Comments from "../../components/comments";
+import CommentForm from '../../components/comment-form';
 import RecipeImages from "../../components/recipe-images";
 import NotFound from "../../components/not-found";
 import Rating from "../../../components/rating";
@@ -38,6 +39,10 @@ class Recipe extends React.Component {
         return this.props.recipes ? this.props.recipes.find(({id}) => id === this.id) : [];
     }
 
+    _addCommentClick = (dataFromForm) => {
+        console.log(dataFromForm)
+    };
+
     render() {
         if (!this.state.recipe) {
             return <NotFound/>
@@ -53,7 +58,10 @@ class Recipe extends React.Component {
             </div> : '',
             recipe.comments ? <div key={3} className="recipe__comments">
                 <Comments/>
-            </div> : ''
+                <CommentForm onClick={this._addCommentClick}/>
+            </div> : <div key={3} className="recipe__comments">
+                <CommentForm onClick={this._addCommentClick}/>
+            </div>
         ];
 
         return <div className="recipe">
@@ -74,7 +82,7 @@ class Recipe extends React.Component {
                     </div>
                 </div>
                 {sections}
-            </ResponsiveAppContainer>;
+            </ResponsiveAppContainer>
         </div>
 
     }

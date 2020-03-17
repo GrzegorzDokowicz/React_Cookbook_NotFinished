@@ -4,7 +4,7 @@ import './style.scss';
 const Comments = () => {
     return <div className="comments">
         Comments section
-    </div>;
+    </div>
 };
 
 export default Comments;

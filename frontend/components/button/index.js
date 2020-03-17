@@ -3,7 +3,8 @@ import './style.scss';
 import Text from "../text";
 
 const Button = ({children, type = "default", onClick}) => {
-    const clickButton = () => {
+    const clickButton = (event) => {
+        event.preventDefault();
         if(onClick) {
             onClick();
         }
