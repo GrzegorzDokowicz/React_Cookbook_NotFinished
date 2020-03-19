@@ -18,10 +18,11 @@ class CommentForm extends React.Component {
 
     _handleChange = (event) => {
         const target = event.target;
-        this.setState({
+        this.setState(prevState => ({
+            ...prevState,
             [target.name]: target.value,
             timeStamp: new Date()
-        })
+        }));
     };
 
     _handleClick = () => {

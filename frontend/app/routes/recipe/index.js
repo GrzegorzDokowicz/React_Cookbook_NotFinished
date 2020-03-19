@@ -39,10 +39,6 @@ class Recipe extends React.Component {
         return this.props.recipes ? this.props.recipes.find(({id}) => id === this.id) : [];
     }
 
-    _addCommentClick = (dataFromForm) => {
-        console.log(dataFromForm)
-    };
-
     render() {
         if (!this.state.recipe) {
             return <NotFound/>
@@ -58,9 +54,8 @@ class Recipe extends React.Component {
             </div> : '',
             recipe.comments ? <div key={3} className="recipe__comments">
                 <Comments/>
-                <CommentForm onClick={this._addCommentClick}/>
-            </div> : <div key={3} className="recipe__comments">
-                <CommentForm onClick={this._addCommentClick}/>
+            </div> : <div key={4} className="recipe__comments">
+                <Comments/>
             </div>
         ];
 
