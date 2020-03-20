@@ -1,12 +1,12 @@
 import React from 'react';
 import './style.scss';
-import Text from "../text";
 import {Link} from 'react-router-dom';
 import IconText from '../icon-text';
 
 class NavBarElement extends React.Component {
-    constructor(props, {childrenTitle, path, iconName, onClick}) {
+    constructor(props) {
         super(props);
+
         this.state = {
             isActive: false
         };
@@ -14,7 +14,11 @@ class NavBarElement extends React.Component {
 
     render() {
         return <li className="nav-bar__element" onClick={this.props.onClick}>
-            <Link to={this.props.path}> <IconText icon={this.props.iconName} children={this.props.childrenTitle} vertical={true}/></Link>
+            <Link to={this.props.path}>
+                <IconText icon={this.props.iconName} vertical={true}>
+                    {this.props.childrenTitle}
+                </IconText>
+            </Link>
         </li>
     }
 }

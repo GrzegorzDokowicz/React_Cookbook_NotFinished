@@ -1,8 +1,21 @@
 import Connection from "../core/MysqlConnection";
 import Query from "../core/Query";
-import {fieldsObjectToQueryFields, queryString, toStringForQuery} from "../core/helpers/mysqlDatabseHelpers";
+import {
+    fieldsObjectToQueryFields,
+    getInsertValue, objectKeysToFields,
+    queryString,
+    toStringForQuery
+} from "../core/helpers/mysqlDatabseHelpers";
 
 class Model {
+    static getInsertString(table, fields, values) {
+        return `INSERT INTO ${table} (${fields}) VALUES ${values}`;
+    }
+
+    static getQueryString(table) {
+        return `SELECT * FROM ${table}`;
+    }
+
     constructor(table, data, fieldsValidation) {
         this.data = data;
         this.tableName = queryString(table);
@@ -25,16 +38,14 @@ class Model {
 
     create() {
         const data = this.getCreationData();
-        const fields = fieldsObjectToQueryFields(Object.keys(data)).join(", ");
-        const values = Object.values(data).join(", ");
-        const string = `INSERT INTO ${this.tableName} (${fields}) VALUES (${values})`;
+        const string = Model.getInsertString(this.tableName, objectKeysToFields(data), getInsertValue(Object.values(data)));
 
         return Query(string);
     }
 
 
     getBy(field, value, parse = true) {
-        const string = `SELECT * FROM ${this.tableName} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
+        const string = `${Model.getQueryString(this.tableName)} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
 
         return Query(string).then(results => parse && results ? (results.length >= 1 ? results[0] : {}) : results);
     }
@@ -50,7 +61,7 @@ class Model {
     }
 
     getAll() {
-        const string = `SELECT * FROM ${this.tableName}`;
+        const string = Model.getQueryString(this.tableName);
 
         return Query(string)
     }

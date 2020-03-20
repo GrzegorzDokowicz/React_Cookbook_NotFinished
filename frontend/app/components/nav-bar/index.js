@@ -12,7 +12,7 @@ const NavBar = () => {
                 <NavBarElement childrenTitle={"Strona domowa"} path={"/"} iconName={'home'} onClick={()=> console.log('click')}/>
                 <NavBarElement childrenTitle={"Kategorie przepisów"} path={"/recipe-categories"} iconName={'list'} onClick={()=> console.log('click')}/>
                 <li>LOGO</li>
-                <NavBarElement childrenTitle={"Kategoria"} path={"/recipe-category"} iconName={'concierge-bell'} onClick={()=> console.log('click')}/>
+                <NavBarElement childrenTitle={"Kategoria"} path={"/recipe-category/1"} iconName={'concierge-bell'} onClick={()=> console.log('click')}/>
                 <NavBarElement childrenTitle={"Przepis"} path={"/recipe/1"} iconName={'utensils'} onClick={()=> console.log('click')}/>
 
 

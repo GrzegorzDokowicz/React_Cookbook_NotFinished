@@ -11,7 +11,8 @@
     "build-frontend": "webpack --config ./frontend/webpack.config.js",
     "start-frontend": "webpack-dev-server --config ./frontend/webpack.config.js",
     "build": "concurrently --kill-others \"npm run build-backend\" \"npm run build-frontend\"",
-    "dev": "concurrently --kill-others \"npm run watch-build-backend\" \"npm run start-backend\" \"npm run start-frontend\""
+    "dev": "concurrently --kill-others \"npm run watch-build-backend\" \"npm run start-backend\" \"npm run start-frontend\"",
+    "build-cli": "webpack --config ./api/webpack.config.js --entry ./api/cli/index.js -o ./api/dist/cli.js\n"
   },
   "repository": {
     "type": "git",
