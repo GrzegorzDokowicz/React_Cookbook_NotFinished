@@ -1,0 +1,48 @@
+{
+    "category": {
+        "order": 1,
+        "collection":[
+            {
+                "id": 1,
+                "name": "Meksykanskie",
+                "type": "RECIPE_TYPE",
+                "image": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Wloskie",
+                "type": "RECIPE_TYPE",
+                "image": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Azjatyckie",
+                "type": "RECIPE_TYPE",
+                "image": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg"
+            },
+            {
+                "id": 4,
+                "name": "Polskie",
+                "type": "RECIPE_TYPE",
+                "image": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg"
+            }
+        ]
+    },
+    "recipe": {
+        "order": 2,
+        "collection": [
+            {
+                "id": 1,
+                "title": "Pyra",
+                "mainImage": "https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/2019-06/howcuttingdo.jpg",
+                "currentRating": 3
+            },
+            {
+                "id": 2,
+                "title": "Zupa",
+                "mainImage": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg",
+                "currentRating": 4
+            }
+        ]
+    }
+}
