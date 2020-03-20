@@ -29,7 +29,9 @@ module.exports = {
     mode: 'development',
     watch: false,
     target: 'node',
-    entry: './api/src/index.js',
+    entry: {
+        main: './api/src/index.js'
+    },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')

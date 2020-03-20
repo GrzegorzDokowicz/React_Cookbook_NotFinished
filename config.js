@@ -4,7 +4,7 @@ const ApplicationConfig = {
     backendUrl: "localhost:8080",
     user: 'root',
     password: 'MyNewPass',
-    database: 'cookbook_app'
+    database: 'test3'
 };
 
 export default ApplicationConfig;
