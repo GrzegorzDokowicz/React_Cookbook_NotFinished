@@ -38,19 +38,23 @@ class Recipe extends React.Component {
         return this.props.recipes ? this.props.recipes.find(({id}) => id === this.id) : [];
     }
 
-    _addCommentClick = (dataFromForm) => {
-        console.log(dataFromForm)
-    };
-
     render() {
         const {recipe} = this.state;
 
         if (recipe) {
             const {notes, images, comments, image, title, currentRating, products} = recipe;
             const sections = [
-                notes ? <div key={1} className="recipe__notes"><RecipeNotes/></div> : '',
-                images ? <div key={2} className={"recipe__images"}><RecipeImages/></div> : '',
-                comments ? <div key={3} className="recipe__comments"><Comments/></div> : ''
+                notes ? <div key={1} className="recipe__notes">
+                    <RecipeNotes/>
+                </div> : '',
+                images ? <div key={2} className={"recipe__images"}>
+                    <RecipeImages/>
+                </div> : '',
+                comments ? <div key={3} className="recipe__comments">
+                    <Comments/>
+                </div> : <div key={4} className="recipe__comments">
+                    <Comments/>
+                </div>
             ];
 
             return <div className="recipe">
