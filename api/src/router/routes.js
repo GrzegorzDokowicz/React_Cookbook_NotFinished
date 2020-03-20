@@ -8,7 +8,7 @@ const applicationRoutes = [
         controller: healthCheckRouter
     },
     {
-        path: 'category',
+        path: 'recipe-category',
         controller: recipeCategoryRouter
     },
     {
