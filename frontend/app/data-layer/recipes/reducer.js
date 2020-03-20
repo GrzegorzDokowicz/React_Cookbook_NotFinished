@@ -1,7 +1,7 @@
 const initialState = [
     {
         id: 1,
-        title: 'Pyra',
+        title: 'Pyra 123',
         image: 'https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/2019-06/howcuttingdo.jpg',
         currentRating: 3,
         products: [
