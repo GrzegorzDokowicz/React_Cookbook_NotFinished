@@ -30,7 +30,7 @@ class Recipe extends React.Component {
             this.setState(state => ({
                 ...state,
                 category: this.getRecipeObject()
-            }))
+            }));
         }
     }
 
