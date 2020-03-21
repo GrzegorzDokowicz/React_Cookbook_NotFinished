@@ -12,7 +12,9 @@ class NavBarElement extends React.Component {
         return <li
             data-id={this.props.dataId}
             className={this.props.className}
-            onClick={this.props.onClick}>
+            onClick={this.props.onClick}
+            onMouseDown={this.props.onClick}
+            onMouseUp={this.props.onClick}>
             <Link to={this.props.path}>
                 <IconText icon={this.props.iconName} vertical={true} size={'big'}>
                     {this.props.title}

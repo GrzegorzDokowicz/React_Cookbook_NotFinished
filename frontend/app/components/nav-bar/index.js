@@ -1,4 +1,5 @@
 import React from 'react';
+import {gsap, Power4, Back} from 'gsap'
 
 import './style.scss';
 import ResponsiveAppContainer from "../responsive-app-container";
@@ -17,7 +18,7 @@ class NavBar extends React.Component {
             path: '/',
             iconName: 'home'
         }, {
-            title: 'Kategorie przepisów"',
+            title: 'Kategorie przepisów',
             path: '/recipe-categories',
             iconName: 'list'
         }, {
@@ -39,13 +40,25 @@ class NavBar extends React.Component {
         }))
     }
 
-    _handleClick = (event) => {
-        const clickedElementId = parseInt(event.target.closest('.nav-bar__element').getAttribute('data-id'));
-        this.setState(prevState =>({
-            ...prevState,
-            isActive: clickedElementId
-        }))
+    _handleEvent = (event) => {
+        const target = event.target.closest('.nav-bar__element');
+        const clickedElementId = parseInt(target.getAttribute('data-id'));
 
+        switch (event.type) {
+            case 'mousedown':
+                gsap.to(target, {duration: 0.2, scale: 0.8, ease: Power4.easeOut});
+                break;
+            case 'mouseup':
+                gsap.to(target, {duration: 0.2, scale: 1, ease: Back.easeOut.config(6)});
+                break;
+            case 'click':
+                this.setState(prevState => ({
+                    ...prevState,
+                    isActive: clickedElementId
+                }));
+                break;
+
+        }
     }
 
     prepareElements = () => {
@@ -53,8 +66,7 @@ class NavBar extends React.Component {
             key={index} dataId={index}
             className={this.state.isActive === index ? 'nav-bar__element nav-bar__element--active' : 'nav-bar__element nav-bar__element--disabled'}
             title={element.title} path={element.path}
-            iconName={element.iconName} onClick={this._handleClick}/>);
-       // console.log(this.state.isActive);
+            iconName={element.iconName} onClick={this._handleEvent}/>);
         return elementsArray;
     };
 
