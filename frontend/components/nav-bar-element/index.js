@@ -6,17 +6,16 @@ import IconText from '../icon-text';
 class NavBarElement extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isActive: false
-        };
     }
 
     render() {
-        return <li className="nav-bar__element" onClick={this.props.onClick}>
+        return <li
+            data-id={this.props.dataId}
+            className={this.props.className}
+            onClick={this.props.onClick}>
             <Link to={this.props.path}>
-                <IconText icon={this.props.iconName} vertical={true}>
-                    {this.props.childrenTitle}
+                <IconText icon={this.props.iconName} vertical={true} size={'big'}>
+                    {this.props.title}
                 </IconText>
             </Link>
         </li>

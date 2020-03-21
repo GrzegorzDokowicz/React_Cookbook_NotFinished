@@ -10,3 +10,7 @@ $text-color: #FFC9C8;
 
 $box-shadow: 3px 3px 3px 0px rgba(232,229,232,1);
 $box-shadow2: 0 20px 20px -15px rgba($shadow-color, .5);
+
+body{
+  background-color: $background-color;
+}

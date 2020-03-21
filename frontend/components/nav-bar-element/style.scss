@@ -3,11 +3,19 @@
 @import "../../styles/variables";
 @import "../../styles/form";
 
-.nav-bar__element{
+.nav-bar__element {
   display: flex;
   flex-direction: column;
-  &*{
-    display: flex;
-    flex-direction: column;
+
+  &--disabled {
+    color: $inactive-color;
+
+    & .text--icon-description{
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out ;
+    }
+    &:hover .text--icon-description{
+      opacity: 1;
+    }
   }
 }

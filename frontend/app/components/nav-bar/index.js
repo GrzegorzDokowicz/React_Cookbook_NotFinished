@@ -1,39 +1,77 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import './style.scss';
 import ResponsiveAppContainer from "../responsive-app-container";
 import NavBarElement from '../../../components/nav-bar-element';
 
-const NavBar = () => {
-    return <nav className={"nav-bar"}>
-        <ResponsiveAppContainer>
-            <ul className="nav-bar__list">
-                <NavBarElement childrenTitle={"Strona domowa"} path={"/"} iconName={'home'} onClick={()=> console.log('click')}/>
-                <NavBarElement childrenTitle={"Kategorie przepisów"} path={"/recipe-categories"} iconName={'list'} onClick={()=> console.log('click')}/>
-                <li>LOGO</li>
-                <NavBarElement childrenTitle={"Kategoria"} path={"/recipe-category/1"} iconName={'concierge-bell'} onClick={()=> console.log('click')}/>
-                <NavBarElement childrenTitle={"Przepis"} path={"/recipe/1"} iconName={'utensils'} onClick={()=> console.log('click')}/>
+class NavBar extends React.Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            isActive: null
+        };
 
+        this.elements = [{
+            title: 'Strona Domowa',
+            path: '/',
+            iconName: 'home'
+        }, {
+            title: 'Kategorie przepisów"',
+            path: '/recipe-categories',
+            iconName: 'list'
+        }, {
+            title: 'Kategoria',
+            path: '/recipe-category/1',
+            iconName: 'concierge-bell'
+        }, {
+            title: 'Przepis',
+            path: '/recipe/1',
+            iconName: 'utensils'
+        }
+        ]
+    };
 
+    componentDidMount() {
+        this.setState(prevState => ({
+            ...prevState,
+            isActive: 0
+        }))
+    }
 
-                {/* <li className="nav-bar__element">
-                    <Link to="/">Main page</Link>
-                </li>
-                <li className="nav-bar__element">
-                    <Link to="/recipe-categories">Kategorie przepisow</Link>
-                </li>
-                <li className="nav-bar__element">
-                    <Link to="/recipe-category/1">Kategoria</Link>
-                </li>
-                <li className="nav-bar__element">
-                    <Link to="/recipe/1">Przepis</Link>
-                </li> */}
-            </ul>
-        </ResponsiveAppContainer>
-    </nav>
+    _handleClick = (event) => {
+        const clickedElementId = parseInt(event.target.closest('.nav-bar__element').getAttribute('data-id'));
+        this.setState(prevState =>({
+            ...prevState,
+            isActive: clickedElementId
+        }))
 
+    }
+
+    prepareElements = () => {
+        const elementsArray = this.elements.map((element, index) => <NavBarElement
+            key={index} dataId={index}
+            className={this.state.isActive === index ? 'nav-bar__element nav-bar__element--active' : 'nav-bar__element nav-bar__element--disabled'}
+            title={element.title} path={element.path}
+            iconName={element.iconName} onClick={this._handleClick}/>);
+       // console.log(this.state.isActive);
+        return elementsArray;
+    };
+
+//<div className={'nav-bar__logo'}>LOGO</div>
+
+    render() {
+        return <nav className={"nav-bar"}>
+
+            <ResponsiveAppContainer>
+                <ul className="nav-bar__list">
+                    {this.prepareElements()}
+                </ul>
+            </ResponsiveAppContainer>
+        </nav>
+    }
 };
 
+
 export default NavBar;
+
