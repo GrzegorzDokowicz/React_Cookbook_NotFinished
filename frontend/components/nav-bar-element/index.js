@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import IconText from '../icon-text';
 
 class NavBarElement extends React.Component {
@@ -9,17 +9,17 @@ class NavBarElement extends React.Component {
     }
 
     render() {
-        return <li
-            data-id={this.props.dataId}
-            className={this.props.className}
-            onClick={this.props.onClick}
-            onMouseDown={this.props.onClick}
-            onMouseUp={this.props.onClick}>
-            <Link to={this.props.path}>
+        return <li className={'nav-bar__element'}>
+            <NavLink exact to={this.props.path}
+                     className={this.props.className}
+                     activeClassName={'nav-bar__link--active'}
+                     onClick={this.props.onClick}
+                     onMouseDown={this.props.onClick}
+                     onMouseUp={this.props.onClick}>
                 <IconText icon={this.props.iconName} vertical={true} size={'big'}>
                     {this.props.title}
                 </IconText>
-            </Link>
+            </NavLink>
         </li>
     }
 }

@@ -4,21 +4,27 @@
 @import "../../styles/form";
 
 .nav-bar__element {
-  display: flex;
-  flex-direction: column;
+  color: $inactive-color;
 
-  &--active{
-    color: $active-color;
+
+  & .text--icon-description {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
   }
-  &--disabled {
-    color: $inactive-color;
 
-    & .text--icon-description{
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out ;
-    }
-    &:hover .text--icon-description{
-      opacity: 1;
+  &:hover .text--icon-description {
+    opacity: 1;
+  }
+}
+
+.nav-bar__link {
+  &--active {
+    & .icon-text {
+      color: $active-color;
+
+      & .text--icon-description {
+        opacity: 1;
+      }
     }
   }
 }

@@ -9,9 +9,6 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            isActive: null
-        };
 
         this.elements = [{
             title: 'Strona Domowa',
@@ -33,40 +30,29 @@ class NavBar extends React.Component {
         ]
     };
 
-    componentDidMount() {
-        this.setState(prevState => ({
-            ...prevState,
-            isActive: 0
-        }))
-    }
-
     _handleEvent = (event) => {
-        const target = event.target.closest('.nav-bar__element');
-        const clickedElementId = parseInt(target.getAttribute('data-id'));
-
+        const target = event.target.closest('.nav-bar__element')
         switch (event.type) {
             case 'mousedown':
-                gsap.to(target, {duration: 0.2, scale: 0.8, ease: Power4.easeOut});
+                gsap.to(target, {duration: 0.3, scale: 0.8, ease: Power4.easeOut});
                 break;
-            case 'mouseup':
-                gsap.to(target, {duration: 0.2, scale: 1, ease: Back.easeOut.config(6)});
+            case 'mouseup' :
+                gsap.to(target, {duration: 0.3, scale: 1, ease: Back.easeOut.config(6)});
                 break;
-            case 'click':
-                this.setState(prevState => ({
-                    ...prevState,
-                    isActive: clickedElementId
-                }));
+            case 'mouseOut' :
+                gsap.to(target, {duration: 0.3, scale: 1, ease: Back.easeOut.config(6)});
                 break;
 
         }
-    }
+    };
 
     prepareElements = () => {
         const elementsArray = this.elements.map((element, index) => <NavBarElement
             key={index} dataId={index}
-            className={this.state.isActive === index ? 'nav-bar__element nav-bar__element--active' : 'nav-bar__element nav-bar__element--disabled'}
+            className={'nav-bar__element'}
             title={element.title} path={element.path}
-            iconName={element.iconName} onClick={this._handleEvent}/>);
+            iconName={element.iconName} onClick={this._handleEvent}
+        />);
         return elementsArray;
     };
 
