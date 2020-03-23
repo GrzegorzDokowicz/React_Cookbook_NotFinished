@@ -14,16 +14,18 @@ class CreateProductAction extends Action {
         const modelObject = new model(data);
 
         if (modelObject.validate()) {
-            modelObject.create().then(() => {
-                this.response.status(200).send();
+            modelObject.create().then((response) => {
+                if (response.insertId) {
+                    this.response.status(200).send(response.insertId.toString());
+                } else {
+                    this.response.status(400).send(new MysqlError(MysqlError.CANNOT_CREATE_OBJECT));
+                }
             }).catch(error => {
                 this.response.status(400).send(new MysqlError(MysqlError.CANNOT_CREATE_OBJECT, error));
             });
-
-            return;
+        } else {
+            this.response.status(400).send(new MysqlError(MysqlError.VALIDATION_ERROR, modelObject.validationErrors));
         }
-
-        this.response.status(400).send(new MysqlError(MysqlError.VALIDATION_ERROR, modelObject.validationErrors));
     }
 }
 

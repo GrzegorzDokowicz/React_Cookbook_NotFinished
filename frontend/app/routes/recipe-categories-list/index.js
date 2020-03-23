@@ -6,12 +6,12 @@ import CategoryThumbnail from "../../components/category-thumbnail";
 import {Link} from 'react-router-dom';
 import RecipeCategoryForm from "../../components/recipe-category-form";
 import Modal from "../../../components/modal";
-import {addRecipeCategory} from "../../data-layer/recipe-categories/actions";
+import {initCategoriesData, registerRecipeCategory} from "../../data-layer/recipe-categories/actions";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
 import Pagination from '../../../components/pagination';
 
 const mapStateToProps = state => ({
-    categories: state.categories
+    categories: state.categories.elements
 });
 
 
@@ -31,6 +31,10 @@ class RecipeCategoriesList extends React.Component {
         };
     }
 
+    componentDidMount(prevProps, prevState, snapshot) {
+        this.props.dispatch(initCategoriesData());
+    }
+
     setModalState(modalState) {
         this.setState(state => ({
             ...state,
@@ -43,7 +47,7 @@ class RecipeCategoriesList extends React.Component {
     }
 
     addCategoryCallback(data) {
-        this.props.dispatch(addRecipeCategory(data));
+        this.props.dispatch(registerRecipeCategory(data));
     }
 
     searchCategory($event) {

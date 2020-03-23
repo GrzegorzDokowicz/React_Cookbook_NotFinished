@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import './style.scss';
 import {useDropzone} from 'react-dropzone'
 import Text from "../text";
@@ -11,10 +11,11 @@ const Upload = ({onLoad}) => {
             reader.onabort = () => console.log('file reading was aborted');
             reader.onerror = () => console.log('file reading has failed');
             reader.onload = () => {
+                    setFileName(file.name);
                     onLoad({
-                    file,
-                    binaryFile: reader.result
-                })
+                        file,
+                        binaryFile: reader.result
+                    })
             };
 
             reader.readAsArrayBuffer(file)
@@ -22,11 +23,12 @@ const Upload = ({onLoad}) => {
 
     }, []);
     const {getRootProps, getInputProps} = useDropzone({onDrop});
+    const [fileName, setFileName] = useState('');
 
     return <div className="upload">
         <div {...getRootProps()}>
             <input {...getInputProps()} />
-            <Text type={"label"}>Place for your file...</Text>
+            <Text type={"label"}>{fileName ? fileName : 'Place for your file...'}</Text>
         </div>
     </div>;
 };
