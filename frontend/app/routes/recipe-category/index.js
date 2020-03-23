@@ -9,7 +9,7 @@ import NotFound from "../../components/not-found";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
 
 const mapStateToProps = (state) => ({
-    categories: state.categories
+    categories: state.categories.elements
 });
 
 const RecipeObject = ({id, title, kcal, time, image}) => {

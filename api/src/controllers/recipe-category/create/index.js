@@ -10,7 +10,6 @@ class CreateRecipeCategoryAction extends CreateAction {
                 type: CategoryModel.RECIPE_TYPE
             }
         }
-
     }
 }
 

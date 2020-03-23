@@ -7,10 +7,10 @@ class DeployCLIAction extends CLIAction {
     prepareInitScripts() {
         const isCreation = this.hasParameter('--creation');
         const withForce = this.hasParameter('--force');
+        const database = appConfig.database.toString();
         let scripts = [];
 
         if (isCreation) {
-            const database = appConfig.database.toString();
 
             if (withForce) {
                 scripts = [`DROP DATABASE ${database}`]
@@ -19,36 +19,50 @@ class DeployCLIAction extends CLIAction {
             scripts = [
                 ...scripts,
                 `CREATE DATABASE ${database}`,
-                `USE ${database}`,
             ];
         }
+
+        scripts = [
+            ...scripts,
+            `USE ${database}`,
+        ];
+
+        console.log(scripts);
 
         return scripts;
     }
 
     getSchemaName() {
-        const fileName = this.params[2];
+        const fileName = this.getParameterValue('--file');
 
         if (!fileName) {
-            throw new Error("Schema sql not found.");
+            return '';
         }
 
         return fileName;
     }
 
     run() {
-        readFile(this.getSchemaName()).then(data => {
-            const fileScripts = data.split(';')
-                .map(element => element.toString().replace(/\n/g, ""))
-                .filter(element => element.length);
+        const schemaName = this.getSchemaName();
 
-            runQueryCollection([
+        if (!schemaName) {
+            console.log('Not found schema name.');
+            return 1;
+        }
+
+        readFile(schemaName).then(data => {
+            const fileScripts = data.split(';')
+                .map(element => element.toString().replace(/\n/g, "").trim())
+                .filter(element => element.length);
+            const scripts = [
                 ...this.prepareInitScripts(),
                 ...fileScripts
-            ]);
-        }).catch(error => {
-            throw new Error('Cannot read schema sql.');
-        });
+            ];
+
+            runQueryCollection(scripts);
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 }
 

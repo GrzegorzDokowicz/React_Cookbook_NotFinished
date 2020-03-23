@@ -2,17 +2,19 @@ import MysqlConnection from "./MysqlConnection";
 import appConfig from "../../config";
 
 const connect = (connectToDatabase) => {
+    const params = {...appConfig};
+
     if (!connectToDatabase) {
-        delete appConfig.database;
+        delete params.database;
     }
 
-    if (!MysqlConnection.getInstance(appConfig)) {
+    if (!MysqlConnection.getInstance(params)) {
         throw new Error('Cannot initialize database.');
     }
 };
 
 class CLIAction {
-    constructor(needConnection = false, connectToDatabase = true) {
+    constructor(needConnection = true, connectToDatabase = true) {
         this.params = process.argv.slice(2);
 
         if (needConnection) {
@@ -24,7 +26,7 @@ class CLIAction {
         return this.params.indexOf(name) !== -1;
     }
 
-    getParamterValue(name) {
+    getParameterValue(name) {
         const parameter = this.findParameterString(name);
 
         if (parameter) {
@@ -37,7 +39,7 @@ class CLIAction {
     }
 
     findParameterString(name) {
-        return this.params.find(param => param.indexOf(name));
+        return this.params.find(param => param.indexOf(name) !== -1);
     }
 
     run() {

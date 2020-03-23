@@ -12,7 +12,9 @@
     "start-frontend": "webpack-dev-server --config ./frontend/webpack.config.js",
     "build": "concurrently --kill-others \"npm run build-backend\" \"npm run build-frontend\"",
     "dev": "concurrently --kill-others \"npm run watch-build-backend\" \"npm run start-backend\" \"npm run start-frontend\"",
-    "build-cli": "webpack --config ./api/webpack.config.js --entry ./api/cli/index.js -o ./api/dist/cli.js\n"
+    "build-cli": "webpack --config ./api/webpack.config.js --entry ./api/cli/index.js -o ./api/dist/cli.js\n",
+    "build-database": "node ./api/dist/cli.js deploy --file=schema.sql",
+    "push-data": "node ./api/dist/cli.js createData"
   },
   "repository": {
     "type": "git",

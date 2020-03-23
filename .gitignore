@@ -2,3 +2,4 @@ node_modules/
 .idea/
 api/dist/
 frontend/dist/
+config.js
