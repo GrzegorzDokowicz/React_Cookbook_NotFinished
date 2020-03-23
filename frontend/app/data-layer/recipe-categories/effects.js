@@ -3,13 +3,13 @@ import {
     addRecipeCategory,
     REGISTER_RECIPE_CATEGORY_ACTION,
     INIT_CATEGORY_DATA_ACTION,
-    setCategoriesData
+    LOAD_RECIPES_IN_CATEGORY,
+    setCategoriesData, setRecipesInCategory
 } from "./actions";
 import urlsConfig from "../urls";
 
 function* init() {
-    const request = yield call(() => fetch(urlsConfig.recipeCategories.add).then(res => res.json()));
-    console.log(request);
+    const request = yield call(() => fetch(urlsConfig.recipeCategories.getAll).then(res => res.json()));
 
     if (request) {
         yield put(setCategoriesData(request));
@@ -35,7 +35,20 @@ function* create({payload}) {
 
 }
 
+function* loadRecipes({payload}) {
+    const {id} = payload;
+
+    if (id) {
+        const request = yield call(() => fetch(urlsConfig.recipeCategories.getRecipes(id)).then(res => res.json()));
+
+        if (request) {
+            yield put(setRecipesInCategory(id, request));
+        }
+    }
+}
+
 export default [
     takeEvery(REGISTER_RECIPE_CATEGORY_ACTION, create),
+    takeEvery(LOAD_RECIPES_IN_CATEGORY, loadRecipes),
     takeEvery(INIT_CATEGORY_DATA_ACTION, init),
 ];

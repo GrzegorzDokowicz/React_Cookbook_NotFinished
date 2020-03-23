@@ -7,6 +7,7 @@ import RecipeThumbnail from "../../components/recipe-thumbnail";
 import Text from "../../../components/text";
 import NotFound from "../../components/not-found";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
+import {getRecipesInCategory} from "../../data-layer/recipe-categories/actions";
 
 const mapStateToProps = (state) => ({
     categories: state.categories.elements
@@ -39,6 +40,12 @@ class RecipeCategory extends React.Component {
             category: this.getCategoryObject(),
             search: ""
         };
+    }
+
+    componentDidMount() {
+        if (this.state.category && !this.state.category.hasOwnProperty('recipes')) {
+            this.props.dispatch(getRecipesInCategory(this.id));
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

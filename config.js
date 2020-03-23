@@ -3,7 +3,7 @@ const ApplicationConfig = {
     host: "localhost",
     backendUrl: "localhost:8080",
     user: 'root',
-    password: 'MyNewPass',
+    password: 'your_new_password',
     database: 'test3'
 };
 

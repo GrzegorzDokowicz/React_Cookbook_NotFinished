@@ -28,6 +28,39 @@ const joins = [
     }
 ];
 
+/*const finalConfig = [
+    {
+        'field': 'recipe_id',
+        'relation': {
+            'table': 'recipe',
+            'value': 'id',
+            'type': [
+                'number'
+            ],
+            'fields': [
+                'id',
+                'title',
+                'mainImage',
+                'currentRating'
+            ]
+        }
+    },
+    {
+        'field': 'recipe_id',
+        'type': [
+            'number'
+        ],
+        'relation': {
+            'table': 'category',
+            'value': 'id',
+            'fields': [
+                'id',
+                'name'
+            ]
+        }
+    }
+];*/
+
 class RecipeCategories extends Model {
     constructor(data) {
         super("recipe_categories", data, fields,false, joins);
