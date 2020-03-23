@@ -8,7 +8,7 @@ class GetRecipesFromCategoryAction extends Action {
 
         this.getId().then(id => model.getBy("category_id", id, false))
             .then(response => {
-                this.response.status(200).send(response);
+                this.response.status(200).send(response.map(({recipe}) => recipe));
             })
             .catch(error => {
                 this.response.status(404).send(new MysqlError(MysqlError.CANNOT_FIND_OBJECT, error.message));

@@ -4,7 +4,8 @@ const getUrl = postfix => `${baseUrl}/${postfix}`;
 const urlsConfig = {
     recipeCategories: {
         add: getUrl('/recipe-category'),
-        getAll: getUrl('/recipe-category')
+        getAll: getUrl('/recipe-category'),
+        getRecipes: id => getUrl(`/recipe-category/${id}/recipes`)
     }
 };
 
