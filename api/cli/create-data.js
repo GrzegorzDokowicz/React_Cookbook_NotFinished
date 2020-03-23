@@ -3,6 +3,7 @@ import CLIAction from "../core/CLIAction";
 
 import readJSON from '../core/helpers/readJSON';
 import {getInsertValue, objectKeysToFields} from "../core/helpers/mysqlDatabseHelpers";
+import runQueryCollection from "../core/helpers/runQueryCollection";
 
 const parseValues = valueObject => Object.values(valueObject).map(value => {
     if (Number.isNaN(Number.parseFloat(value))) {
@@ -24,8 +25,7 @@ class CrateDataCliAction extends CLIAction {
                     return Model.getInsertString(table, objectKeysToFields(collection[0]), valuesCollection);
                 });
 
-            console.log(scripts);
-            //runQueryCollection(scripts);
+            runQueryCollection(scripts);
         }).catch(error => {
             throw new Error(error);
         });
