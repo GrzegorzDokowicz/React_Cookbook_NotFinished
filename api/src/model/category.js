@@ -23,6 +23,7 @@ class Category extends Model {
             image: toStringForQuery(this.data.image)
         };
     }
+
 }
 
 

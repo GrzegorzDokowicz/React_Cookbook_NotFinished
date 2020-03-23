@@ -24,8 +24,18 @@ class Action {
     }
 
     render() {
+    }
 
+    getId() {
+        return new Promise((resolve, reject) => {
+            const {id} = this.getRequestData();
 
+            if (!id) {
+                reject('ID isn\'t defined');
+            } else {
+                resolve(id);
+            }
+        })
     }
 
     static toFunction() {
