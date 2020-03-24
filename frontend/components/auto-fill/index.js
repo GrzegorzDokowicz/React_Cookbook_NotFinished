@@ -4,7 +4,7 @@ import Input from "../input";
 import Text from "../text";
 
 const FoundElement = ({onClick, children}) => <a onClick={onClick}>
-    <div className="auto-fill__cell">
+    <div className="auto-fill__cell" onClick={onClick}>
         <Text type={"label"}>{children}</Text>
     </div>
 </a>;
@@ -25,6 +25,8 @@ const AutoFill = ({limit = 1, data = [], onSelect}) => {
     };
     const onClick = name => {
         return () => {
+            setActive(false);
+
             if (onSelect) {
                 onSelect(name);
             }

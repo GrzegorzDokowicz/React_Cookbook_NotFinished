@@ -48,10 +48,8 @@ class Model {
         return Query(string);
     }
 
-    getSelectString(fields = '') {
-        if (!fields) {
-            fields = this.fieldsValidation.join(', ');
-        }
+    getSelectString() {
+        const fields = this.getSelectAttributes();
 
         return Model.getQueryString(this.table, fields);
     }
@@ -91,8 +89,7 @@ class Model {
     getBy(field, value, singleParse = true) {
         const mapJoinToString = ({table, field, value}) => `LEFT JOIN ${table} ${table} ON ${this.table}.${field} = ${table}.${value}`;
         const joinString = this.joins.map(mapJoinToString).join(' ');
-        const fieldsString = this.getSelectString(this.getSelectAttributes());
-        const string = `${fieldsString} ${joinString} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
+        const string = `${this.getSelectString()} ${joinString} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
 
         return this.runGet(string, singleParse);
     }
@@ -108,7 +105,7 @@ class Model {
     }
 
     getAll() {
-        return this.runGet(this.getSelectString())
+        return this.runGet(this.getSelectString(), false)
     }
 
     runGet(string, singleParse = true) {

@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 
 const RecipeObject = ({id, title, kcal, time, image}) => {
     return <div className={"recipe-category__element"}>
-        <Link to={`/recipe/${id}`}>
+        <Link to={`/recipes/${id}`}>
             <RecipeThumbnail image={image} title={title} energyValue={kcal} time={time}/>
         </Link>
     </div>
@@ -57,15 +57,8 @@ class RecipeCategory extends React.Component {
         }
     }
 
-    setModalState(modalState) {
-        this.setState(state => ({
-            ...state,
-            isOpen: modalState
-        }))
-    }
-
     addRecipe() {
-        this.setModalState(true);
+        this.props.history.push('/recipe/add')
     }
 
     searchCategory($event) {

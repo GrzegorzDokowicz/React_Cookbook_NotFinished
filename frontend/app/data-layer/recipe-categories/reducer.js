@@ -5,7 +5,6 @@ const initialState = {
     elements: []
 };
 
-
 const categoriesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
         case ADD_RECIPE_CATEGORY_ACTION:
@@ -25,7 +24,6 @@ const categoriesReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 elements: state.elements.map(element => {
-                    console.log(payload.id, element.id);
                     if (element.id === payload.id) {
                         return {
                             ...element,

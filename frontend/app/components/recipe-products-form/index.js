@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
-import Modal from "../../../components/modal";
+import React from 'react';
 import ProductForm from "../product-form";
-import ActionBar from "../action-bar";
 import Text from "../../../components/text";
+import Tabs from "../../../components/tabs";
+import ProductsSelectFormComponent from "../products-select-form";
 
-const RecipeProducts = () => {
-    const [isOpen, setOpen] = useState(false);
+const RecipeProductsForm = () => {
+    const tabs = [
+        {
+            title: 'Baza produktow',
+            component: <ProductsSelectFormComponent />
+        },
+        {
+            title: 'Dodaj produkt',
+            component: <ProductForm inline={true}/>
+        }
+    ];
 
     return <div className="recipe-products">
-        <Text type={"subheader"}>Produkty </Text>
-        <ActionBar onClick={() => setOpen(true)}/>
-        <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
-            <ProductForm/>
-        </Modal>
+        <Text type={"subheader"}>Produkty</Text>
+        <Tabs data={tabs}/>
     </div>
 };
 
-export default RecipeProducts;
+export default RecipeProductsForm;

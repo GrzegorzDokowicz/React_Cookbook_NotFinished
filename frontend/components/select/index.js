@@ -8,7 +8,7 @@ const Select = ({title, value, onChange, data}) => {
         <option key={index} value={option}>{option}</option>) : [];
 
     return <div className="select">
-        <Text>{title}</Text>
+        <Text type={'label'}>{title}</Text>
         <select className="select__input" onChange={onChange} value={value}>
             {renderOptions(data)}
         </select>
