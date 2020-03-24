@@ -1,0 +1,18 @@
+.tabs {
+  &__titles, &__content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__title {
+    cursor: pointer;
+  }
+
+  &__tab {
+    display: none;
+
+    &--active {
+        display: block;
+    }
+  }
+}

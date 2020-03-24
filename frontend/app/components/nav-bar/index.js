@@ -18,20 +18,11 @@ class NavBar extends React.Component {
             title: 'Kategorie przepisów',
             path: '/recipe-categories',
             iconName: 'list'
-        }, {
-            title: 'Kategoria',
-            path: '/recipe-category/1',
-            iconName: 'concierge-bell'
-        }, {
-            title: 'Przepis',
-            path: '/recipe/1',
-            iconName: 'utensils'
-        }
-        ]
-    };
+        }];
+    }
 
     _handleEvent = (event) => {
-        const target = event.target.closest('.nav-bar__element')
+        const target = event.target.closest('.nav-bar__element');
         switch (event.type) {
             case 'mousedown':
                 gsap.to(target, {duration: 0.3, scale: 0.8, ease: Power4.easeOut});

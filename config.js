@@ -3,8 +3,8 @@ const ApplicationConfig = {
     host: "localhost",
     backendUrl: "localhost:8080",
     user: 'root',
-    password: 'MyNewPass',
-    database: 'test3'
+    password: 'checkmat',
+    database: 'cookbook'
 };
 
 export default ApplicationConfig;

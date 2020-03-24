@@ -1,7 +1,7 @@
 {
     "category": {
         "order": 1,
-        "collection":[
+        "collection": [
             {
                 "id": 1,
                 "name": "Meksykanskie",
@@ -42,6 +42,94 @@
                 "title": "Zupa",
                 "mainImage": "https://i.ytimg.com/vi/0SPwwpruGIA/maxresdefault.jpg",
                 "currentRating": 4
+            }
+        ]
+    },
+    "recipe_categories": {
+        "order": 3,
+        "collection": [
+            {
+                "id": 1,
+                "category_id": 1,
+                "recipe_id": 1
+            },
+            {
+                "id": 2,
+                "category_id": 2,
+                "recipe_id": 1
+            },
+            {
+                "id": 3,
+                "category_id": 3,
+                "recipe_id": 1
+            },
+            {
+                "id": 4,
+                "category_id": 4,
+                "recipe_id": 1
+            },
+            {
+                "id": 5,
+                "category_id": 1,
+                "recipe_id": 2
+            },
+            {
+                "id": 6,
+                "category_id": 3,
+                "recipe_id": 2
+            }
+        ]
+    },
+    "product": {
+        "order": 1,
+        "collection": [
+            {
+                "id": 1,
+                "name": "Test",
+                "kcal": 100,
+                "carbo": 200,
+                "protein": 300,
+                "fat": 800
+            },
+            {
+                "id": 2,
+                "name": "Test 2",
+                "kcal": 130,
+                "carbo": 320,
+                "protein": 140,
+                "fat": 370
+            },
+            {
+                "id": 3,
+                "name": "Test 3",
+                "kcal": 120,
+                "carbo": 40,
+                "protein": 240,
+                "fat": 250
+            },
+            {
+                "id": 4,
+                "name": "Test 4",
+                "kcal": 140,
+                "carbo": 30,
+                "protein": 200,
+                "fat": 350
+            },
+            {
+                "id": 5,
+                "name": "Test 5",
+                "kcal": 123,
+                "carbo": 120,
+                "protein": 140,
+                "fat": 560
+            },
+            {
+                "id": 6,
+                "name": "Test 6",
+                "kcal": 123,
+                "carbo": 411,
+                "protein": 130,
+                "fat": 500
             }
         ]
     }

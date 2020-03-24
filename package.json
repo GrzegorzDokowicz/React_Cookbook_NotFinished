@@ -14,8 +14,13 @@
     "dev": "concurrently --kill-others \"npm run watch-build-backend\" \"npm run start-backend\" \"npm run start-frontend\"",
     "build-cli": "webpack --config ./api/webpack.config.js --entry ./api/cli/index.js -o ./api/dist/cli.js\n",
     "build-database": "node ./api/dist/cli.js deploy --file=schema.sql",
-    "push-data": "node ./api/dist/cli.js createData"
+    "push-data": "node ./api/dist/cli.js createData",
+    "lint-frontend": "eslint ./frontend/**/*.js",
+    "fix-lint-frontend": "eslint ./frontend/**/*.js --fix"
   },
+  "pre-commit": [
+    "lint-frontend"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Susniak/thegameacc.git"
@@ -44,6 +49,8 @@
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
@@ -51,6 +58,7 @@
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
+    "pre-commit": "^1.2.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",

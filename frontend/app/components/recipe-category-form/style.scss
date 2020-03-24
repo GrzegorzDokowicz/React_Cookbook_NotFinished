@@ -1,4 +1,8 @@
-$margin: 24px;
+@import "../../../styles/mixins";
+@import "../../../styles/colors";
+@import "../../../styles/variables";
+
+$margin: size(3);
 
 .recipe-category-form {
   display: flex;
@@ -8,11 +12,10 @@ $margin: 24px;
   padding: $margin;
 
   &__form {
-    width: calc(55% - 10px);
+    width: calc(55% - #{size(2)});
   }
 
   &__preview {
-    width: calc(45% - 10px);
+    width: calc(45% - #{size(2)});
   }
-
 }

@@ -10,6 +10,8 @@ import Comments from "../../components/comments";
 import RecipeImages from "../../components/recipe-images";
 import NotFound from "../../components/not-found";
 import Rating from "../../../components/rating";
+import Image from "../../../components/image";
+import TopImagePageContainer from "../../components/top-image-page-container";
 
 const mapStateToProps = state => ({
     recipes: state.recipes
@@ -44,24 +46,13 @@ class Recipe extends React.Component {
         if (recipe) {
             const {notes, images, comments, image, title, currentRating, products} = recipe;
             const sections = [
-                notes ? <div key={1} className="recipe__notes">
-                    <RecipeNotes/>
-                </div> : '',
-                images ? <div key={2} className={"recipe__images"}>
-                    <RecipeImages/>
-                </div> : '',
-                comments ? <div key={3} className="recipe__comments">
-                    <Comments/>
-                </div> : <div key={4} className="recipe__comments">
-                    <Comments/>
-                </div>
+                notes ? <div key={1} className="recipe__notes"><RecipeNotes/></div> : '',
+                images ? <div key={2} className={"recipe__images"}><RecipeImages/></div> : '',
+                comments ? <div key={3} className="recipe__comments"><Comments/></div> : ''
             ];
 
-            return <div className="recipe">
-                <div className="recipe__image">
-                    <img src={image} alt="Not found"/>
-                </div>
-                <ResponsiveAppContainer>
+            return <TopImagePageContainer src={image}>
+                <div className="recipe">
                     <div className="recipe__title">
                         <Text type={"header"}>{title}</Text>
                         <Rating actualRating={currentRating} maxRating={5} iconName="star"/>
@@ -75,8 +66,8 @@ class Recipe extends React.Component {
                         </div>
                     </div>
                     {sections}
-                </ResponsiveAppContainer>;
-            </div>
+                </div>
+            </TopImagePageContainer>
         }
         return <NotFound/>
     }

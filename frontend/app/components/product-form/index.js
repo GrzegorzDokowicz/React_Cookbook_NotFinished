@@ -5,7 +5,7 @@ import Button from "../../../components/button";
 import Select from "../../../components/select";
 import Text from "../../../components/text";
 
-const ProductForm = ({callback}) => {
+const ProductForm = ({onSubmit, inline = false}) => {
     const [form, setForm] = useState("");
 
     const onChange = name => {
@@ -19,18 +19,16 @@ const ProductForm = ({callback}) => {
         }
     };
 
-    const submit = ($event) => {
-        $event.preventDefault();
-
-        if (callback) {
-            callback(form);
+    const submit = () => {
+        if (onSubmit) {
+            onSubmit(form);
         }
     };
 
-    return <div className="product-form">
-        <Text type={"header"}>Dodaj produkt</Text>
+    return <div className={`product-form`}>
+        {inline ? '' : <Text type={"header"}>Dodaj produkt</Text>}
         <form>
-            <div>
+            <div className={`product-form__container${inline ? ' product-form__container--inline' : ''}`}>
                 <Input name={"name"} text={"Nazwa"} onChange={onChange("name")}/>
                 <Input name={"kcal"} text={"Ilosc kalorii"} onChange={onChange("kcal")}/>
                 <Input name={"carbo"} text={"Wegle"} onChange={onChange("carbo")}/>

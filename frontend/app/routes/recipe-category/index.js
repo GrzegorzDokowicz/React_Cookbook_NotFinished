@@ -7,6 +7,7 @@ import RecipeThumbnail from "../../components/recipe-thumbnail";
 import Text from "../../../components/text";
 import NotFound from "../../components/not-found";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
+import {getRecipesInCategory} from "../../data-layer/recipe-categories/actions";
 
 const mapStateToProps = (state) => ({
     categories: state.categories.elements
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => ({
 
 const RecipeObject = ({id, title, kcal, time, image}) => {
     return <div className={"recipe-category__element"}>
-        <Link to={`/recipe/${id}`}>
+        <Link to={`/recipes/${id}`}>
             <RecipeThumbnail image={image} title={title} energyValue={kcal} time={time}/>
         </Link>
     </div>
@@ -41,6 +42,12 @@ class RecipeCategory extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (this.state.category && !this.state.category.hasOwnProperty('recipes')) {
+            this.props.dispatch(getRecipesInCategory(this.id));
+        }
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.categories !== this.props.categories) {
             this.setState(state => ({
@@ -50,15 +57,8 @@ class RecipeCategory extends React.Component {
         }
     }
 
-    setModalState(modalState) {
-        this.setState(state => ({
-            ...state,
-            isOpen: modalState
-        }))
-    }
-
     addRecipe() {
-        this.setModalState(true);
+        this.props.history.push('/recipe/add')
     }
 
     searchCategory($event) {

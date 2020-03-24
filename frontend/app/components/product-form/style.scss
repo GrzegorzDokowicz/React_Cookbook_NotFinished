@@ -1,3 +1,11 @@
 .product-form {
-  background-color: white;
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    &--inline {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
 }

@@ -1,13 +1,15 @@
 import {combineReducers} from 'redux';
 
-import PageReducer from './page/reducer';
-import CategoriesReducer from './recipe-categories/reducer';
+import pageReducer from './page/reducer';
+import categoriesReducer from './recipe-categories/reducer';
 import recipesReducer from "./recipes/reducer";
+import productsReducer from "./products/reducer";
 
 const rootReducer = combineReducers({
-    page: PageReducer,
-    categories: CategoriesReducer,
-    recipes: recipesReducer
+    page: pageReducer,
+    categories: categoriesReducer,
+    recipes: recipesReducer,
+    products: productsReducer
 });
 
 export default rootReducer;

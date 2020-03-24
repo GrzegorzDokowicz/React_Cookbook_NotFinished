@@ -1,24 +1,29 @@
 import Connection from "../core/MysqlConnection";
 import Query from "../core/Query";
 import {
-    fieldsObjectToQueryFields,
-    getInsertValue, objectKeysToFields,
+    getInsertValue,
+    objectKeysToFields,
     queryString,
     toStringForQuery
 } from "../core/helpers/mysqlDatabseHelpers";
+
+const getAliasString = field => `${field} AS "${field}"`;
 
 class Model {
     static getInsertString(table, fields, values) {
         return `INSERT INTO ${table} (${fields}) VALUES ${values}`;
     }
 
-    static getQueryString(table) {
-        return `SELECT * FROM ${table}`;
+    static getQueryString(table, fields = false) {
+        return `SELECT ${!fields ? '*' : fields} FROM ${table}`;
     }
 
-    constructor(table, data, fieldsValidation) {
+    constructor(table, data, fieldsValidation, primaryKey = 'id', joins = []) {
         this.data = data;
+        this.table = table;
+        this.joins = joins;
         this.tableName = queryString(table);
+        this.primaryKey = primaryKey;
         this.fieldsValidation = fieldsValidation;
         this.connection = Connection.getInstance();
         this.validationErrors = {};
@@ -43,11 +48,50 @@ class Model {
         return Query(string);
     }
 
+    getSelectString() {
+        const fields = this.getSelectAttributes();
 
-    getBy(field, value, parse = true) {
-        const string = `${Model.getQueryString(this.tableName)} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
+        return Model.getQueryString(this.table, fields);
+    }
 
-        return Query(string).then(results => parse && results ? (results.length >= 1 ? results[0] : {}) : results);
+    mapper(data) {
+        return Object.keys(data).reduce((prev, key) => {
+            const [table, fieldName] = key.split('.');
+
+            if (table === this.table) {
+                prev[fieldName] = data[key];
+            } else {
+                if (!prev[table]) {
+                    prev[table] = {}
+                }
+
+                prev[table][fieldName] = data[key]
+            }
+
+            return prev;
+        }, {})
+    }
+
+    getSelectAttributes() {
+        const mapFieldName = table => (field => `${table}.${field}`);
+        const mapTableFields = ({table, fields}) => fields.map(mapFieldName(table)).map(getAliasString).join(', ');
+        const currentFields = this.primaryKey ? [this.primaryKey] : [];
+
+        return [
+            {
+                table: this.table,
+                fields: currentFields.concat(this.fieldsValidation)
+            },
+            ...this.joins
+        ].map(mapTableFields).join(', ');
+    }
+
+    getBy(field, value, singleParse = true) {
+        const mapJoinToString = ({table, field, value}) => `LEFT JOIN ${table} ${table} ON ${this.table}.${field} = ${table}.${value}`;
+        const joinString = this.joins.map(mapJoinToString).join(' ');
+        const string = `${this.getSelectString()} ${joinString} WHERE ${queryString(field)} = ${toStringForQuery(value)}`;
+
+        return this.runGet(string, singleParse);
     }
 
     getSingleBy(field, name) {
@@ -61,9 +105,17 @@ class Model {
     }
 
     getAll() {
-        const string = Model.getQueryString(this.tableName);
+        return this.runGet(this.getSelectString(), false)
+    }
 
-        return Query(string)
+    runGet(string, singleParse = true) {
+        return Query(string).then(results => {
+            if (!results || results.length === 0) {
+                throw new Error("Results not found");
+            }
+
+            return results.map(result => this.mapper(result));
+        }).then(results => singleParse ? results[0] : results);
     }
 
     getCreationData() {

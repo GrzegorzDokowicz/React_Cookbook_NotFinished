@@ -1,4 +1,10 @@
+@import "../../../styles/mixins";
+@import "../../../styles/colors";
+@import "../../../styles/variables";
+
 .action-bar {
   display: flex;
   justify-content: space-between;
+  padding: size(3);
+  background-color: $background-color;
 }
