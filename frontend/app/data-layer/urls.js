@@ -8,7 +8,8 @@ const urlsConfig = {
         getRecipes: id => getUrl(`/recipe-category/${id}/recipes`)
     },
     products: {
-        getAll: getUrl('/product')
+        getAll: getUrl('/product'),
+        add: getUrl('/product')
     }
 };
 

@@ -5,8 +5,9 @@ import Text from "../text";
 const Button = ({children, type = "default", onClick}) => {
     const clickButton = (event) => {
         event.preventDefault();
-        if(onClick) {
-            onClick();
+
+        if (onClick) {
+            onClick(event);
         }
     };
 

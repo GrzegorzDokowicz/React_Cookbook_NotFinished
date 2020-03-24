@@ -5,7 +5,7 @@ import Button from "../../../components/button";
 import Select from "../../../components/select";
 import Text from "../../../components/text";
 
-const ProductForm = ({callback, inline = false}) => {
+const ProductForm = ({onSubmit, inline = false}) => {
     const [form, setForm] = useState("");
 
     const onChange = name => {
@@ -19,11 +19,9 @@ const ProductForm = ({callback, inline = false}) => {
         }
     };
 
-    const submit = ($event) => {
-        $event.preventDefault();
-
-        if (callback) {
-            callback(form);
+    const submit = () => {
+        if (onSubmit) {
+            onSubmit(form);
         }
     };
 

@@ -1,10 +1,16 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import ProductForm from "../product-form";
 import Text from "../../../components/text";
 import Tabs from "../../../components/tabs";
 import ProductsSelectFormComponent from "../products-select-form";
+import {registerProduct} from "../../data-layer/products/actions";
 
-const RecipeProductsForm = () => {
+const RecipeProductsForm = ({dispatch}) => {
+    const submit = (data) => {
+        dispatch(registerProduct(data));
+    };
     const tabs = [
         {
             title: 'Baza produktow',
@@ -12,7 +18,7 @@ const RecipeProductsForm = () => {
         },
         {
             title: 'Dodaj produkt',
-            component: <ProductForm inline={true}/>
+            component: <ProductForm inline={true} onSubmit={submit}/>
         }
     ];
 
@@ -22,4 +28,4 @@ const RecipeProductsForm = () => {
     </div>
 };
 
-export default RecipeProductsForm;
+export default connect()(RecipeProductsForm);

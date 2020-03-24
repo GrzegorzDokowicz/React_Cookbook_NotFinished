@@ -13,12 +13,12 @@ const mapStateToProps = state => ({
  * Base application component
  */
 const ProductsSelectForm = ({products, dispatch}) => {
-    if(!products || products.length === 0) {
+    if (!products || products.length === 0) {
         dispatch(initProductsData());
     }
 
     return <div className="product-select-form">
-        <MultiSelect data={products}/>
+        <MultiSelect data={products.map(({name}) => name)}/>
     </div>;
 };
 
