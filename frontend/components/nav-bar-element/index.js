@@ -9,13 +9,12 @@ class NavBarElement extends React.Component {
     }
 
     render() {
-        return <li className={'nav-bar__element'}>
+        return <li className={'nav-bar__element'}
+                   onClick={this.props.onClick}
+                   onMouseDown={this.props.onClick}
+                   onMouseUp={this.props.onClick}>
             <NavLink exact to={this.props.path}
-                     className={this.props.className}
-                     activeClassName={'nav-bar__link--active'}
-                     onClick={this.props.onClick}
-                     onMouseDown={this.props.onClick}
-                     onMouseUp={this.props.onClick}>
+                     activeClassName={'nav-bar__link--active'}>
                 <IconText icon={this.props.iconName} vertical={true} size={'big'}>
                     {this.props.title}
                 </IconText>

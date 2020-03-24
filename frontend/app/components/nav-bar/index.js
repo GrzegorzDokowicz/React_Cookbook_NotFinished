@@ -22,24 +22,17 @@ class NavBar extends React.Component {
     }
 
     _handleEvent = (event) => {
-        const target = event.target.closest('.nav-bar__element');
-        switch (event.type) {
-            case 'mousedown':
-                gsap.to(target, {duration: 0.3, scale: 0.8, ease: Power4.easeOut});
-                break;
-            case 'mouseup' :
-                gsap.to(target, {duration: 0.3, scale: 1, ease: Back.easeOut.config(6)});
-                break;
-            case 'mouseOut' :
-                gsap.to(target, {duration: 0.3, scale: 1, ease: Back.easeOut.config(6)});
-                break;
-
+        if (event.type === 'mousedown') {
+            const target = event.target.closest('.nav-bar__element');
+            const timeline = gsap.timeline();
+            timeline.to(target, {duration: 0.3, y: -5, ease: Power4.easeOut})
+                .to(target, {duration: 0.3, y: 0, ease: Back.easeOut.config(1.7)});
         }
     };
 
     prepareElements = () => {
         const elementsArray = this.elements.map((element, index) => <NavBarElement
-            key={index} dataId={index}
+            key={index}
             className={'nav-bar__element'}
             title={element.title} path={element.path}
             iconName={element.iconName} onClick={this._handleEvent}
@@ -54,6 +47,7 @@ class NavBar extends React.Component {
 
             <ResponsiveAppContainer>
                 <ul className="nav-bar__list">
+                    <li className={'nav-bar__element'}>LOGO</li>
                     {this.prepareElements()}
                 </ul>
             </ResponsiveAppContainer>
