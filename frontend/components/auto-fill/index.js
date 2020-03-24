@@ -10,15 +10,16 @@ const FoundElement = ({onClick, children}) => <a onClick={onClick}>
 </a>;
 
 
-const AutoFill = ({limit = 1, data = [], onSelect}) => {
+const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false}) => {
+    const getStringValue = value => matchCase ? value.toString() : value.toString().toLocaleLowerCase();
     const [listData, setListData] = useState([]);
     const [isActive, setActive] = useState(false);
     const onChange = $event => {
-        const value = $event.currentTarget.value;
+        const value = getStringValue($event.currentTarget.value);
         const isActive = value.length > limit;
 
         if (isActive) {
-            setListData(data.filter(element => element.toString().toLowerCase().indexOf(value) !== -1));
+            setListData(data.filter(element => getStringValue(element).indexOf(value) !== -1));
         }
 
         setActive(isActive);

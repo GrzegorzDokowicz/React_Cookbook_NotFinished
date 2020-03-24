@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
 import './style.scss';
-import ResponsiveAppContainer from "../../components/responsive-app-container";
 import RecipeGeneralDataForm from "../../components/recipe-general-data-form";
 import Text from "../../../components/text";
 import RecipeProducts from "../../components/recipe-products";
@@ -9,6 +8,7 @@ import RecipeProductsForm from "../../components/recipe-products-form";
 import RecipeSteps from "../../components/recipe-steps";
 import RecipeStepsForm from "../../components/recipe-steps-form";
 import {initCategoriesData} from "../../data-layer/recipe-categories/actions";
+import TopImagePageContainer from "../../components/top-image-page-container";
 
 const mapStateToProps = state => ({
     categories: state.categories.elements
@@ -38,8 +38,8 @@ class RecipeForm extends React.Component {
     }
 
     render() {
-        return <div className="recipe-form">
-            <ResponsiveAppContainer>
+        return <TopImagePageContainer src={"/public/recipe-background.png"} imageType={"cover"}>
+            <div className="recipe-form">
                 <Text type={"header"}>Dodawanie przepisu</Text>
                 <div className="recipe-form__general-data">
                     <RecipeGeneralDataForm categories={this.props.categories}/>
@@ -60,8 +60,8 @@ class RecipeForm extends React.Component {
                         <RecipeSteps steps={this.state.steps}/>
                     </div>
                 </div>
-            </ResponsiveAppContainer>
-        </div>
+            </div>
+        </TopImagePageContainer>
     }
 }
 

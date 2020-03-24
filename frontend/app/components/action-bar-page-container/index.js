@@ -15,9 +15,11 @@ const ActionBarPageContainer = ({onSearch, onClick, children, title}) => {
             </div>
         </ResponsiveAppContainer>
         <ActionBar onClick={onClick} onSearch={onSearch}/>
-        <ResponsiveAppContainer>
-            {children}
-        </ResponsiveAppContainer>
+        <div className="action-bar-page-container__content">
+            <ResponsiveAppContainer>
+                {children}
+            </ResponsiveAppContainer>
+        </div>
     </div>
 };
 

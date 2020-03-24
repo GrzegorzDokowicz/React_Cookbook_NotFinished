@@ -5,7 +5,7 @@ import Input from "../../../components/input";
 
 const ActionBar = ({onClick, onSearch}) => {
     const icons = [
-        onClick ? <IconButton key={0} icon={"plus"} onClick={onClick}/> : ''
+        onClick ? <IconButton color={"secondary"} key={0} icon={"plus"} onClick={onClick}/> : ''
     ];
 
     const searchElement = onSearch ? <Input onChange={onSearch} text={"Search by name: "} name={'search'}/> : '';

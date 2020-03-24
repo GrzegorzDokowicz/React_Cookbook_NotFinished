@@ -1,24 +1,26 @@
 import React from 'react';
 import './style.scss';
 
-const Text = ({type, children, htmlFor=''}) => {
+const Text = ({type, children, htmlFor='', color='primary'}) => {
+    const getClass = className => `text text--${color} text--${className}`;
+
     switch (type) {
         case "header":
-            return <h1 className={'text text--h1'}>{children}</h1>;
+            return <h1 className={getClass('h1')}>{children}</h1>;
         case "subheader":
-            return <h2 className={'text text--h2'}>{children}</h2>;
+            return <h2 className={getClass('h2')}>{children}</h2>;
         case "title":
-            return <h3 className={'text text--title'}>{children}</h3>;
+            return <h3 className={getClass('title')}>{children}</h3>;
         case "icon":
-            return <span className={"text text--icon-description"}>{children}</span>;
+            return <span className={getClass('icon-description')}>{children}</span>;
         case "button":
-            return <span className={"text text--icon-description"}>{children}</span>;
+            return <span className={getClass('icon-description')}>{children}</span>;
         case "paragraph":
-            return <p className={'text text--paragraph'}>{children}</p>;
+            return <p className={getClass('text--paragraph')}>{children}</p>;
         case "label":
-            return <label className={'text text---label'} htmlFor={htmlFor}>{children}</label>
+            return <label className={getClass('text---label')} htmlFor={htmlFor}>{children}</label>
         default:
-            return <span className={'text text--span'}>{children}</span>
+            return <span className={getClass('text--span')}>{children}</span>
     }
 };
 

@@ -3,6 +3,10 @@
 @import "../../../styles/variables";
 
 .recipe-form {
+  &__header {
+    height: 400px;
+  }
+
   &__general-data {
     margin-bottom: size(3);
   }

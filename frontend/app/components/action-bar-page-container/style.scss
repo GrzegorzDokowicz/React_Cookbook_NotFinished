@@ -1,1 +1,12 @@
-.action-bar-page-container {}
+@import "../../../styles/mixins";
+@import "../../../styles/colors";
+@import "../../../styles/variables";
+
+.action-bar-page-container {
+  &__header {
+    padding: size(2) 0;
+  }
+  &__content {
+    padding: size(3) 0;
+  }
+}

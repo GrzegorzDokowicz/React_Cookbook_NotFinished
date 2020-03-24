@@ -8,16 +8,15 @@ import RecipeCategoryForm from "../../components/recipe-category-form";
 import Modal from "../../../components/modal";
 import {initCategoriesData, registerRecipeCategory} from "../../data-layer/recipe-categories/actions";
 import ActionBarPageContainer from "../../components/action-bar-page-container";
-import Pagination from '../../../components/pagination';
 
 const mapStateToProps = state => ({
     categories: state.categories.elements
 });
 
 
-const CategoryListElement = ({id, name}) => <li className="recipe-categories-list__element">
+const CategoryListElement = ({id, name, image}) => <li className="recipe-categories-list__element">
     <Link to={`/recipe-category/${id}`}>
-        <CategoryThumbnail title={name}/>
+        <CategoryThumbnail title={name} image={image}/>
     </Link>
 </li>;
 
@@ -64,12 +63,6 @@ class RecipeCategoriesList extends React.Component {
                         (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
                     }
                 </ul>
-                <Pagination elements={this.props.categories.length}
-                            callback={(page) => this.setState(state => ({
-                                ...state,
-                                currentPage: page
-                            }))}
-                            currentItem={this.state.currentPage}/>
             </div>
             <Modal isOpen={this.state.isOpen} onClose={() => this.setModalState(false)}>
                 <div className="recipe-category__create-form">

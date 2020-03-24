@@ -3,10 +3,6 @@
 @import "../../../styles/variables";
 
 .recipe-category {
-  &__action-bar {
-
-  }
-
   &__elements {
     display: flex;
     justify-content: space-between;
@@ -14,7 +10,7 @@
   }
 
   &__element {
-    width: calc(20% - 30px);
+    width: calc(20% - #{size(4)});;
   }
 
   &__create-form {
