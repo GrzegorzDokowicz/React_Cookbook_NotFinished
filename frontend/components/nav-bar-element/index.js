@@ -9,18 +9,16 @@ class NavBarElement extends React.Component {
     }
 
     render() {
-        return <li className={'nav-bar__element'}
-                   onClick={this.props.onClick}
-                   onMouseDown={this.props.onClick}
-                   onMouseUp={this.props.onClick}>
-            <NavLink exact to={this.props.path}
+
+        return <NavLink className={`nav-bar__element`}
+                     onClick={this.props.onClick}
+                     onMouseDown={this.props.onClick}
+                     onMouseUp={this.props.onClick} exact to={this.props.path}
                      activeClassName={'nav-bar__link--active'}>
                 <IconText icon={this.props.iconName} vertical={true} size={'big'}>
                     {this.props.title}
                 </IconText>
             </NavLink>
-        </li>
     }
 }
-
 export default NavBarElement;
