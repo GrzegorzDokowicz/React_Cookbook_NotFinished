@@ -9,7 +9,7 @@ class NavBarElement extends React.Component {
     }
 
     render() {
-
+        //TODO zmien klasy na zgodne i na BEM
         return <NavLink className={`nav-bar__element`}
                      onClick={this.props.onClick}
                      onMouseDown={this.props.onClick}

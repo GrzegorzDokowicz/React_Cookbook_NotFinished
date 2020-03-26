@@ -12,96 +12,94 @@ class NavBar extends React.Component {
             indicatorWidth: 0,
             itemWidth: 0,
             itemX: 0,
+            activeItemIndex: 0
         };
 
         this.indicator = React.createRef();
-        this.navList = React.createRef();
+
         this.elements = [{
             title: 'Strona Domowa',
             path: '/',
-            iconName: 'home'
+            iconName: 'home',
+            ref: React.createRef()
         }, {
             title: 'Kategorie przepisów',
             path: '/recipe-categories',
-            iconName: 'list'
+            iconName: 'list',
+            ref: React.createRef()
         }];
 
     }
 
     componentDidMount() {
-        this._getIndicatorPosition();
-        this._setIndicatorPosition();
-        window.addEventListener('resize', this._setIndicatorPosition);
+        this._getIndicatorPosition(this.state.activeItemIndex);
+        this._setIndicatorPosition(this.state.activeItemIndex);
+        window.addEventListener('resize', ()=> this._setIndicatorPosition(this.state.activeItemIndex));
     }
 
 
-
-    //get currently active element from list
-    _getActiveElement() {
-        return Array.from(this.navList.current.children).map((el, index) => {
-            return el.classList.contains('nav-bar__link--active') ? index : 0
-        }).reduce((prev, current) => {
-            return prev + current
-        });
-    };
-
     //get current indicator position
-    _getIndicatorPosition = () => {
+    _getIndicatorPosition(index) {
         const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
-        const {width: itemWidth, x: itemX} = this.navList.current.children[this._getActiveElement()].getBoundingClientRect();
+        const {width: itemWidth, x: itemX} = this.elements[index].ref.current.getBoundingClientRect();
+
 
         // change state
         this.setState(prevState => ({
             ...prevState,
             indicatorWidth,
             itemWidth,
-            itemX
+            itemX,
+            activeItemIndex: index
         }));
 
         return itemX + itemWidth / 2 - indicatorWidth / 2
     };
 
     //set indicator position
-    _setIndicatorPosition = () => {
-        gsap.to(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition})
+    _setIndicatorPosition(index) {
+        gsap.to(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(index)})
     };
 
 
-    _handleEvent = (event) => {
-        if (event.type === 'mousedown') {
-            const target = event.target.closest('.nav-bar__element');
-            const timeline = gsap.timeline();
-            timeline.to(target, {duration: 0.3, y: -5, ease: Power4.easeOut})
-                .to(target, {duration: 0.3, y: 0, ease: Back.easeOut.config(1.7)});
-        }
-        if (event.type === 'click') {
-            const target = event.target.closest('.nav-bar__element');
-            this._setIndicatorPosition()
-        }
-    };
+    //TODO sprawdzaj po refie, ktory jest teraz aktywny
+    _handleEvent(index) {
+        return (event) => {
+            if (event.type === 'mousedown') {
+                const target = event.target.closest('.nav-bar__element');
+                const timeline = gsap.timeline();
+                timeline.to(target, {duration: 0.3, y: -5, ease: Power4.easeOut})
+                    .to(target, {duration: 0.3, y: 0, ease: Back.easeOut.config(1.7)});
+            }
+            if (event.type === 'click') {
+                this._setIndicatorPosition(index);
+            }
+        };
+    }
 
-    prepareElements = () => {
-        const elementsArray = this.elements.map((element, index) => <NavBarElement
-            key={index}
+    prepareElements() {
+        return this.elements.map((element, index) => <div key={index} ref={element.ref}>
+            <NavBarElement
             className={'nav-bar__element'}
-            title={element.title} path={element.path}
-            iconName={element.iconName} onClick={this._handleEvent}
-        />);
-        return elementsArray;
+            title={element.title}
+            path={element.path}
+            iconName={element.iconName}
+            onClick={this._handleEvent(index)}
+        /></div>);
     };
 
     render() {
         return <nav className={"nav-bar"}>
             <ResponsiveAppContainer>
-                <span ref={this.indicator} className={'nav-bar__indicator'}></span>
-                <ul ref={this.navList} className="nav-bar__list">
+                <span ref={this.indicator} className={'nav-bar__indicator'}/>
+                <ul className="nav-bar__list">
                     <li className={'nav-bar__element'}>LOGO</li>
                     {this.prepareElements()}
                 </ul>
             </ResponsiveAppContainer>
         </nav>
     }
-};
+}
 
 
 export default NavBar;
