@@ -9,9 +9,6 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            indicatorWidth: 0,
-            itemWidth: 0,
-            itemX: 0,
             activeItemIndex: 0
         };
 
@@ -33,9 +30,13 @@ class NavBar extends React.Component {
 
     componentDidMount() {
         this._getIndicatorPosition(this.state.activeItemIndex);
-        this._setIndicatorPosition(this.state.activeItemIndex);
-        window.addEventListener('resize', ()=> this._setIndicatorPosition(this.state.activeItemIndex));
-    }
+        window.addEventListener('resize', () => this._setIndicatorPosition(this.state.activeItemIndex));
+        //Todo change timeout to other function. It have to take care about indicator after render.
+        setTimeout(() => {
+            gsap.set(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(this.state.activeItemIndex)})
+        }, 50)
+    };
+
 
 
     //get current indicator position
@@ -43,13 +44,9 @@ class NavBar extends React.Component {
         const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
         const {width: itemWidth, x: itemX} = this.elements[index].ref.current.getBoundingClientRect();
 
-
         // change state
         this.setState(prevState => ({
             ...prevState,
-            indicatorWidth,
-            itemWidth,
-            itemX,
             activeItemIndex: index
         }));
 
@@ -62,7 +59,6 @@ class NavBar extends React.Component {
     };
 
 
-    //TODO sprawdzaj po refie, ktory jest teraz aktywny
     _handleEvent(index) {
         return (event) => {
             if (event.type === 'mousedown') {
@@ -78,14 +74,18 @@ class NavBar extends React.Component {
     }
 
     prepareElements() {
-        return this.elements.map((element, index) => <div key={index} ref={element.ref}>
-            <NavBarElement
-            className={'nav-bar__element'}
-            title={element.title}
-            path={element.path}
-            iconName={element.iconName}
-            onClick={this._handleEvent(index)}
-        /></div>);
+        return this.elements.map((element, index) =>
+            <li key={index}
+                ref={element.ref}
+                className={'nav-bar__element'}>
+                <NavBarElement
+                    title={element.title}
+                    path={element.path}
+                    iconName={element.iconName}
+                    onClick={this._handleEvent(index)}
+                />
+            </li>
+        );
     };
 
     render() {
