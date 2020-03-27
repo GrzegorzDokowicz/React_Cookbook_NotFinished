@@ -4,7 +4,7 @@ import Text from "../text";
 import Icons from "../icons";
 
 const IconText = ({type = "icon", children, icon, vertical = false, size = "normal"}) => {
-    const modifier = vertical ? "icon-text--vertical" : ''
+    const modifier = vertical ? "icon-text--vertical" : '';
     let iconSize ='';
     switch (size) {
         case "big":
