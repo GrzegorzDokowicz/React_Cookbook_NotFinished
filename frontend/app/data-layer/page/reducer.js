@@ -1,11 +1,24 @@
-import {SCROLL_TO, ADD_ALERT, REMOVE_ALERT} from "./actions";
+import {SCROLL_TO, ADD_ALERT, REMOVE_ALERT, GET_TEXT_DATA} from "./actions";
 
 const initialState = {
     scrollTo: {
         state: false,
         name: ""
     },
-    alerts: []
+    alerts: [],
+    landingPageTextData:{
+        section1: {
+            title: 'React Cookbook',
+            textBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+                'Duis venenatis mi in tristique placerat. ' +
+                'Cras convallis mi mauris, id volutpat tortor pretium nec. ' +
+                'Curabitur posuere eu lectus ac interdum. Aliquam mollis metus at magna iaculis pulvinar.' +
+                ' Mauris tortor risus, euismod in massa quis, efficitur pretium ipsum. ' +
+                'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.' +
+                'Quisque convallis imperdiet imperdiet. Maecenas eu felis pellentesque, euismod ligula in, auctor nisi.' +
+                ' Ut gravida et ipsum ultricies posuere. Nulla elementum convallis ultricies.'
+        }
+    }
 };
 
 const pageReducer = (state = initialState, {type, payload}) => {
@@ -25,6 +38,11 @@ const pageReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 alerts: state.alerts.filter(({id}) => id !== payload.id)
             };
+        case GET_TEXT_DATA:
+            return {
+                ...this.state,
+                landingPageTextData: {...payload}
+            }
         default:
             return state;
     }

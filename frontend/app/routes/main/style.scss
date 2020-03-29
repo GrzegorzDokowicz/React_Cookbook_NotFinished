@@ -10,33 +10,26 @@
 }
 
 .landing-page {
-  width: 100%;
-  height: 100%;
 
-
-  &__titles{
-    position: absolute;
-    margin-left: 50%;
-    margin-top: 8%;
+  &__section1 {
+    width: 100%;
+    height: 88vh;
     display: flex;
-    flex-direction: column;
-    color: $background-color;
-    z-index: 1;
-    & h1, h2 {
-      margin: 1rem;
-      box-shadow: $box-shadow-secondary
-    }
-    & .buttons-section{
+    justify-content: center;
+    align-items: center;
+
+    .left-side{
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      margin-left: 5%;
+      width: 40%;
 
+      &__buttons{
+        margin-top: 3%;
+      }
+    }
+    .right-side{
+      width: 60%;
     }
   }
-  &__background-wrapper {
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-  }
-
 }

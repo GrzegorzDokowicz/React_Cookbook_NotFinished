@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="70.320312mm"
+   height="188.62437mm"
+   viewBox="0 0 70.320312 188.62437"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="Logo.svg">
+   sodipodi:docname="logo.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="332.08588"
-     inkscape:cy="609.4961"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="64.792331"
+     inkscape:cy="664.04798"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -41,7 +41,9 @@
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
-       id="grid3715" />
+       id="grid3715"
+       originx="-68.696193"
+       originy="-48.109589" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -58,7 +60,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-68.696193,-60.266039)">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.69999999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 94.59593,177.77633 c 1.24258,-2.83282 -12.961217,41.14351 0,64.82292 3.95173,7.21958 13.89211,8.12831 18.52084,1.32291 12.78505,-18.79725 -0.25465,-67.83044 -1e-5,-66.14583"
