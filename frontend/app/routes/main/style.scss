@@ -10,6 +10,7 @@
 }
 
 .landing-page {
+  overflow-x: hidden;
 
   &__section1 {
     width: 100%;
@@ -30,6 +31,10 @@
     }
     .right-side{
       width: 60%;
+
+      svg{
+        width: 100%;
+      }
     }
   }
 }
