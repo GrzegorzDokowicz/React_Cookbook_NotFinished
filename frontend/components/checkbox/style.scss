@@ -5,19 +5,13 @@
 
 
 .checkbox {
-  @extend %form;
-
-  &__title{
-    @extend %form-title
-  }
-
   &__checkbox-input {
     width: 10px;
     height: 10px;
-    border: 1px solid $grey4;
+    border: 1px solid $border-color;
 
     &--active {
-      background-color: $black;
+      background-color: $background-color;
     }
   }
 }

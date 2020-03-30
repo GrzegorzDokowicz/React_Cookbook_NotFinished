@@ -2,5 +2,23 @@
 @import "./variables";
 
 %form {
+  &-input--filled {
+    padding: size(2) size(1);
+  }
 
+  &-input--normal {
+    padding: size(1);
+  }
+
+  &-input {
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid $border-color;
+    background-color: $background-color-secondary;
+  }
+
+  &-label {
+    margin-bottom: size(1);
+  }
 }

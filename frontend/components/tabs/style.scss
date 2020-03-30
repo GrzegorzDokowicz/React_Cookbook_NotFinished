@@ -1,15 +1,46 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+@import "../../styles/variables";
+
+$border: 1px solid $border-color;
+
 .tabs {
-  &__titles, &__content {
+  width: 100%;
+
+  &--padding {
+    .tabs__content {
+      padding: size(2);
+    }
+  }
+
+  &__titles {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    border: $border;
+    border-right: none;
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+    border: $border;
+    border-top: none;
   }
 
   &__title {
     cursor: pointer;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: $background-color;
+    border-right: $border;
+    padding: size(1) 0;
   }
 
   &__tab {
     display: none;
+    width: 100%;
 
     &--active {
         display: block;

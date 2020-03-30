@@ -4,8 +4,6 @@ const runQueryCollection = (collection) => {
     const [queryString, ...newCollection] = collection;
 
     if (queryString) {
-        console.log("Running query: ", queryString);
-
         MysqlConnection.getInstance().query(queryString, (error) => {
             if (!error && newCollection.length > 0) {
                 runQueryCollection(newCollection)

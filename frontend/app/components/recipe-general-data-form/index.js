@@ -3,6 +3,7 @@ import './style.scss';
 import Input from "../../../components/input";
 import Upload from "../../../components/upload";
 import MultiSelect from "../../../components/multi-select";
+import Text from "../../../components/text";
 
 const RecipeGeneralDataForm = ({callback, categories}) => {
     const [form, setForm] = useState("");
@@ -29,7 +30,7 @@ const RecipeGeneralDataForm = ({callback, categories}) => {
             <MultiSelect title={"Kategorie"} data={categories.map(cat => cat.name)}/>
         </div>
         <div className="recipe-draft-data-form__image">
-            <Upload onLoad={onLoad}/>
+            <Upload onLoad={onLoad} text={"Zdjecie glowne przepisu"}/>
         </div>
     </div>
 };

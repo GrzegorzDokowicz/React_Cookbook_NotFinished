@@ -17,6 +17,11 @@
     text-transform: uppercase;
   }
 
+  &--title-small {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
   &--paragraph {
     font-size: $paragraph-fontSize;
   }

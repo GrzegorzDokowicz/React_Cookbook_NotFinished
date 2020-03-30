@@ -27,8 +27,6 @@ class DeployCLIAction extends CLIAction {
             `USE ${database}`,
         ];
 
-        console.log(scripts);
-
         return scripts;
     }
 
@@ -46,7 +44,6 @@ class DeployCLIAction extends CLIAction {
         const schemaName = this.getSchemaName();
 
         if (!schemaName) {
-            console.log('Not found schema name.');
             return 1;
         }
 

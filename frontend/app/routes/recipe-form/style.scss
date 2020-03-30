@@ -3,6 +3,8 @@
 @import "../../../styles/variables";
 
 .recipe-form {
+  margin-bottom: size(4);
+
   &__header {
     height: 400px;
   }
@@ -18,11 +20,11 @@
   }
 
   &__products-form {
-    width: calc(70%  - #{size(3)});
+    width: calc(50%  - #{size(3)});
   }
 
   &__products-list {
-    width: 30%;
+    width: 50%;
   }
 
   &__steps {

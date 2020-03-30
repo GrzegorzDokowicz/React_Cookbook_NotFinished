@@ -3,21 +3,15 @@ import './style.scss';
 import {NavLink} from 'react-router-dom';
 import IconText from '../icon-text';
 
-class NavBarElement extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return <NavLink className={`nav-bar__link`}
-                     onClick={this.props.onClick}
-                     onMouseDown={this.props.onClick}
-                     onMouseUp={this.props.onClick} exact to={this.props.path}
-                     activeClassName={'nav-bar__link--active'}>
-                <IconText icon={this.props.iconName} vertical={true} size={'big'}>
-                    {this.props.title}
-                </IconText>
-            </NavLink>
-    }
+const NavBarElement = ({path,  iconName, title, onClick}) => {
+    return <NavLink className={`nav-bar__link`}
+                    onClick={onClick}
+                    onMouseDown={onClick}
+                    onMouseUp={onClick} exact to={path}
+                    activeClassName={'nav-bar__link--active'}>
+        <IconText icon={iconName} vertical={true} size={'big'}>
+            {title}
+        </IconText>
+    </NavLink>
 }
 export default NavBarElement;

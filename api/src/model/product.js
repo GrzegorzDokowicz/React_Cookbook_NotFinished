@@ -1,5 +1,5 @@
 import Model from "../../core/Model";
-import {toStringForQuery} from "../../core/helpers/mysqlDatabseHelpers";
+import {queryString, toStringForQuery} from "../../core/helpers/mysqlDatabseHelpers";
 
 const fields = [
     'name',
@@ -9,7 +9,7 @@ const fields = [
     'fat'
 ];
 
-class Category extends Model {
+class Product extends Model {
     constructor(data) {
         super("product", data, fields);
     }
@@ -23,7 +23,13 @@ class Category extends Model {
             'fat': parseFloat(this.data.fat)
         };
     }
+
+    search(searchString) {
+        const string = `${this.getSelectString()} WHERE ${queryString("name")} LIKE "${searchString}%"`;
+
+        return this.runGet(string, false);
+    }
 }
 
 
-export default Category;
+export default Product;

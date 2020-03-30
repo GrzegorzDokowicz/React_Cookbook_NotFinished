@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 import Text from "../text";
 
-const Button = ({children, type = "default", onClick, style}, color="primary") => {
+const Button = ({children, type = "default", onClick, style, color="primary"}) => {
 
     const clickButton = (event) => {
         event.preventDefault();
@@ -15,7 +15,7 @@ const Button = ({children, type = "default", onClick, style}, color="primary") =
     const className = (style ? style : []).map(attr => `${buttonClassName}--${attr}`).join(' ');
 
     return <button className={`button button--${type} ${className}`} onClick={clickButton}>
-        <Text type={type === "icon" ? "title" : "button"} color={color}>
+        <Text type={type === "icon" ? "icon-description" : "button"} color={color}>
             {children}
         </Text>
     </button>;
