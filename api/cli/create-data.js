@@ -27,7 +27,6 @@ class CrateDataCliAction extends CLIAction {
                     return Model.getInsertString(table, objectKeysToFields(collection[0]), valuesCollection)
 
                 });
-            console.log(scripts);
 
             runQueryCollection([...deletes, ...scripts]);
         }).catch(error => {
