@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/*eslint-disable no-unused-vars*/
+import React, { useEffect } from 'react';
 
 const clickOutsideHook = (ref, callback) => {
     useEffect(() => {
@@ -16,9 +17,9 @@ const clickOutsideHook = (ref, callback) => {
             }
         };
 
-        document.addEventListener("click", click);
+        document.addEventListener('click', click);
         return () => {
-            document.removeEventListener("mousedown", click);
+            document.removeEventListener('mousedown', click);
         };
     }, [ref]);
 };

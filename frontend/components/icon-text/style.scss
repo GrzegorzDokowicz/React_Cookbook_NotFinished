@@ -1,14 +1,29 @@
+@import "../../styles/variables";
+
+
 .icon-text {
   display: flex;
-  &--vertical{
-    display: flex;
+  align-items: center;
+  justify-items: center;
+
+  &--vertical {
     flex-direction: column;
-    align-items: center;
-    justify-items: center;
   }
 
   &__icon {
     margin-right: 5px;
     font-size: 16px;
+
+    &--big {
+      font-size: $icon-size*2;
+    }
+
+    &--normal {
+      font-size: $icon-size;
+    }
+
+    &--small {
+      font-size: $icon-size*0.5;
+    }
   }
 }

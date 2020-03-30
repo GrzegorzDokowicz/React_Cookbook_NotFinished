@@ -1,26 +1,17 @@
 import React from 'react';
 import './style.scss';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import IconText from '../icon-text';
 
-class NavBarElement extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isActive: false
-        };
-    }
-
-    render() {
-        return <li className="nav-bar__element" onClick={this.props.onClick}>
-            <Link to={this.props.path}>
-                <IconText icon={this.props.iconName} vertical={true}>
-                    {this.props.childrenTitle}
-                </IconText>
-            </Link>
-        </li>
-    }
+const NavBarElement = ({path,  iconName, title, onClick}) => {
+    return <NavLink className={`nav-bar__link`}
+                    onClick={onClick}
+                    onMouseDown={onClick}
+                    onMouseUp={onClick} exact to={path}
+                    activeClassName={'nav-bar__link--active'}>
+        <IconText icon={iconName} vertical={true} size={'big'}>
+            {title}
+        </IconText>
+    </NavLink>
 }
-
 export default NavBarElement;
