@@ -5,7 +5,7 @@ import './style.scss';
 const ResponsiveAppContainer = ({children}) => {
     return <div className="responsive-app-container">
         {children}
-    </div>
+    </div>;
 };
 
 export default ResponsiveAppContainer;

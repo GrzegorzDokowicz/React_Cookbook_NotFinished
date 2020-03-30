@@ -5,8 +5,8 @@ import {
     INIT_CATEGORY_DATA_ACTION,
     LOAD_RECIPES_IN_CATEGORY,
     setCategoriesData, setRecipesInCategory
-} from "./actions";
-import urlsConfig from "../urls";
+} from './actions';
+import urlsConfig from '../urls';
 
 function* init() {
     const request = yield call(() => fetch(urlsConfig.recipeCategories.getAll).then(res => res.json()));

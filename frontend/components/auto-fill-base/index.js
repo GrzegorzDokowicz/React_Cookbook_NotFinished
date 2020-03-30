@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react';
 import './style.scss';
-import Input from "../input";
-import TableList from "../table-list";
-import clickOutsideHook from "../../utils/clickOutsideHook";
-import InputWrapper from "../input-wrapper";
+import Input from '../input';
+import TableList from '../table-list';
+import clickOutsideHook from '../../utils/clickOutsideHook';
+import InputWrapper from '../input-wrapper';
 
 const AutoFillBase = ({limit = 1, data = [], onSelect, title, onSearch}) => {
     const listRef = useRef(null);
@@ -42,13 +42,13 @@ const AutoFillBase = ({limit = 1, data = [], onSelect, title, onSearch}) => {
             <div className="auto-fill__input-container">
                 <Input onChange={onChange} value={currentSearchValue}/>
             </div>
-            <div className={`auto-fill__content`}>
-                <div className={`auto-fill__container`}>
+            <div className={'auto-fill__content'}>
+                <div className={'auto-fill__container'}>
                     <TableList data={data} onClick={onClick} seleceted={currentSearchValue}/>
                 </div>
             </div>
         </div>
-    </InputWrapper>
+    </InputWrapper>;
 
 };
 

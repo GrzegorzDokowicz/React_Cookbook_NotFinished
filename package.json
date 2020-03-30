@@ -15,8 +15,8 @@
     "build-cli": "webpack --config ./api/webpack.config.js --entry ./api/cli/index.js -o ./api/dist/cli.js\n",
     "build-database": "node ./api/dist/cli.js deploy --file=schema.sql",
     "push-data": "node ./api/dist/cli.js createData",
-    "lint-frontend": "eslint ./frontend/**/*.js",
-    "fix-lint-frontend": "eslint ./frontend/**/*.js --fix"
+    "lint-frontend": "eslint frontend",
+    "fix-lint-frontend": "eslint frontend --fix"
   },
   "pre-commit": [
     "lint-frontend"

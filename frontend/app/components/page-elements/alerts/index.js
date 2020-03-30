@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const Alerts = ({alerts}) => {
     return <div className="alerts">
-        {alerts.map(({text}) => <div>{text}</div>)}
+        {alerts.map(({text}, key) => <div key={key}>{text}</div>)}
     </div>;
 };
 

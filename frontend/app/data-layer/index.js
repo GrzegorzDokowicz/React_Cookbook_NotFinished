@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import {applyMiddleware, createStore} from 'redux';
 
@@ -16,15 +16,15 @@ sagaMiddleware.run(rootEffects);
  * Class responsible for providing store
  */
 export default class DataLayerComponent extends Component {
-  static get propTypes() {
-    return {
-      children: PropTypes.any,
-    };
-  }
+    static get propTypes() {
+        return {
+            children: PropTypes.any,
+        };
+    }
 
-  render() {
-    return <Provider store={store}>
-      {this.props.children}
-    </Provider>;
-  }
-};
+    render() {
+        return <Provider store={store}>
+            {this.props.children}
+        </Provider>;
+    }
+}

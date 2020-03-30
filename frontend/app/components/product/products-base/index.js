@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
-import ProductDataRow from "../product-data-row";
-import ProductsSelectFormComponent from "../products-select-form";
+import ProductDataRow from '../product-data-row';
+import ProductsSelectFormComponent from '../products-select-form';
 
 import './style.scss';
 
@@ -12,10 +12,10 @@ const ProductBase = () => {
 
     return <div className="product-base">
         <div className="product-base__title">
-            <Text type={"title"}>
+            <Text type={'title'}>
                 Twoja baza produktow
             </Text>
-            <Text type={"description"}>
+            <Text type={'description'}>
                 Wyszukaj produktu wsrod listy produktow ktore dodales recznie
             </Text>
         </div>
@@ -26,7 +26,7 @@ const ProductBase = () => {
         <div className="product-base__title">
             <ProductDataRow product={currentProduct}/>
         </div>
-    </div>
+    </div>;
 };
 
 export default ProductBase;

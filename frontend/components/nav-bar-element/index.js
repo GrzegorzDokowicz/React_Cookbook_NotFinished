@@ -19,7 +19,7 @@ class NavBarElement extends React.Component {
                     {this.props.childrenTitle}
                 </IconText>
             </Link>
-        </li>
+        </li>;
     }
 }
 

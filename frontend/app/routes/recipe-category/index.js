@@ -1,14 +1,14 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
-import NotFound from "AppComponents/containers/not-found";
-import ActionBarPageContainer from "AppComponents/containers/action-bar-page-container";
-import RecipeThumbnail from "AppComponents/recipe/recipe-thumbnail";
+import NotFound from 'AppComponents/containers/not-found';
+import ActionBarPageContainer from 'AppComponents/containers/action-bar-page-container';
+import RecipeThumbnail from 'AppComponents/recipe/recipe-thumbnail';
 
-import {getRecipesInCategory} from "AppDataLayer/recipe-categories/actions";
+import {getRecipesInCategory} from 'AppDataLayer/recipe-categories/actions';
 
 import './style.scss';
 
@@ -17,11 +17,11 @@ const mapStateToProps = (state) => ({
 });
 
 const RecipeObject = ({id, title, kcal, time, image}) => {
-    return <div className={"recipe-category__element"}>
+    return <div className={'recipe-category__element'}>
         <Link to={`/recipes/${id}`}>
             <RecipeThumbnail image={image} title={title} energyValue={kcal} time={time}/>
         </Link>
-    </div>
+    </div>;
 };
 
 const RecipesThumbnailsCollection = ({recipes}) => {
@@ -40,27 +40,27 @@ class RecipeCategory extends React.Component {
         this.state = {
             isOpen: false,
             category: this.getCategoryObject(),
-            search: ""
+            search: ''
         };
     }
 
     componentDidMount() {
-        if (this.state.category && !this.state.category.hasOwnProperty('recipes')) {
+        if (this.state.category && !this.state.category['recipes']) {
             this.props.dispatch(getRecipesInCategory(this.id));
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.categories !== this.props.categories) {
             this.setState(state => ({
                 ...state,
                 category: this.getCategoryObject()
-            }))
+            }));
         }
     }
 
     addRecipe() {
-        this.props.history.push('/recipe/add')
+        this.props.history.push('/recipe/add');
     }
 
     searchCategory($event) {
@@ -69,7 +69,7 @@ class RecipeCategory extends React.Component {
         this.setState(state => ({
             ...state,
             search: value
-        }))
+        }));
     }
 
     getCategoryObject() {
@@ -84,7 +84,7 @@ class RecipeCategory extends React.Component {
                 return recipes;
             }
 
-            return recipes.filter(({title}) => title.toString().toLowerCase().indexOf(this.state.search) !== -1)
+            return recipes.filter(({title}) => title.toString().toLowerCase().indexOf(this.state.search) !== -1);
         }
 
         return [];
@@ -92,18 +92,18 @@ class RecipeCategory extends React.Component {
 
     render() {
         if (!this.state.category) {
-            return <NotFound/>
+            return <NotFound/>;
         }
 
         return <ActionBarPageContainer onSearch={this.searchCategory.bind(this)}
-                                       onClick={this.addRecipe.bind(this)}
-                                       title={`Lista przepisow w kategorii ${this.state.category.name}`}>
+            onClick={this.addRecipe.bind(this)}
+            title={`Lista przepisow w kategorii ${this.state.category.name}`}>
             <div className="recipe-category">
                 <div className="recipe-category__elements">
                     <RecipesThumbnailsCollection recipes={this.getRecipes()}/>
                 </div>
             </div>
-        </ActionBarPageContainer>
+        </ActionBarPageContainer>;
     }
 }
 

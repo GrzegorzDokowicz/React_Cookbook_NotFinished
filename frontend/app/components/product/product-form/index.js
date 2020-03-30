@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
-import Input from "CoreComponents/input";
-import Button from "CoreComponents/button";
-import Text from "CoreComponents/text";
-import Checkbox from "CoreComponents/checkbox";
+import Input from 'CoreComponents/input';
+import Button from 'CoreComponents/button';
+import Text from 'CoreComponents/text';
+import Checkbox from 'CoreComponents/checkbox';
 
-import ProductsSelectFormComponent from "../products-select-form";
+import ProductsSelectFormComponent from '../products-select-form';
 
 import './style.scss';
 
@@ -21,7 +21,7 @@ const ProductForm = ({onSubmit, inline = false}) => {
                 ...form,
                 [name]: value
             });
-        }
+        };
     };
 
     const submit = () => {
@@ -30,39 +30,39 @@ const ProductForm = ({onSubmit, inline = false}) => {
         }
     };
 
-    return <div className={`product-form`}>
-        {inline ? '' : <Text type={"header"}>Dodaj produkt</Text>}
+    return <div className={'product-form'}>
+        {inline ? '' : <Text type={'header'}>Dodaj produkt</Text>}
         <form>
             <div className={`product-form__container${inline ? ' product-form__container--inline' : ''}`}>
                 <div className="product-form__row">
-                    <Checkbox onClick={() => setParent(!hasParent)} active={hasParent} title={"Czy jest to podgrupa produktu?"}/>
+                    <Checkbox onClick={() => setParent(!hasParent)} active={hasParent} title={'Czy jest to podgrupa produktu?'}/>
                 </div>
                 <div className={`product-form__row${!hasParent ? ' product-form__row--hidden' : ''}`}>
-                    <ProductsSelectFormComponent title={"Produkt nadrzedny"} onChange={onChange("parent")}/>
+                    <ProductsSelectFormComponent title={'Produkt nadrzedny'} onChange={onChange('parent')}/>
                 </div>
                 <div className="product-form__row">
                     <div className="product-form__element">
-                        <Input name={"name"} text={"Nazwa"} onChange={onChange("name")}/>
+                        <Input name={'name'} text={'Nazwa'} onChange={onChange('name')}/>
                     </div>
                     <div className="product-form__element">
-                        <Input name={"kcal"} text={"Ilosc kalorii"} onChange={onChange("kcal")}/>
+                        <Input name={'kcal'} text={'Ilosc kalorii'} onChange={onChange('kcal')}/>
                     </div>
                 </div>
                 <div className="product-form__row">
                     <div className="product-form__element">
-                        <Input name={"protein"} text={"Bialko"} onChange={onChange("protein")}/>
+                        <Input name={'protein'} text={'Bialko'} onChange={onChange('protein')}/>
                     </div>
                     <div className="product-form__element">
-                        <Input name={"fat"} text={"Tluszcze"} onChange={onChange("fat")}/>
+                        <Input name={'fat'} text={'Tluszcze'} onChange={onChange('fat')}/>
                     </div>
                     <div className="product-form__element">
-                        <Input name={"carbo"} text={"Wegle"} onChange={onChange("carbo")}/>
+                        <Input name={'carbo'} text={'Wegle'} onChange={onChange('carbo')}/>
                     </div>
                 </div>
                 <Button onClick={submit}>Submit</Button>
             </div>
         </form>
-    </div>
+    </div>;
 };
 
 export default ProductForm;

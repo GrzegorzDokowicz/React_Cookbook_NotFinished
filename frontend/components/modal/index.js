@@ -12,7 +12,7 @@ const Modal = ({isOpen, children, onClose}) => {
         <div className="modal__content">
             {children}
         </div>
-    </div>
+    </div>;
 };
 
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import Modal from "CoreComponents/modal";
+import Modal from 'CoreComponents/modal';
 
-import CategoryThumbnail from "AppComponents//page-elements/category-thumbnail";
-import RecipeCategoryForm from "AppComponents//recipe/recipe-category-form";
-import ActionBarPageContainer from "AppComponents/containers/action-bar-page-container";
+import CategoryThumbnail from 'AppComponents//page-elements/category-thumbnail';
+import RecipeCategoryForm from 'AppComponents//recipe/recipe-category-form';
+import ActionBarPageContainer from 'AppComponents/containers/action-bar-page-container';
 
-import {initCategoriesData, registerRecipeCategory} from "AppDataLayer/recipe-categories/actions";
+import {initCategoriesData, registerRecipeCategory} from 'AppDataLayer/recipe-categories/actions';
 
 import './style.scss';
 
@@ -32,7 +32,7 @@ class RecipeCategoriesList extends React.Component {
         };
     }
 
-    componentDidMount(prevProps, prevState, snapshot) {
+    componentDidMount() {
         this.props.dispatch(initCategoriesData());
     }
 
@@ -40,7 +40,7 @@ class RecipeCategoriesList extends React.Component {
         this.setState(state => ({
             ...state,
             isOpen: modalState
-        }))
+        }));
     }
 
     addCategory() {
@@ -56,9 +56,9 @@ class RecipeCategoriesList extends React.Component {
     }
 
     render() {
-        return <ActionBarPageContainer title={"Kategorie przepisow"}
-                                       onClick={this.addCategory.bind(this)}
-                                       onSearch={this.searchCategory.bind(this)}>
+        return <ActionBarPageContainer title={'Kategorie przepisow'}
+            onClick={this.addCategory.bind(this)}
+            onSearch={this.searchCategory.bind(this)}>
             <div className="recipe-categories-list">
                 <ul className="recipe-categories-list__elements">
                     {

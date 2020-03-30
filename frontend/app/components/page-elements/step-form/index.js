@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 
 import ReactQuill from 'react-quill';
 
-import Button from "CoreComponents/button";
+import Button from 'CoreComponents/button';
 
 import './style.scss';
 import 'react-quill/dist/quill.snow.css';
 
 const StepForm = ({addStep}) => {
-    const [form, setForm] = useState("");
+    const [form, setForm] = useState('');
     const onChange = value => {
         setForm(value);
     };
@@ -18,15 +18,15 @@ const StepForm = ({addStep}) => {
         }
     };
 
-    return <div className={`step-form`}>
+    return <div className={'step-form'}>
         <form>
             <div className="step-form__form">
                 <ReactQuill value={form}
-                            onChange={onChange} />
+                    onChange={onChange} />
                 <Button onClick={clickSubmit}>Dodaj</Button>
             </div>
         </form>
-    </div>
+    </div>;
 };
 
 export default StepForm;

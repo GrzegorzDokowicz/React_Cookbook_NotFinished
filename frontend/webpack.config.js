@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -50,8 +52,8 @@ module.exports = {
 
                 options: {
                     plugins: ['syntax-dynamic-import',
-                        "@babel/plugin-transform-runtime",
-                        "@babel/plugin-proposal-class-properties"
+                        '@babel/plugin-transform-runtime',
+                        '@babel/plugin-proposal-class-properties'
                     ],
 
                     presets: [
@@ -61,7 +63,7 @@ module.exports = {
                                 modules: false
                             }
                         ],
-                        "@babel/preset-react"
+                        '@babel/preset-react'
                     ]
                 }
             },

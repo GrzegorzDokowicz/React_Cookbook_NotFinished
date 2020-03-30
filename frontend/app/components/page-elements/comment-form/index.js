@@ -17,37 +17,41 @@ class CommentForm extends React.Component {
         this.formTitle = 'Zostaw swój komentarz';
     }
 
-    _handleChange = (event) => {
+    _handleChange(event) {
         const target = event.target;
         this.setState(prevState => ({
             ...prevState,
             [target.name]: target.value,
             timeStamp: new Date()
         }));
-    };
+    }
 
-    _handleClick = () => {
+    _handleClick() {
         if (this.props.onClick) {
-            this.props.onClick(this.state)
+            this.props.onClick(this.state);
         }
-    };
+    }
 
     render() {
         return <form className="comment-form">
             <div className={'comment-form__header'}>
-                <Text type={'subheader'} children={this.formTitle}/>
+                <Text type={'subheader'}>
+                    {this.formTitle}
+                </Text>
             </div>
             <div className="comment-form__name-input">
-                <Input name={'commentName'} text={'Twoje imię'} onChange={this._handleChange}
-                       value={this.state.commentName}/>
+                <Input name={'commentName'} text={'Twoje imię'} onChange={this._handleChange.bind(this)}
+                    value={this.state.commentName}/>
             </div>
             <div className="comment-form__comment-input">
-                <Input name={'commentBody'} text={'Twój komentarz'} onChange={this._handleChange}
-                       value={this.state.commentBody}/>
+                <Input name={'commentBody'} text={'Twój komentarz'} onChange={this._handleChange.bind(this)}
+                    value={this.state.commentBody}/>
             </div>
-            <Button children={'Dodaj komentarz'} onClick={this._handleClick}/>
-        </form>
+            <Button onClick={this._handleClick.bind(this)}>
+                Dodaj komentarz
+            </Button>
+        </form>;
     }
-};
+}
 
 export default CommentForm;

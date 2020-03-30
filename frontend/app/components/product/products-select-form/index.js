@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import './style.scss';
-import {initProductsData} from "AppDataLayer/products/actions";
-import AutoFill from "CoreComponents/auto-fill";
+import {initProductsData} from 'AppDataLayer/products/actions';
+import AutoFill from 'CoreComponents/auto-fill';
 
 const mapStateToProps = state => ({
     products: state.products.elements

@@ -1,16 +1,16 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
-import RecipeGeneralDataForm from "AppComponents/recipe/recipe-general-data-form";
-import RecipeProducts from "AppComponents/recipe/recipe-products";
-import RecipeProductsForm from "AppComponents/recipe/recipe-products-form";
-import RecipeSteps from "AppComponents/recipe/recipe-steps";
-import RecipeStepsForm from "AppComponents/recipe/recipe-steps-form";
-import TopImagePageContainer from "AppComponents/containers/top-image-page-container";
+import RecipeGeneralDataForm from 'AppComponents/recipe/recipe-general-data-form';
+import RecipeProducts from 'AppComponents/recipe/recipe-products';
+import RecipeProductsForm from 'AppComponents/recipe/recipe-products-form';
+import RecipeSteps from 'AppComponents/recipe/recipe-steps';
+import RecipeStepsForm from 'AppComponents/recipe/recipe-steps-form';
+import TopImagePageContainer from 'AppComponents/containers/top-image-page-container';
 
-import {initCategoriesData} from "AppDataLayer/recipe-categories/actions";
+import {initCategoriesData} from 'AppDataLayer/recipe-categories/actions';
 
 import './style.scss';
 
@@ -24,7 +24,7 @@ class RecipeForm extends React.Component {
         this.state = {
             steps: [],
             products: []
-        }
+        };
     }
 
     componentDidMount() {
@@ -37,13 +37,13 @@ class RecipeForm extends React.Component {
         this.setState(state => ({
             ...state,
             steps: steps
-        }))
+        }));
     }
 
     render() {
-        return <TopImagePageContainer src={"/public/recipe-background.png"} imageType={"cover"}>
+        return <TopImagePageContainer src={'/public/recipe-background.png'} imageType={'cover'}>
             <div className="recipe-form">
-                <Text type={"header"}>Dodawanie przepisu</Text>
+                <Text type={'header'}>Dodawanie przepisu</Text>
                 <div className="recipe-form__general-data">
                     <RecipeGeneralDataForm categories={this.props.categories}/>
                 </div>
@@ -64,7 +64,7 @@ class RecipeForm extends React.Component {
                     </div>
                 </div>
             </div>
-        </TopImagePageContainer>
+        </TopImagePageContainer>;
     }
 }
 

@@ -1,16 +1,16 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import Rating from "CoreComponents/rating";
-import Text from "CoreComponents/text"
+import Rating from 'CoreComponents/rating';
+import Text from 'CoreComponents/text';
 
-import RecipeProducts from "AppComponents/recipe/recipe-products";
-import RecipeSteps from "AppComponents/recipe/recipe-steps";
-import RecipeNotes from "AppComponents/recipe/recipe-notes";
-import Comments from "AppComponents/page-elements/comments";
-import RecipeImages from "AppComponents/recipe/recipe-images";
-import NotFound from "AppComponents/containers/not-found";
-import TopImagePageContainer from "AppComponents/containers/top-image-page-container";
+import RecipeProducts from 'AppComponents/recipe/recipe-products';
+import RecipeSteps from 'AppComponents/recipe/recipe-steps';
+import RecipeNotes from 'AppComponents/recipe/recipe-notes';
+import Comments from 'AppComponents/page-elements/comments';
+import RecipeImages from 'AppComponents/recipe/recipe-images';
+import NotFound from 'AppComponents/containers/not-found';
+import TopImagePageContainer from 'AppComponents/containers/top-image-page-container';
 
 import './style.scss';
 
@@ -28,7 +28,7 @@ class Recipe extends React.Component {
         };
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps) {
         if (prevProps.categories !== this.props.categories) {
             this.setState(state => ({
                 ...state,
@@ -48,14 +48,14 @@ class Recipe extends React.Component {
             const {notes, images, comments, image, title, currentRating, products} = recipe;
             const sections = [
                 notes ? <div key={1} className="recipe__notes"><RecipeNotes/></div> : '',
-                images ? <div key={2} className={"recipe__images"}><RecipeImages/></div> : '',
+                images ? <div key={2} className={'recipe__images'}><RecipeImages/></div> : '',
                 comments ? <div key={3} className="recipe__comments"><Comments/></div> : ''
             ];
 
             return <TopImagePageContainer src={image}>
                 <div className="recipe">
                     <div className="recipe__title">
-                        <Text type={"header"}>{title}</Text>
+                        <Text type={'header'}>{title}</Text>
                         <Rating actualRating={currentRating} maxRating={5} iconName="star"/>
                     </div>
                     <div className="recipe__content">
@@ -68,9 +68,9 @@ class Recipe extends React.Component {
                     </div>
                     {sections}
                 </div>
-            </TopImagePageContainer>
+            </TopImagePageContainer>;
         }
-        return <NotFound/>
+        return <NotFound/>;
     }
 }
 

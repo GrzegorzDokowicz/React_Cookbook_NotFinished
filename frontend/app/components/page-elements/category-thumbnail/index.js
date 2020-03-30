@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
 import './style.scss';
 
@@ -10,7 +10,7 @@ const CategoryThumbnail = ({title, image}) => {
     }}>
         <div className="category-thumbnail__layer">
             <div className="category-thumbnail__text">
-                <Text type={"title"} color={"secondary"}>
+                <Text type={'title'} color={'secondary'}>
                     {title}
                 </Text>
             </div>

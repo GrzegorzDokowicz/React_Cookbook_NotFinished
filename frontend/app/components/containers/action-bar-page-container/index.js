@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
-import ActionBar from "../../page-elements/action-bar";
-import ResponsiveAppContainer from "../responsive-app-container";
+import ActionBar from '../../page-elements/action-bar';
+import ResponsiveAppContainer from '../responsive-app-container';
 
 import './style.scss';
 
@@ -11,7 +11,7 @@ const ActionBarPageContainer = ({onSearch, onClick, children, title}) => {
     return <div className="action-bar-page-container">
         <ResponsiveAppContainer>
             <div className="action-bar-page-container__header">
-                <Text type={"header"}>
+                <Text type={'header'}>
                     {title}
                 </Text>
             </div>
@@ -22,7 +22,7 @@ const ActionBarPageContainer = ({onSearch, onClick, children, title}) => {
                 {children}
             </ResponsiveAppContainer>
         </div>
-    </div>
+    </div>;
 };
 
 export default ActionBarPageContainer;

@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.scss';
 
-import Text from "CoreComponents/text";
-import IconText from "CoreComponents/icon-text";
+import Text from 'CoreComponents/text';
+import IconText from 'CoreComponents/icon-text';
 import Rating from 'CoreComponents/rating';
 
 //TODO Change maxRating actualRating in Rating component to properties
@@ -13,7 +13,7 @@ const RecipeThumbnail = ({title, time, energyValue, image}) => {
         </div>
         <div className="recipe-thumbnail__content">
             <div className="recipe-thumbnail__title">
-                <Text type={"title"}>
+                <Text type={'title'}>
                     {title}
                 </Text>
             </div>

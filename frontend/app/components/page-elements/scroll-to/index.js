@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
-import {scrollTo as scrollToAction} from "../../../data-layer/page/actions";
+import {scrollTo as scrollToAction} from '../../../data-layer/page/actions';
 
 const mapStateToProps = state => ({
     scrollTo: state.page.scrollTo.state,

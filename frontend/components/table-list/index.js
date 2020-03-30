@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import Text from "../text";
+import React from 'react';
+import Text from '../text';
 
 import './style.scss';
 
@@ -12,9 +12,13 @@ const Option = ({title, onClick, selected}) => {
 };
 
 const TableList = ({data = [], onClick, selected}) => {
-    return <ul className={"table-list"}>{
-        data.map((option, index) => <Option selected={option === selected} onClick={onClick} key={index} title={option}/>)
-    }</ul>
+    const getOption = (option, index) => <Option selected={option === selected}
+        onClick={onClick}
+        key={index} title={option}/>;
+
+    return <ul className={'table-list'}>
+        {data.map(getOption)}
+    </ul>;
 };
 
 
