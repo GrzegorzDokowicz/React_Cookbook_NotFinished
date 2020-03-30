@@ -6,7 +6,7 @@ import Text from 'CoreComponents/text';
 
 import NotFound from 'AppComponents/containers/not-found';
 import ActionBarPageContainer from 'AppComponents/containers/action-bar-page-container';
-import RecipeThumbnail from 'AppComponents/recipe/recipe-thumbnail';
+import RecipeThumbnail from 'AppComponents/page-elements/recipe-thumbnail';
 
 import {getRecipesInCategory} from 'AppDataLayer/recipe-categories/actions';
 

@@ -4,15 +4,16 @@ $mobile: 480px;
 $tablet: 768px;
 $desktop: 1024px;
 
-$font-normal: 14px;
-
-$header-fontSize: $font-normal*7;
-$subheader-fontSize: $font-normal*4;
-$title-fontSize: $font-normal*4;
-$icon-fontSize: $font-normal*0.8;
-$button-fontSize: $font-normal*0.8;
+$font-normal: 1rem;
+$header-fontSize: $font-normal * 3;
+$subheader-fontSize: $font-normal * 2;
+$title-fontSize: $font-normal * 1.5;
+$icon-fontSize: $font-normal * 0.8;
+$button-fontSize: $font-normal * 0.8;
 $paragraph-fontSize: $font-normal;
-$label-fontSize: $font-normal*0.8;
-
+$label-fontSize: $font-normal * 0.8;
+$icon-size: $font-normal;
 
 $tabletPadding: size(1);
+
+$nav-bar-min-height: 130px;

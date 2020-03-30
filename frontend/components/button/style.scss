@@ -1,15 +1,20 @@
 @import 'AppStyles';
 
 .button {
+  box-sizing: border-box;
+  border: 0.2rem solid $active-color;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-height: 80px;
   min-width: 150px;
   padding: 20px 30px;
+  border-radius: 20px;
+  cursor: pointer;
 
   &--default {
     color: black;
-    background-color: white;
+    background-color: $active-color;
   }
 
   &--icon {
@@ -21,5 +26,26 @@
     color: white;
     height: 40px;
     width: 40px;
+  }
+
+  &--outlined {
+    background-color: transparent;
+    border: 0.2rem solid $active-color;
+    &-hover {
+      background-color: transparent;
+      border: 0.2rem solid $active-color;
+      transition: background-color 0.2s linear;
+      &:hover {
+        background-color: $active-color;
+        transition: background-color 0.2s linear;
+      }
+    }
+  }
+
+  &--filled-hover{
+    &:hover {
+      background-color: transparent;
+      transition: background-color 0.2s linear;
+    }
   }
 }
