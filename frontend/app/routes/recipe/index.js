@@ -1,17 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
+
+import Rating from "CoreComponents/rating";
+import Text from "CoreComponents/text"
+
+import RecipeProducts from "AppComponents/recipe/recipe-products";
+import RecipeSteps from "AppComponents/recipe/recipe-steps";
+import RecipeNotes from "AppComponents/recipe/recipe-notes";
+import Comments from "AppComponents/page-elements/comments";
+import RecipeImages from "AppComponents/recipe/recipe-images";
+import NotFound from "AppComponents/containers/not-found";
+import TopImagePageContainer from "AppComponents/containers/top-image-page-container";
+
 import './style.scss';
-import ResponsiveAppContainer from "../../components/responsive-app-container";
-import Text from "../../../components/text";
-import RecipeProducts from "../../components/recipe-products";
-import RecipeSteps from "../../components/recipe-steps";
-import RecipeNotes from "../../components/recipe-notes";
-import Comments from "../../components/comments";
-import RecipeImages from "../../components/recipe-images";
-import NotFound from "../../components/not-found";
-import Rating from "../../../components/rating";
-import Image from "../../../components/image";
-import TopImagePageContainer from "../../components/top-image-page-container";
 
 const mapStateToProps = state => ({
     recipes: state.recipes

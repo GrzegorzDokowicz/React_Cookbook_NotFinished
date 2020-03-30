@@ -2,12 +2,15 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
+import Text from "CoreComponents/text";
+
+import NotFound from "AppComponents/containers/not-found";
+import ActionBarPageContainer from "AppComponents/containers/action-bar-page-container";
+import RecipeThumbnail from "AppComponents/recipe/recipe-thumbnail";
+
+import {getRecipesInCategory} from "AppDataLayer/recipe-categories/actions";
+
 import './style.scss';
-import RecipeThumbnail from "../../components/recipe-thumbnail";
-import Text from "../../../components/text";
-import NotFound from "../../components/not-found";
-import ActionBarPageContainer from "../../components/action-bar-page-container";
-import {getRecipesInCategory} from "../../data-layer/recipe-categories/actions";
 
 const mapStateToProps = (state) => ({
     categories: state.categories.elements
@@ -20,7 +23,6 @@ const RecipeObject = ({id, title, kcal, time, image}) => {
         </Link>
     </div>
 };
-
 
 const RecipesThumbnailsCollection = ({recipes}) => {
     if (recipes && recipes.length > 0) {

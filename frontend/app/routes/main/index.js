@@ -1,7 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
+
+import ResponsiveAppContainer from "AppComponents/containers/responsive-app-container";
+
 import './style.scss';
-import ResponsiveAppContainer from "../../components/responsive-app-container";
+
 
 class Main extends React.Component {
     render() {

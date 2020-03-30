@@ -1,0 +1,19 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/colors";
+@import "../../../../styles/variables";
+
+.responsive-app-container {
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+
+  @media screen and (max-width: $mobile) {
+    margin: 0;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $tablet) {
+    margin: 0 $tabletPadding;
+    width: calc(100% - #{2 * $tabletPadding});
+  }
+}

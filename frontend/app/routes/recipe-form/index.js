@@ -1,14 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
+
+import Text from "CoreComponents/text";
+
+import RecipeGeneralDataForm from "AppComponents/recipe/recipe-general-data-form";
+import RecipeProducts from "AppComponents/recipe/recipe-products";
+import RecipeProductsForm from "AppComponents/recipe/recipe-products-form";
+import RecipeSteps from "AppComponents/recipe/recipe-steps";
+import RecipeStepsForm from "AppComponents/recipe/recipe-steps-form";
+import TopImagePageContainer from "AppComponents/containers/top-image-page-container";
+
+import {initCategoriesData} from "AppDataLayer/recipe-categories/actions";
+
 import './style.scss';
-import RecipeGeneralDataForm from "../../components/recipe-general-data-form";
-import Text from "../../../components/text";
-import RecipeProducts from "../../components/recipe-products";
-import RecipeProductsForm from "../../components/recipe-products-form";
-import RecipeSteps from "../../components/recipe-steps";
-import RecipeStepsForm from "../../components/recipe-steps-form";
-import {initCategoriesData} from "../../data-layer/recipe-categories/actions";
-import TopImagePageContainer from "../../components/top-image-page-container";
 
 const mapStateToProps = state => ({
     categories: state.categories.elements

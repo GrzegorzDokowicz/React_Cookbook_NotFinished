@@ -100,5 +100,14 @@ module.exports = {
         port: 3000,
         publicPath: 'http://localhost:3000/',
         historyApiFallback: true
+    },
+
+    resolve: {
+        alias: {
+            'CoreComponents': path.resolve(__dirname, './components'),
+            'CoreUtils': path.resolve(__dirname, './utils'),
+            'AppComponents': path.resolve(__dirname, './app/components'),
+            'AppDataLayer': path.resolve(__dirname, './app/data-layer'),
+        }
     }
 };

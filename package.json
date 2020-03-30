@@ -1,8 +1,8 @@
 {
-  "name": "theforgottenacc",
+  "name": "coobook",
   "version": "1.0.0",
-  "description": "",
-  "main": "config.js",
+  "description": "Application responsible for store, create and manage recipes.",
+  "main": "",
   "scripts": {
     "deploy-application": "sh ./deploy.sh",
     "build-backend": "webpack --config ./api/webpack.config.js",
@@ -23,14 +23,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Susniak/thegameacc.git"
+    "url": "git@github.com:Susniak/react_cookbook.git"
   },
   "author": "Marek Susniak",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Susniak/thegameacc/issues"
+    "url": "https://github.com/Susniak/react_cookbook/issues"
   },
-  "homepage": "https://github.com/Susniak/thegameacc#readme",
+  "homepage": "https://github.com/Susniak/react_cookbook#readme",
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
