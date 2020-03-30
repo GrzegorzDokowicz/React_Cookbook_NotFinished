@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  box-shadow: $box-shadow-secondary;
 
   &__indicator{
     position: absolute;

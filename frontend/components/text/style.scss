@@ -1,17 +1,19 @@
+@import '../../styles/_variables';
+
 .text {
   font-family: "sans-serif";
   font-weight: 500;
 
   &--h1 {
-    font-size: 32px;
+    font-size: $header-fontSize;
   }
 
   &--h2 {
-    font-size: 26px;
+    font-size: $subheader-fontSize;
   }
 
   &--title {
-    font-size: 20px;
+    font-size: $title-fontSize;
     text-transform: uppercase;
   }
 
@@ -21,20 +23,20 @@
   }
 
   &--paragraph {
-    font-size: 16px;
+    font-size: $paragraph-fontSize;
   }
 
   &--span {
-    font-size: 12px;
+    font-size: $paragraph-fontSize;
   }
 
   &--icon-description {
-    font-size: 14px;
+    font-size: $icon-fontSize;
     text-transform: uppercase;
   }
 
   &--label {
-    font-size: 18px;
+    font-size: $label-fontSize;
   }
 
   &--primary {

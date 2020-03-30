@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 
-const Text = ({type, children, htmlFor='', color='primary'}) => {
+const Text = ({type, children, htmlFor='', color = 'primary'}) => {
     const getClass = className => `text text--${color} text--${className}`;
 
     switch (type) {
