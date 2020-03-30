@@ -110,7 +110,7 @@ class Model {
 
     runGet(string, singleParse = true) {
         return Query(string).then(results => {
-            if (!results || results.length === 0) {
+            if (!results) {
                 throw new Error("Results not found");
             }
 

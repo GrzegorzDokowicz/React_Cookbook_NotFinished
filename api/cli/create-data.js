@@ -21,12 +21,11 @@ class CrateDataCliAction extends CLIAction {
                 return `DELETE FROM ${table} WHERE id > 0;`
             });
             const scripts = tables.map(table => {
-                    const {collection} = object[table];
-                    const valuesCollection = collection.map(valueObject => getInsertValue(parseValues(valueObject)));
+                const {collection} = object[table];
+                const valuesCollection = collection.map(valueObject => getInsertValue(parseValues(valueObject)));
 
-                    return Model.getInsertString(table, objectKeysToFields(collection[0]), valuesCollection)
-
-                });
+                return Model.getInsertString(table, objectKeysToFields(collection[0]), valuesCollection);
+            });
 
             runQueryCollection([...deletes, ...scripts]);
         }).catch(error => {

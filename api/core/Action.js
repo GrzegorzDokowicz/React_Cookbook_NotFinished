@@ -27,13 +27,17 @@ class Action {
     }
 
     getId() {
-        return new Promise((resolve, reject) => {
-            const {id} = this.getRequestData();
+        return this.getParameter('id');
+    }
 
-            if (!id) {
-                reject('ID isn\'t defined');
+    getParameter(name) {
+        return new Promise((resolve, reject) => {
+            const data = this.getRequestData();
+
+            if (!data.hasOwnProperty(name)) {
+                reject(`Parameter ${name} isn\'t defined`);
             } else {
-                resolve(id);
+                resolve(data[name]);
             }
         })
     }

@@ -1,6 +1,7 @@
 @import "../styles/mixins";
 @import "../styles/colors";
 @import "../styles/variables";
+@import '../../node_modules/reset-css/sass/_reset.scss';
 
 #main-container {
   width: 100vw;
@@ -18,3 +19,6 @@ a {
   }
 }
 
+* {
+  box-sizing: border-box;
+}

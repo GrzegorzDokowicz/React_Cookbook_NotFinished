@@ -4,8 +4,11 @@ import {connect} from 'react-redux';
 import ProductForm from "../product-form";
 import Text from "../../../components/text";
 import Tabs from "../../../components/tabs";
-import ProductsSelectFormComponent from "../products-select-form";
 import {registerProduct} from "../../data-layer/products/actions";
+
+import './style.scss';
+import ProductBase from "../products-base";
+import ProductSearch from "../products-search";
 
 const RecipeProductsForm = ({dispatch}) => {
     const submit = (data) => {
@@ -13,17 +16,23 @@ const RecipeProductsForm = ({dispatch}) => {
     };
     const tabs = [
         {
-            title: 'Baza produktow',
-            component: <ProductsSelectFormComponent />
+            title: 'Twoja baza produktow',
+            component: <ProductBase/>
         },
         {
             title: 'Dodaj produkt',
             component: <ProductForm inline={true} onSubmit={submit}/>
-        }
+        },
+        {
+            title: 'Wyszukaj produkt',
+            component: <ProductSearch/>
+        },
     ];
 
     return <div className="recipe-products">
-        <Text type={"subheader"}>Produkty</Text>
+        <div className="recipe-products__header">
+            <Text type={"subheader"}>Formularz produktow</Text>
+        </div>
         <Tabs data={tabs}/>
     </div>
 };

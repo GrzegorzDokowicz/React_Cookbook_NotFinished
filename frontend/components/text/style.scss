@@ -15,6 +15,11 @@
     text-transform: uppercase;
   }
 
+  &--title-small {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
   &--paragraph {
     font-size: 16px;
   }
@@ -29,7 +34,7 @@
   }
 
   &--label {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   &--primary {

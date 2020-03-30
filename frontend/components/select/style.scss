@@ -7,4 +7,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  &__value {
+    @extend %form-input;
+    @extend %form-input--filled;
+    cursor: pointer;
+  }
+
+  &__values {
+    display: none;
+
+    &--open {
+      display: block;
+    }
+  }
 }

@@ -5,8 +5,7 @@ import Icons from "../icons";
 
 const IconText = ({type = "icon", children, icon, vertical = false, size = "normal"}) => {
     const modifier = vertical ? "icon-text--vertical" : '';
-    let iconSize =`icon-text__icon--${size}`;
-
+    const iconSize = `icon-text__icon--${size}`;
 
     return <div className={`icon-text ${modifier}`}>
         <div className={`icon-text__icon ${iconSize}`}>

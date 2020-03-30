@@ -9,7 +9,8 @@ const urlsConfig = {
     },
     products: {
         getAll: getUrl('/product'),
-        add: getUrl('/product')
+        add: getUrl('/product'),
+        search: string => getUrl(`/product/search/${string}`)
     }
 };
 

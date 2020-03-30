@@ -30,7 +30,6 @@ class RecipeForm extends React.Component {
     }
 
     setSteps(steps) {
-        console.log(steps);
         this.setState(state => ({
             ...state,
             steps: steps
