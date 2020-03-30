@@ -7,7 +7,6 @@ const Image = ({src, type = "image", attrs}) => {
     };
     const backgroundClass = 'image__background-image';
     const className = (attrs ? attrs : []).map(attr => `${backgroundClass}--${attr}`).join(' ');
-    console.log(className);
 
     const getObject = () => {
         switch(type) {

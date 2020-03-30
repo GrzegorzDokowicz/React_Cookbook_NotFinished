@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './style.scss';
-import Text from "../text";
+import InputWrapper from "../input-wrapper";
 
 const Input = ({text, name, onChange, value}) => {
-    return <div className="input">
-        <div className={'input__label'}>
-            <Text type={'label'} htmlFor={name}>{text}</Text>
+    const [active, setActive] = useState(false);
+    const onClick = () => {
+        if (!active) {
+            setActive(true);
+        }
+    };
+
+    return <InputWrapper name={name} text={text} onClick={onClick}>
+        <div className="input">
+            <input id={name}
+                   name={name}
+                   className={`input__input ${active ? 'input__input--filled' : 'input__input--empty'}`}
+                   type="text"
+                   onBlur={() => setActive(false)}
+                   onChange={onChange}
+                   value={value}/>
         </div>
-        <input id={name} name={name} className={"input__input"} type="text" onChange={onChange} value={value}/>
-    </div>
+    </InputWrapper>
 };
 
 export default Input;

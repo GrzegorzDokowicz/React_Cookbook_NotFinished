@@ -4,11 +4,11 @@
 @import "../../styles/form";
 
 .upload {
-  padding: 16px 16px;
-  border: 1px solid black;
+  @extend %form-input;
+  @extend %form-input--filled;
   cursor: pointer;
 
-  div[tabindex]{
+  div[tabindex] {
     outline: none;
   }
 

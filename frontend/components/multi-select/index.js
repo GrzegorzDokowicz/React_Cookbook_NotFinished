@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from "prop-types";
 import './style.scss';
-import Text from "../text";
 import AutoFill from "../auto-fill";
+import InputWrapper from "../input-wrapper";
 
 const MultiSelect = ({title, values = [], data, onSelect}) => {
     const [results, setResults] = useState(values && values.length > 0 ? values : []);
@@ -18,13 +18,12 @@ const MultiSelect = ({title, values = [], data, onSelect}) => {
         }
     };
 
-    return <div className="multi-select">
-        <Text type={'label'}>{title}</Text>
-        <div className="multi-select__elements">
-            {results.map((element, index) => <div key={index} className="multi-select__element">{element}</div>)}
+    return <InputWrapper text={title}>
+        <div className="multi-select">
+            <AutoFill data={data} onSelect={onSelectCallback}/>
         </div>
-        <AutoFill data={data} onSelect={onSelectCallback}/>
-    </div>
+    </InputWrapper>
+
 };
 
 

@@ -4,7 +4,7 @@ import Text from "../../../components/text";
 
 const CategoryThumbnail = ({title, image}) => {
     return <div className="category-thumbnail" style={{
-        'background-image': `url(${image})`
+        backgroundImage: `url(${image})`
     }}>
         <div className="category-thumbnail__layer">
             <div className="category-thumbnail__text">

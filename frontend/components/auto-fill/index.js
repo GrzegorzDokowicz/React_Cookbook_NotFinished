@@ -1,47 +1,24 @@
 import React, {useState} from 'react';
 import './style.scss';
-import Input from "../input";
-import Text from "../text";
+import AutoFillBase from "../auto-fill-base";
 
-const FoundElement = ({onClick, children}) => <a onClick={onClick}>
-    <div className="auto-fill__cell" onClick={onClick}>
-        <Text type={"label"}>{children}</Text>
-    </div>
-</a>;
-
-
-const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false}) => {
+const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false, title}) => {
     const getStringValue = value => matchCase ? value.toString() : value.toString().toLocaleLowerCase();
-    const [listData, setListData] = useState([]);
-    const [isActive, setActive] = useState(false);
-    const onChange = $event => {
-        const value = getStringValue($event.currentTarget.value);
-        const isActive = value.length > limit;
+    const [listData, setListData] = useState(data);
 
-        if (isActive) {
-            setListData(data.filter(element => getStringValue(element).indexOf(value) !== -1));
-        }
+    const runList = value => {
+        const listData = data.filter(element => getStringValue(element).indexOf(getStringValue(value)) !== -1)
+            .sort((a, b) => a >= b ? 1 : -1);
 
-        setActive(isActive);
-    };
-    const onClick = name => {
-        return () => {
-            setActive(false);
-
-            if (onSelect) {
-                onSelect(name);
-            }
-        }
+        setListData(listData);
     };
 
-    return <div className="auto-fill">
-        <Input onChange={onChange}/>
-        <div className={`auto-fill__container${isActive ? ' auto-fill__container--active' : ''}`}>
-            {
-                listData.map(element => <FoundElement key={element} onClick={onClick(element)} children={element}/>)
-            }
-        </div>
-    </div>
+    return <AutoFillBase data={listData}
+                         limit={limit}
+                         title={title}
+                         onSearch={runList}
+                         onSelect={onSelect}/>;
+
 };
 
 export default AutoFill;
