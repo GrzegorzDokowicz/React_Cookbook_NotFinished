@@ -18,6 +18,8 @@ class Main extends React.Component {
 
         this.hamburger = React.createRef();
         this.leftSide = React.createRef();
+
+        //TODO Marek - to jest do przegadania jak powinno być wrzucone
         this.hamburgerSVG =
             <svg width="1082" height="591" viewBox="0 0 1082 591" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="landing-page-svg 1">
