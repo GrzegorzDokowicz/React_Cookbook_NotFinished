@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './style.scss';
+
 import AutoFillBase from "../auto-fill-base";
 
 const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false, title}) => {

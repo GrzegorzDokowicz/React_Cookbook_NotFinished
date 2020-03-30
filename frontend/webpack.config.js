@@ -73,7 +73,7 @@ module.exports = {
                     // Translates CSS into CommonJS
                     'css-loader',
                     // Compiles Sass to CSS
-                    'sass-loader',
+                    'sass-loader'
                 ],
             },
         ]
@@ -108,6 +108,8 @@ module.exports = {
             'CoreUtils': path.resolve(__dirname, './utils'),
             'AppComponents': path.resolve(__dirname, './app/components'),
             'AppDataLayer': path.resolve(__dirname, './app/data-layer'),
+            'AppStyles': path.resolve(__dirname, './styles/_wrapper.scss'),
+
         }
     }
 };
