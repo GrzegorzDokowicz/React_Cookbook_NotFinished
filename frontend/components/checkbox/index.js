@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import './style.scss';
-import InputWrapper from "../input-wrapper";
+import InputWrapper from '../input-wrapper';
 
 const Checkbox = ({title, active, onClick}) => {
     const [isActive, setActive] = useState(active);
@@ -13,10 +13,10 @@ const Checkbox = ({title, active, onClick}) => {
     return <InputWrapper text={title}>
         <div className="checkbox">
             <div className={`checkbox__checkbox-input${active ? ' checkbox__checkbox-input--active' : ''}`}
-                 onClick={onClickAction}>
+                onClick={onClickAction}>
             </div>
         </div>
-    </InputWrapper>
+    </InputWrapper>;
 
 };
 

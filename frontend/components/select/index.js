@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import './style.scss';
-import Text from "../text";
-import TableList from "../table-list";
-import InputWrapper from "../input-wrapper";
+import Text from '../text';
+import TableList from '../table-list';
+import InputWrapper from '../input-wrapper';
 
 
 const Select = ({title, value, onChange, data, open, name}) => {
@@ -19,7 +19,7 @@ const Select = ({title, value, onChange, data, open, name}) => {
 
     return <InputWrapper text={title} name={name}>
         <div className="select">
-            <div className={"select__value"} onClick={() => setOpen(!isOpen)}>
+            <div className={'select__value'} onClick={() => setOpen(!isOpen)}>
                 <Text type="small-title">{currentValue}</Text>
             </div>
             <div className="select__values-container">
@@ -28,7 +28,7 @@ const Select = ({title, value, onChange, data, open, name}) => {
                 </div>
             </div>
         </div>
-    </InputWrapper>
+    </InputWrapper>;
 
 };
 

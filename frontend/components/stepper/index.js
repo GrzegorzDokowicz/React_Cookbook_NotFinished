@@ -10,7 +10,7 @@ const Stepper = ({textArray = []}) => {
 
     return <div className="stepper">
         {textArray.map((element, index) => <SingleStep key={index} number={index}>{element}</SingleStep>)}
-    </div>
+    </div>;
 };
 
 

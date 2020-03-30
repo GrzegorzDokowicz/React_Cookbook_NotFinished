@@ -1,0 +1,18 @@
+@import 'AppStyles';
+
+.recipe-draft-data-form {
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    width: calc(30% - #{size(3)});
+  }
+
+  &__image {
+    width: calc(40% - #{size(3)});
+  }
+
+  &__category {
+    width: 30%;
+  }
+}

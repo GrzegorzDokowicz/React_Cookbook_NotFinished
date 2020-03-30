@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import './style.scss';
-import {useDropzone} from 'react-dropzone'
-import Text from "../text";
-import InputWrapper from "../input-wrapper";
+import {useDropzone} from 'react-dropzone';
+import Text from '../text';
+import InputWrapper from '../input-wrapper';
 
 const Upload = ({onLoad, text}) => {
     const onDrop = useCallback((acceptedFiles) => {
@@ -16,11 +16,11 @@ const Upload = ({onLoad, text}) => {
                 onLoad({
                     file,
                     binaryFile: reader.result
-                })
+                });
             };
 
-            reader.readAsArrayBuffer(file)
-        })
+            reader.readAsArrayBuffer(file);
+        });
 
     }, []);
     const {getRootProps, getInputProps} = useDropzone({onDrop});
@@ -29,9 +29,9 @@ const Upload = ({onLoad, text}) => {
     return <InputWrapper text={text}>
         <div className="upload" {...getRootProps()}>
             <input {...getInputProps()} />
-            <Text type={"label"}>{fileName ? fileName : 'Kliknij, aby zaladowac plik...'}</Text>
+            <Text type={'label'}>{fileName ? fileName : 'Kliknij, aby zaladowac plik...'}</Text>
         </div>
-    </InputWrapper>
+    </InputWrapper>;
 
 };
 

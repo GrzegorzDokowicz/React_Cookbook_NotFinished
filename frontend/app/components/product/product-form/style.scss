@@ -1,0 +1,30 @@
+@import 'AppStyles';
+
+.product-form {
+  &__container {
+    display: flex;
+    flex-direction: column;
+
+    &--inline {
+      .product-form__row {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: size(2);
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__element {
+    width: calc(33% - #{size(2)});
+  }
+}

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -50,8 +52,8 @@ module.exports = {
 
                 options: {
                     plugins: ['syntax-dynamic-import',
-                        "@babel/plugin-transform-runtime",
-                        "@babel/plugin-proposal-class-properties"
+                        '@babel/plugin-transform-runtime',
+                        '@babel/plugin-proposal-class-properties'
                     ],
 
                     presets: [
@@ -61,7 +63,7 @@ module.exports = {
                                 modules: false
                             }
                         ],
-                        "@babel/preset-react"
+                        '@babel/preset-react'
                     ]
                 }
             },
@@ -73,7 +75,7 @@ module.exports = {
                     // Translates CSS into CommonJS
                     'css-loader',
                     // Compiles Sass to CSS
-                    'sass-loader',
+                    'sass-loader'
                 ],
             },
         ]
@@ -100,5 +102,16 @@ module.exports = {
         port: 3000,
         publicPath: 'http://localhost:3000/',
         historyApiFallback: true
+    },
+
+    resolve: {
+        alias: {
+            'CoreComponents': path.resolve(__dirname, './components'),
+            'CoreUtils': path.resolve(__dirname, './utils'),
+            'AppComponents': path.resolve(__dirname, './app/components'),
+            'AppDataLayer': path.resolve(__dirname, './app/data-layer'),
+            'AppStyles': path.resolve(__dirname, './styles/_wrapper.scss'),
+
+        }
     }
 };

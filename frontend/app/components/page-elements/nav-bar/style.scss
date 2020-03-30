@@ -1,0 +1,42 @@
+@import 'AppStyles';
+
+
+.nav-bar {
+  width: 100%;
+  max-height: $nav-bar-min-height;
+  background-color: $nav-bar-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  box-shadow: $box-shadow-secondary;
+
+  &__indicator{
+    position: absolute;
+    left: 0;
+    width: 43px;
+    height: 4px;
+    background-color: $active-color;
+    z-index: 9999;
+    display: block;
+    border-radius: 30px;
+  }
+
+  &__list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  &__element {
+    padding: 20px 5px 10px 5px;
+  }
+
+  &__logo {
+    padding: 10px;
+    margin-right: size(3);
+    max-width: 80px;
+  }
+}

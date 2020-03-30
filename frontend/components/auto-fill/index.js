@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import './style.scss';
-import AutoFillBase from "../auto-fill-base";
+
+import AutoFillBase from '../auto-fill-base';
 
 const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false, title}) => {
     const getStringValue = value => matchCase ? value.toString() : value.toString().toLocaleLowerCase();
@@ -14,10 +14,10 @@ const AutoFill = ({limit = 1, data = [], onSelect, matchCase = false, title}) =>
     };
 
     return <AutoFillBase data={listData}
-                         limit={limit}
-                         title={title}
-                         onSearch={runList}
-                         onSelect={onSelect}/>;
+        limit={limit}
+        title={title}
+        onSearch={runList}
+        onSelect={onSelect}/>;
 
 };
 

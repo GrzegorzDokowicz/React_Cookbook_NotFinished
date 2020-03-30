@@ -4,9 +4,9 @@ import {BrowserRouter} from 'react-router-dom';
 import DataLayerComponent from './data-layer';
 import RoutesComponent from './routes';
 
-import AlertsComponent from './components/alerts';
-import NavBar from './components/nav-bar';
-import ScrollToComponent from './components/scroll-to';
+import AlertsComponent from './components/page-elements/alerts';
+import NavBar from './components/page-elements/nav-bar';
+import ScrollToComponent from './components/page-elements/scroll-to';
 
 import './style.scss';
 

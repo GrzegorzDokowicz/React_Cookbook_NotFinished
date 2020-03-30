@@ -26,10 +26,6 @@ module.exports = {
 			'error',
 			4
 		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
 		'quotes': [
 			'error',
 			'single'
@@ -38,6 +34,7 @@ module.exports = {
 			'error',
 			'always'
 		],
+		"react/prop-types": 0,
 		"react/jsx-uses-vars": "error"
 	},
 	'settings': {

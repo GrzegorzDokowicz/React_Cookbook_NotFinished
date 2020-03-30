@@ -1,0 +1,10 @@
+@import "AppStyles";
+
+.action-bar-page-container {
+  &__header {
+    padding: size(2) 0;
+  }
+  &__content {
+    padding: size(3) 0;
+  }
+}

@@ -1,0 +1,19 @@
+@import 'AppStyles';
+
+.top-image-page-container {
+  &__header {
+    padding-bottom: size(3);
+
+    &--big {
+      height: 500px;
+    }
+
+    &--medium {
+      height: 400px;
+    }
+
+    &--small {
+      height: 250px;
+    }
+  }
+}

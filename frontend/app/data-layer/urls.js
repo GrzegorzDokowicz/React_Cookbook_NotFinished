@@ -14,4 +14,4 @@ const urlsConfig = {
     }
 };
 
-export default urlsConfig
+export default urlsConfig;

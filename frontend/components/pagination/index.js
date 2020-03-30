@@ -20,23 +20,25 @@ const Pagination = ({elements, currentItem = 1, callback}) => {
             }
 
             sendCallback(newPosition);
-        }
+        };
     };
     const buttons = range(1, elements).map((currentValue, index) => {
         let pageNumber = index + 1;
-        return <span key={pageNumber} className={"pagination__button"}>
-            <Button children={pageNumber} onClick={() => sendCallback(pageNumber)}/>
+        return <span key={pageNumber} className={'pagination__button'}>
+            <Button onClick={() => sendCallback(pageNumber)}>
+                {pageNumber}
+            </Button>
         </span>;
     });
 
-    const leftArrow = currentItem !== 1 && <IconButton icon={"arrow-circle-left"} onClick={move(false)}/>;
-    const rightArrow = currentItem !== elements && <IconButton icon={"arrow-circle-right"} onClick={move(true)}/>;
+    const leftArrow = currentItem !== 1 && <IconButton icon={'arrow-circle-left'} onClick={move(false)}/>;
+    const rightArrow = currentItem !== elements && <IconButton icon={'arrow-circle-right'} onClick={move(true)}/>;
 
-    return <div className={"pagination"}>
+    return <div className={'pagination'}>
         {leftArrow}
         {buttons}
         {rightArrow}
-    </div>
+    </div>;
 };
 
 export default Pagination;

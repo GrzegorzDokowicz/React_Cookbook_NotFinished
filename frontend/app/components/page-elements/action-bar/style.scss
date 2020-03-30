@@ -1,0 +1,9 @@
+@import 'AppStyles';
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: size(3);
+  background-color: $background-color;
+}

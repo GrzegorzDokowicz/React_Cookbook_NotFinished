@@ -1,18 +1,20 @@
 import React from 'react';
-import {connect} from "react-redux";
-import './style.scss';
-
-import CategoryThumbnail from "../../components/category-thumbnail";
 import {Link} from 'react-router-dom';
-import RecipeCategoryForm from "../../components/recipe-category-form";
-import Modal from "../../../components/modal";
-import {initCategoriesData, registerRecipeCategory} from "../../data-layer/recipe-categories/actions";
-import ActionBarPageContainer from "../../components/action-bar-page-container";
+import {connect} from 'react-redux';
+
+import Modal from 'CoreComponents/modal';
+
+import CategoryThumbnail from 'AppComponents//page-elements/category-thumbnail';
+import RecipeCategoryForm from 'AppComponents//recipe/recipe-category-form';
+import ActionBarPageContainer from 'AppComponents/containers/action-bar-page-container';
+
+import {initCategoriesData, registerRecipeCategory} from 'AppDataLayer/recipe-categories/actions';
+
+import './style.scss';
 
 const mapStateToProps = state => ({
     categories: state.categories.elements
 });
-
 
 const CategoryListElement = ({id, name, image}) => <li className="recipe-categories-list__element">
     <Link to={`/recipe-category/${id}`}>
@@ -30,7 +32,7 @@ class RecipeCategoriesList extends React.Component {
         };
     }
 
-    componentDidMount(prevProps, prevState, snapshot) {
+    componentDidMount() {
         this.props.dispatch(initCategoriesData());
     }
 
@@ -38,7 +40,7 @@ class RecipeCategoriesList extends React.Component {
         this.setState(state => ({
             ...state,
             isOpen: modalState
-        }))
+        }));
     }
 
     addCategory() {
@@ -54,9 +56,9 @@ class RecipeCategoriesList extends React.Component {
     }
 
     render() {
-        return <ActionBarPageContainer title={"Kategorie przepisow"}
-                                       onClick={this.addCategory.bind(this)}
-                                       onSearch={this.searchCategory.bind(this)}>
+        return <ActionBarPageContainer title={'Kategorie przepisow'}
+            onClick={this.addCategory.bind(this)}
+            onSearch={this.searchCategory.bind(this)}>
             <div className="recipe-categories-list">
                 <ul className="recipe-categories-list__elements">
                     {

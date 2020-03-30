@@ -6,13 +6,13 @@ const initialState = [
         currentRating: 3,
         products: [
             {
-                name: "test"
+                name: 'test'
             },
             {
-                name: "test"
+                name: 'test'
             },
             {
-                name: "test"
+                name: 'test'
             },
         ]
     },
@@ -23,22 +23,22 @@ const initialState = [
         currentRating: 4,
         products: [
             {
-                name: "test1"
+                name: 'test1'
             },
             {
-                name: "test1"
+                name: 'test1'
             },
             {
-                name: "test1"
+                name: 'test1'
             },
         ]
     }
 ];
 
-const recipesReducer = (state = initialState, {type, payload}) => {
+const recipesReducer = (state = initialState, {type}) => {
     switch (type) {
-        default:
-            return state;
+    default:
+        return state;
     }
 };
 

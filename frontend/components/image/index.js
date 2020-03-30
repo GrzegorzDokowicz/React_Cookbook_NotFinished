@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 
-const Image = ({src, type = "image", attrs}) => {
+const Image = ({src, type = 'image', attrs}) => {
     const backgroundStyles = {
         backgroundImage: `url(${src})`
     };
@@ -10,18 +10,18 @@ const Image = ({src, type = "image", attrs}) => {
 
     const getObject = () => {
         switch(type) {
-            case 'background':
-                return <div className={`${backgroundClass} ${className}`} style={backgroundStyles}>
-                </div>;
-            case 'image':
-            default:
-                return <img className="image__image" src={src} alt={"Image not found"}/>;
+        case 'background':
+            return <div className={`${backgroundClass} ${className}`} style={backgroundStyles}>
+            </div>;
+        case 'image':
+        default:
+            return <img className="image__image" src={src} alt={'Image not found'}/>;
         }
     };
 
     return <div className="image">
         {getObject()}
-    </div>
+    </div>;
 };
 
 export default Image;
