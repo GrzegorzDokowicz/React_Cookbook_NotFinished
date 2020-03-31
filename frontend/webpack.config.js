@@ -77,7 +77,7 @@ module.exports = {
                     // Compiles Sass to CSS
                     'sass-loader'
                 ],
-            },
+            }
         ]
     },
 
@@ -111,7 +111,7 @@ module.exports = {
             'AppComponents': path.resolve(__dirname, './app/components'),
             'AppDataLayer': path.resolve(__dirname, './app/data-layer'),
             'AppStyles': path.resolve(__dirname, './styles/_wrapper.scss'),
-
+            'Public': path.resolve(__dirname, '../public'),
         }
     }
 };

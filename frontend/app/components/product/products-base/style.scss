@@ -1,5 +1,11 @@
 @import 'AppStyles';
 
 .product-base {
+  &__description {
+    margin-bottom: size(2);
+  }
 
+  &__form {
+    margin-bottom: size(2);
+  }
 }

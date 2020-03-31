@@ -16,6 +16,11 @@ $border: 1px solid $border-color;
     width: 100%;
     border: $border;
     border-right: none;
+
+    @include tablet {
+      flex-direction: column;
+      border-bottom: unset;
+    }
   }
 
   &__content {
@@ -26,14 +31,20 @@ $border: 1px solid $border-color;
   }
 
   &__title {
-    cursor: pointer;
-    flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
+    cursor: pointer;
+    flex: 1;
     background: $background-color;
     border-right: $border;
-    padding: size(1) 0;
+    padding: size(2) 0;
+
+    @include tablet {
+      flex: unset;
+      width: 100%;
+      border-bottom: $border;
+    }
   }
 
   &__tab {

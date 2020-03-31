@@ -14,7 +14,7 @@ const RecipeCategoryForm = ({callback}) => {
     const [file, setFile] = useState('');
 
     const onChange = $event => setName($event.currentTarget.value);
-    const onLoad = ({file}) => setFile(file.name);
+    const onLoad = ({fileName}) => setFile(fileName);
     const submit = () => {
         if (callback) {
             callback({

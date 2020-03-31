@@ -1,41 +1,54 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Input from 'CoreComponents/input';
 import Upload from 'CoreComponents/upload';
 import MultiSelect from 'CoreComponents/multi-select';
+import Text from "CoreComponents/text";
 
 import './style.scss';
 
 const RecipeGeneralDataForm = ({onChange, categories}) => {
-    const [form, setForm] = useState('');
-    const onChangeCallback = name => {
-        return $event => {
-            const value = $event.currentTarget.value;
-
-            setForm({
-                ...form,
-                [name]: value
-            });
-
-            if(onChange) {
-                onChange(form);
-            }
-        };
+    const [form, setForm] = useState({});
+    const onChangeCallback = $event => {
+        const value = $event.currentTarget.value;
+        setForm({
+            ...form,
+            title: value
+        });
     };
-    const onLoad = ({file}) => setForm({
+
+    const onLoad = ({fileName}) => setForm({
         ...form,
-        ['mainImage']: file.name
+        mainImage: fileName
     });
 
+    const setCategory = (category) => setForm({
+        ...form,
+        category
+    });
+
+    useEffect(() => {
+        if (onChange) {
+            onChange(form);
+        }
+    }, [form]);
+
     return <div className={'recipe-draft-data-form'}>
-        <div className="recipe-draft-data-form__title">
-            <Input name={'title'} text={'Nazwa przepisu'} onChange={onChangeCallback('title')}/>
+        <div className={'recipe-draft-data-form__title'}>
+            <Text type={"subheader"}>Informacje o przepisie</Text>
         </div>
-        <div className="recipe-draft-data-form__category">
-            <MultiSelect title={'Kategorie'} data={categories.map(cat => cat.name)}/>
-        </div>
-        <div className="recipe-draft-data-form__image">
-            <Upload onLoad={onLoad} text={'Zdjecie glowne przepisu'}/>
+        <div className={'recipe-draft-data-form__content'}>
+            <div className={'recipe-draft-data-form__inputs'}>
+                <div className="recipe-draft-data-form__title">
+                    <Input name={'title'} text={'Nazwa przepisu'} onChange={onChangeCallback}/>
+                </div>
+                <div className="recipe-draft-data-form__category">
+                    <MultiSelect title={'Kategorie'} data={categories.map(cat => cat.name)} onSelect={setCategory}/>
+                </div>
+            </div>
+            <div className="recipe-draft-data-form__image">
+                <Upload onLoad={onLoad} text={'Zdjecie glowne przepisu'}/>
+            </div>
         </div>
     </div>;
 };

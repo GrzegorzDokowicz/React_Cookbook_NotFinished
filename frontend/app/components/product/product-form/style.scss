@@ -9,6 +9,10 @@
       .product-form__row {
         flex-direction: row;
         align-items: center;
+
+        @include mobile {
+          flex-direction: column;
+        }
       }
     }
   }
@@ -19,12 +23,27 @@
     justify-content: space-between;
     margin-bottom: size(2);
 
+    @include mobile {
+      margin: 0;
+    }
+
     &--hidden {
       display: none;
+    }
+
+    &--mobile-margin {
+      @include mobile {
+        margin-bottom: size(2);
+      }
     }
   }
 
   &__element {
     width: calc(33% - #{size(2)});
+
+    @include mobile {
+      width: 100%;
+      margin-bottom: size(1);
+    }
   }
 }
