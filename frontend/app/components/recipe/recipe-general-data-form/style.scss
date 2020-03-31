@@ -1,18 +1,60 @@
 @import 'AppStyles';
 
 .recipe-draft-data-form {
-  display: flex;
-  justify-content: space-between;
 
   &__title {
-    width: calc(30% - #{size(3)});
+    margin-bottom: size(2);
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+
+  &__inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+
+    @include tablet {
+      width: 100%;
+      margin-bottom: size(2);
+    }
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    width: calc(50% - #{size(1)});
+
+    @include mobile {
+      width: 100%;
+      margin-bottom: size(2);
+    }
+  }
+
+  &__category {
+    width: calc(50% - #{size(1)});
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__image {
     width: calc(40% - #{size(3)});
+
+    @include tablet {
+      width: 100%;
+    }
   }
 
-  &__category {
-    width: 30%;
-  }
+
 }

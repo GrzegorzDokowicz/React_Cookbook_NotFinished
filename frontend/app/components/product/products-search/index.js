@@ -20,20 +20,19 @@ const ProductSearchComponent = ({currentResults, dispatch}) => {
     const [type, setType] = useState('nazwa');
 
     return <div className="product-search">
-        <div className="product-search__title">
-            <Text type={'title'}>
-                Twoja baza produktow
-            </Text>
+        <div className="product-search__description">
             <Text type={'description'}>
                 Wyszukaj produktu wsrod listy produktow ktore dodales recznie
             </Text>
         </div>
         <div className="product-search__form">
-            <Select title={'Kryterium wyszukoiwania'}
-                data={['kod', 'nazwa']}
-                value={type}
-                name={'critery'}
-                onChange={value => setType(value)} />
+            <div className="product-search__select">
+                <Select title={'Kryterium wyszukoiwania'}
+                        data={['kod', 'nazwa']}
+                        value={type}
+                        name={'critery'}
+                        onChange={value => setType(value)} />
+            </div>
             <AutoFillBase data={data}
                 limit={3}
                 title={type === 'nazwa' ? 'Nazwa' : 'Kod'}

@@ -34,10 +34,10 @@ const ProductForm = ({onSubmit, inline = false}) => {
         {inline ? '' : <Text type={'header'}>Dodaj produkt</Text>}
         <form>
             <div className={`product-form__container${inline ? ' product-form__container--inline' : ''}`}>
-                <div className="product-form__row">
+                <div className="product-form__row product-form__row--mobile-margin">
                     <Checkbox onClick={() => setParent(!hasParent)} active={hasParent} title={'Czy jest to podgrupa produktu?'}/>
                 </div>
-                <div className={`product-form__row${!hasParent ? ' product-form__row--hidden' : ''}`}>
+                <div className={`product-form__row${!hasParent ? ' product-form__row--hidden' : ''} product-form__row--mobile-margin`}>
                     <ProductsSelectFormComponent title={'Produkt nadrzedny'} onChange={onChange('parent')}/>
                 </div>
                 <div className="product-form__row">

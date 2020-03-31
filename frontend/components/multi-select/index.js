@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import AutoFill from '../auto-fill';
@@ -6,24 +6,24 @@ import InputWrapper from '../input-wrapper';
 
 const MultiSelect = ({title, values = [], data, onSelect}) => {
     const [results, setResults] = useState(values && values.length > 0 ? values : []);
-
     const onSelectCallback = (element) => {
         setResults([
             ...results,
             element
         ]);
+    };
 
+    useEffect(() => {
         if (onSelect) {
             onSelect(results);
         }
-    };
+    }, [results]);
 
     return <InputWrapper text={title}>
         <div className="multi-select">
             <AutoFill data={data} onSelect={onSelectCallback}/>
         </div>
     </InputWrapper>;
-
 };
 
 

@@ -11,19 +11,15 @@ const ProductBase = () => {
     const [currentProduct, setProduct] = useState(false);
 
     return <div className="product-base">
-        <div className="product-base__title">
-            <Text type={'title'}>
-                Twoja baza produktow
-            </Text>
+        <div className="product-base__description">
             <Text type={'description'}>
-                Wyszukaj produktu wsrod listy produktow ktore dodales recznie
+                Wyszukaj z listy produktow ktore dodales recznie lub wczytales z bazy produktow.
             </Text>
         </div>
-
-        <div className="product-base__title">
+        <div className="product-base__form">
             <ProductsSelectFormComponent onChange={product => setProduct(product)}/>
         </div>
-        <div className="product-base__title">
+        <div className="product-base__data">
             <ProductDataRow product={currentProduct}/>
         </div>
     </div>;

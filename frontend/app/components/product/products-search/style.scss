@@ -1,5 +1,15 @@
 @import 'AppStyles';
 
 .product-search {
+  &__description {
+    margin-bottom: size(2);
+  }
 
+  &__form {
+    margin-bottom: size(2);
+  }
+
+  &__select {
+    margin-bottom: size(1);
+  }
 }

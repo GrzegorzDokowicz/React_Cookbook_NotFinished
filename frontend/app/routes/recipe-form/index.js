@@ -23,7 +23,7 @@ class RecipeForm extends React.Component {
         super(props);
         this.state = {
             steps: [],
-            products: []
+            products: [],
         };
     }
 
@@ -40,12 +40,23 @@ class RecipeForm extends React.Component {
         }));
     }
 
+    onChange(data) {
+        this.setState(state => ({
+            ...state,
+            ...data
+        }), () => {
+            console.log(this.state);
+        });
+    }
+
     render() {
         return <TopImagePageContainer src={'/public/recipe-background.png'} imageType={'cover'}>
             <div className="recipe-form">
-                <Text type={'header'}>Dodawanie przepisu</Text>
+                <div className="recipe-form__header">
+                    <Text type={'header'}>Dodawanie przepisu</Text>
+                </div>
                 <div className="recipe-form__general-data">
-                    <RecipeGeneralDataForm categories={this.props.categories}/>
+                    <RecipeGeneralDataForm categories={this.props.categories} onChange={this.onChange.bind(this)}/>
                 </div>
                 <div className="recipe-form__products">
                     <div className="recipe-form__products-form">
