@@ -1,0 +1,10 @@
+@import 'AppStyles';
+
+.logo{
+  &__wrapper{
+    max-height: 120px;
+  }
+  &__element{
+    height: 100px;
+  }
+}

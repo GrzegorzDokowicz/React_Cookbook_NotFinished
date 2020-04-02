@@ -40,92 +40,93 @@ class Main extends React.Component {
                 }
 
                 throw new Error()
-            });
-        } catch ($error) {
-            return false;
-        }
-    }
-
-    getElementsAnimationConfiguration() {
-        return [
-            {
-                object: 'Ground',
-                from: {opacity: 0},
-                to: {duration: 2.5, opacity: 1}
-            },
-            {
-                object: 'Character',
-                from: {x: 1000},
-                to: {duration: 2, x: 0}
-            },
-            {
-                object: 'Plant',
-                from: {opacity: 0},
-                to: {
-                    duration: 3,
-                    opacity: 1,
-                }
-            },
-            {
-                object: 'Burger Bottom',
-                from: {opacity: 0},
-                to: {duration: 1, opacity: 1}
             }
-        ];
-    }
+        );
+                } catch ($error) {
+                    return false;
+                }
+            }
 
-    _handleAnimation() {
-        const burger = this.getBurgerElements();
+            getElementsAnimationConfiguration() {
+                return [
+                    {
+                        object: 'Ground',
+                        from: {opacity: 0},
+                        to: {duration: 2.5, opacity: 1}
+                    },
+                    {
+                        object: 'Character',
+                        from: {x: 1000},
+                        to: {duration: 2, x: 0}
+                    },
+                    {
+                        object: 'Plant',
+                        from: {opacity: 0},
+                        to: {
+                            duration: 3,
+                            opacity: 1,
+                        }
+                    },
+                    {
+                        object: 'Burger Bottom',
+                        from: {opacity: 0},
+                        to: {duration: 1, opacity: 1}
+                    }
+                ];
+            }
 
-        if (burger) {
-            const burgerTimeline = gsap.timeline().set(burger, {
-                y: -1000,
-                opacity: 0,
-            });
-            this.getElementsAnimationConfiguration().forEach(({object, from, to}) => {
-                gsap.timeline().set(object, from).to(object, to);
-            });
+            _handleAnimation() {
+                const burger = this.getBurgerElements();
 
-            burger.reverse().forEach((element, index) => {
-                burgerTimeline.to(element, {duration: (1 / (index + 1)), y: 0, opacity: 1});
-            });
+                if (burger) {
+                    const burgerTimeline = gsap.timeline().set(burger, {
+                        y: -1000,
+                        opacity: 0,
+                    });
+                    this.getElementsAnimationConfiguration().forEach(({object, from, to}) => {
+                        gsap.timeline().set(object, from).to(object, to);
+                    });
 
-            //Left-Side animation
-            gsap.timeline().set(this.leftSide.current, {opacity: 0}).to(this.leftSide.current, {
-                duration: 3.5,
-                opacity: 1,
-                delay: 0.5
-            });
-        }
-    }
+                    burger.reverse().forEach((element, index) => {
+                        burgerTimeline.to(element, {duration: (1 / (index + 1)), y: 0, opacity: 1});
+                    });
 
-    render() {
-        return <ResponsiveAppContainer>
-            <div className="landing-page">
-                <div ref={this.leftSide} className="landing-page__section-container">
-                    <div className="landing-page__section landing-page__section--left" ref={this.leftSide}>
-                        <Text type={'title'}>
-                            {this.textData.section1.title}
-                        </Text>
-                        <Text type={'paragraph'}>
-                            {this.textData.section1.textBody}
-                        </Text>
-                        <div className="left-side__buttons">
-                            <Button style={['filled-hover']} onClick={() => console.log('clicked read more...')}>
-                                Read more
-                            </Button>
+                    //Left-Side animation
+                    gsap.timeline().set(this.leftSide.current, {opacity: 0}).to(this.leftSide.current, {
+                        duration: 3.5,
+                        opacity: 1,
+                        delay: 0.5
+                    });
+                }
+            }
+
+            render() {
+                return <ResponsiveAppContainer>
+                    <div className="landing-page">
+                        <div ref={this.leftSide} className="landing-page__section-container">
+                            <div className="landing-page__section landing-page__section--left" ref={this.leftSide}>
+                                <Text type={'title'}>
+                                    {this.textData.section1.title}
+                                </Text>
+                                <Text type={'paragraph'}>
+                                    {this.textData.section1.textBody}
+                                </Text>
+                                <div className="left-side__buttons">
+                                    <Button style={['filled-hover']} onClick={() => console.log('clicked read more...')}>
+                                        Read more
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="landing-page__section landing-page__section--right">
+                                <ReactSVG src={'Public/landing-page-svg.svg'}
+                                          afterInjection={this._handleAnimation.bind(this)}/>
+                            </div>
                         </div>
                     </div>
-                    <div className="landing-page__section landing-page__section--right">
-                        <ReactSVG src={'Public/landing-page-svg.svg'}
-                                  afterInjection={this._handleAnimation.bind(this)}/>
-                    </div>
-                </div>
-            </div>
-        </ResponsiveAppContainer>;
-    }
-}
+                </ResponsiveAppContainer>;
+            }
+        }
 
-const MainComponent = connect(mapStateToProps)(Main);
+        const MainComponent = connect(mapStateToProps)(Main);
 
-export default MainComponent;
+        export default MainComponent;

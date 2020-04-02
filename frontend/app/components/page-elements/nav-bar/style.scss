@@ -3,7 +3,7 @@
 
 .nav-bar {
   width: 100%;
-  max-height: $nav-bar-min-height;
+  max-height: $nav-bar-max-height;
   background-color: $nav-bar-color;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   justify-items: center;
   box-shadow: $box-shadow-secondary;
 
-  &__indicator{
+  &__indicator {
     position: absolute;
     left: 0;
     width: 43px;
@@ -35,8 +35,10 @@
   }
 
   &__logo {
-    padding: 10px;
-    margin-right: size(3);
-    max-width: 80px;
+    position: absolute;
+    top: $navbar-logo-height/3;
+    left: 50%;
+    margin-left: -0.5 * $navbar-logo-width;
   }
 }
+

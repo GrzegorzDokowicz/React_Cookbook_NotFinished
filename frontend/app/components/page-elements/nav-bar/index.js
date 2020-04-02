@@ -5,6 +5,7 @@ import ResponsiveAppContainer from 'AppComponents/containers/responsive-app-cont
 import NavBarElement from 'AppComponents/page-elements/nav-bar-element';
 
 import './style.scss';
+import Logo from '../../../../components/logo';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -34,10 +35,12 @@ class NavBar extends React.Component {
         window.addEventListener('resize', () => this._setIndicatorPosition(this.state.activeItemIndex));
         //Todo change timeout to other function. It have to take care about indicator after render.
         setTimeout(() => {
-            gsap.set(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(this.state.activeItemIndex)});
+            gsap.set(this.indicator.current, {
+                duration: 0.2,
+                x: this._getIndicatorPosition(this.state.activeItemIndex)
+            });
         }, 50);
     }
-
 
 
     //get current indicator position
@@ -94,9 +97,9 @@ class NavBar extends React.Component {
             <ResponsiveAppContainer>
                 <span ref={this.indicator} className={'nav-bar__indicator'}/>
                 <ul className="nav-bar__list">
-                    <li className={'nav-bar__element'}>LOGO</li>
                     {this.prepareElements()}
                 </ul>
+                <div className="nav-bar__logo"><Logo/></div>
             </ResponsiveAppContainer>
         </nav>;
     }
