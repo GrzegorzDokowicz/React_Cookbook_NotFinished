@@ -59,7 +59,7 @@ class NavBar extends React.Component {
 
     //set indicator position
     _setIndicatorPosition(index) {
-        gsap.to(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(index)});
+        gsap.to(this.indicator.current, {duration: 0.5, x: this._getIndicatorPosition(index)});
     }
 
 

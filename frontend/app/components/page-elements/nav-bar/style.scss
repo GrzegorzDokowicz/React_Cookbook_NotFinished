@@ -10,6 +10,7 @@
   align-items: center;
   justify-items: center;
   box-shadow: $box-shadow-secondary;
+  position: relative;
 
   &__indicator {
     position: absolute;
@@ -36,7 +37,7 @@
 
   &__logo {
     position: absolute;
-    top: $navbar-logo-height/3;
+    top: 0;
     left: 50%;
     margin-left: -0.5 * $navbar-logo-width;
   }

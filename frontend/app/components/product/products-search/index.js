@@ -28,10 +28,10 @@ const ProductSearchComponent = ({currentResults, dispatch}) => {
         <div className="product-search__form">
             <div className="product-search__select">
                 <Select title={'Kryterium wyszukoiwania'}
-                        data={['kod', 'nazwa']}
-                        value={type}
-                        name={'critery'}
-                        onChange={value => setType(value)} />
+                    data={['kod', 'nazwa']}
+                    value={type}
+                    name={'critery'}
+                    onChange={value => setType(value)}/>
             </div>
             <AutoFillBase data={data}
                 limit={3}
