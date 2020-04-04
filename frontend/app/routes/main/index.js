@@ -5,7 +5,6 @@ import {gsap} from 'gsap';
 
 import Text from 'CoreComponents/text';
 import Button from 'CoreComponents/button';
-import LoaderComponent from '../../components/page-elements/loader';
 
 import ResponsiveAppContainer from 'AppComponents/containers/responsive-app-container';
 import {getLandingPageTextData} from 'AppDataLayer/page/actions';
@@ -34,14 +33,14 @@ class Main extends React.Component {
 
         try {
             return burgerIds.map(id => {
-                    const element = document.getElementById(id);
+                const element = document.getElementById(id);
 
-                    if (element) {
-                        return element;
-                    }
-
-                    throw new Error();
+                if (element) {
+                    return element;
                 }
+
+                throw new Error();
+            }
             );
         } catch ($error) {
             return false;
@@ -120,7 +119,7 @@ class Main extends React.Component {
                     </div>
                     <div className="landing-page__section landing-page__section--right">
                         <ReactSVG src={'Public/landing-page-svg.svg'}
-                                  afterInjection={this._handleAnimation.bind(this)}/>
+                            afterInjection={this._handleAnimation.bind(this)}/>
                     </div>
                 </div>
             </div>

@@ -39,11 +39,11 @@ const categoriesReducer = (state = initialState, {type, payload}) => {
                 return element;
             })
         };
-        case CHANGE_IS_LOADING_TO:
-            return {
-                ...state,
-                isLoading: payload
-            };
+    case CHANGE_IS_LOADING_TO:
+        return {
+            ...state,
+            isLoading: payload
+        };
     default:
         return state;
     }
