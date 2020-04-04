@@ -38,10 +38,8 @@
   &__logo {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    left: 50%;
+    margin-left: -0.5 * $navbar-logo-width; //need to be done, to center logo
   }
 }
 

@@ -96,10 +96,10 @@ class NavBar extends React.Component {
         return <nav className={'nav-bar'}>
             <ResponsiveAppContainer>
                 <span ref={this.indicator} className={'nav-bar__indicator'}/>
+                <div className="nav-bar__logo"><Logo/></div>
                 <ul className="nav-bar__list">
                     {this.prepareElements()}
                 </ul>
-                <div className="nav-bar__logo"><Logo/></div>
             </ResponsiveAppContainer>
         </nav>;
     }

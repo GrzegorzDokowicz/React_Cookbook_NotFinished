@@ -5,6 +5,8 @@ export const SET_CATEGORY_DATA_ACTION = 'SET_CATEGORY_DATA_ACTION';
 export const LOADING_CATEGORIES_ACTION = 'LOADING_CATEGORIES_ACTION';
 export const LOAD_RECIPES_IN_CATEGORY = 'LOAD_RECIPES_IN_CATEGORY';
 export const SET_RECIPES_IN_CATEGORY = 'SET_RECIPES_IN_CATEGORY';
+export const CHANGE_IS_LOADING_TO = 'CHANGE_IS_LOADING_TO';
+
 
 export const addRecipeCategory = payload => ({
     type: ADD_RECIPE_CATEGORY_ACTION,
@@ -45,4 +47,9 @@ export const setRecipesInCategory = (id, recipes) => ({
         id,
         recipes
     }
+});
+
+export const changeIsLoadingTo = payload => ({
+    type: CHANGE_IS_LOADING_TO,
+    payload
 });

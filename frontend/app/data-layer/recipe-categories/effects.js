@@ -4,15 +4,17 @@ import {
     REGISTER_RECIPE_CATEGORY_ACTION,
     INIT_CATEGORY_DATA_ACTION,
     LOAD_RECIPES_IN_CATEGORY,
-    setCategoriesData, setRecipesInCategory
+    setCategoriesData, setRecipesInCategory, changeIsLoadingTo
 } from './actions';
 import urlsConfig from '../urls';
 
 function* init() {
+    yield  put(changeIsLoadingTo(true));
     const request = yield call(() => fetch(urlsConfig.recipeCategories.getAll).then(res => res.json()));
 
     if (request) {
         yield put(setCategoriesData(request));
+        yield put(changeIsLoadingTo(false));
     }
 }
 

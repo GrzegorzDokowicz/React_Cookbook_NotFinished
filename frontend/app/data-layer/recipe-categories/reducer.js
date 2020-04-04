@@ -1,4 +1,9 @@
-import {ADD_RECIPE_CATEGORY_ACTION, SET_CATEGORY_DATA_ACTION, SET_RECIPES_IN_CATEGORY} from './actions';
+import {
+    ADD_RECIPE_CATEGORY_ACTION,
+    CHANGE_IS_LOADING_TO,
+    SET_CATEGORY_DATA_ACTION,
+    SET_RECIPES_IN_CATEGORY
+} from './actions';
 
 const initialState = {
     isLoading: false,
@@ -34,6 +39,11 @@ const categoriesReducer = (state = initialState, {type, payload}) => {
                 return element;
             })
         };
+        case CHANGE_IS_LOADING_TO:
+            return {
+                ...state,
+                isLoading: payload
+            };
     default:
         return state;
     }

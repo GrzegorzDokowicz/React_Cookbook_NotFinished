@@ -5,18 +5,19 @@ import {gsap} from 'gsap';
 
 import Text from 'CoreComponents/text';
 import Button from 'CoreComponents/button';
+import LoaderComponent from '../../components/page-elements/loader';
 
 import ResponsiveAppContainer from 'AppComponents/containers/responsive-app-container';
-import {getTextData} from 'AppDataLayer/page/actions';
+import {getLandingPageTextData} from 'AppDataLayer/page/actions';
 
 import './style.scss';
 
-const mapStateToProps = state => ({state: getTextData(state.page.landingPageTextData)});
+
+const mapStateToProps = state => ({state: getLandingPageTextData(state.page.landingPageTextData)});
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
-
         this.textData = this.props.state.payload;
         this.leftSide = React.createRef();
     }
@@ -33,14 +34,14 @@ class Main extends React.Component {
 
         try {
             return burgerIds.map(id => {
-                const element = document.getElementById(id);
+                    const element = document.getElementById(id);
 
-                if (element) {
-                    return element;
+                    if (element) {
+                        return element;
+                    }
+
+                    throw new Error();
                 }
-
-                throw new Error();
-            }
             );
         } catch ($error) {
             return false;
@@ -113,13 +114,13 @@ class Main extends React.Component {
                         </Text>
                         <div className="left-side__buttons">
                             <Button style={['filled-hover']} onClick={() => console.log('clicked read more...')}>
-                                        Read more
+                                Read more
                             </Button>
                         </div>
                     </div>
                     <div className="landing-page__section landing-page__section--right">
                         <ReactSVG src={'Public/landing-page-svg.svg'}
-                            afterInjection={this._handleAnimation.bind(this)}/>
+                                  afterInjection={this._handleAnimation.bind(this)}/>
                     </div>
                 </div>
             </div>
