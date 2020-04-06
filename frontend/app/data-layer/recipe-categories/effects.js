@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put, takeEvery, delay} from 'redux-saga/effects';
 import {
     addRecipeCategory,
     REGISTER_RECIPE_CATEGORY_ACTION,
@@ -9,12 +9,10 @@ import {
 import urlsConfig from '../urls';
 
 function* init() {
-    yield  put(changeIsLoadingTo(true));
     const request = yield call(() => fetch(urlsConfig.recipeCategories.getAll).then(res => res.json()));
-
+    yield delay(3000);
     if (request) {
         yield put(setCategoriesData(request));
-        yield put(changeIsLoadingTo(false));
     }
 }
 

@@ -1,29 +1,47 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import Logo from '../../../../components/logo';
 
+const Element = () => {
+    return <div className={'loader'}><Logo/></div>;
+};
+
 //TODO add name to props and read if you should load data
 const Loader = ({isLoading = false, children}) => {
-    const [shouldRender, setRender] = useState(isLoading);
+    const [isRendering, setRender] = useState(false);
+    const [isRendered, setIsRendered] = useState(true);
+
     useEffect(() => {
-        if (isLoading) {
-            setRender(true);
-        }
-        return () => {
-            if (!isLoading) {
-                setTimeout(() => setRender(false), 3000);
-            }
-        };
+        setRender(isLoading)
     }, [isLoading]);
 
+    useEffect(() => {
+        if (isRendering && isRendered) {
+            setIsRendered(false);
+            _handleAnimation();
+        }
+    }, [isRendering]);
 
-    const Element = () => {
-        return <div className={'loader'}><Logo/></div>;
+    // It have to be to properly change state inside callbacks
+    const renderRef = useRef(isRendering);
+    renderRef.current = isRendering;
+
+    const animationCallback = () => {
+        if (renderRef.current) {
+            _handleAnimation()
+        } else {
+            setIsRendered(true);
+        }
     };
+    const _handleAnimation = () => {
+        //todo animations - onComplete - wywolaj ponownie _handleAnimation
 
-
+        //todo If/Else musi pojsc na onComplete
+        setTimeout(animationCallback, 1000)
+    };
+    
     return <React.Fragment>
-        {shouldRender ? <Element/> : children}
+        {!isRendered ? <Element/> : children}
     </React.Fragment>;
 };
 
