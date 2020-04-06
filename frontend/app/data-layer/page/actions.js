@@ -32,7 +32,10 @@ export const removeAlert = id => ({
     }
 });
 
-export const getTextData = state => ({
+export const getLandingPageTextData = state => ({
     type: GET_LANDING_PAGE_TEXT_DATA,
     payload: state
 });
+
+
+

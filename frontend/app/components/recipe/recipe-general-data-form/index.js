@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Input from 'CoreComponents/input';
 import Upload from 'CoreComponents/upload';
 import MultiSelect from 'CoreComponents/multi-select';
-import Text from "CoreComponents/text";
+import Text from 'CoreComponents/text';
 
 import './style.scss';
 
@@ -35,7 +35,7 @@ const RecipeGeneralDataForm = ({onChange, categories}) => {
 
     return <div className={'recipe-draft-data-form'}>
         <div className={'recipe-draft-data-form__title'}>
-            <Text type={"subheader"}>Informacje o przepisie</Text>
+            <Text type={'subheader'}>Informacje o przepisie</Text>
         </div>
         <div className={'recipe-draft-data-form__content'}>
             <div className={'recipe-draft-data-form__inputs'}>
