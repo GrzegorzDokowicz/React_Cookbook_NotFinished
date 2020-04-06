@@ -1,17 +1,21 @@
 @import 'AppStyles';
 
 .responsive-app-container {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 5%;
   height: 100%;
 
-  @media screen and (max-width: $mobile) {
+
+  @include mobile {
     margin: 0;
-    width: 100%;
+    padding: 0;
+  }
+
+  @include tablet {
+    padding: 0 $tabletPadding;
   }
 
   @media screen and (max-width: $tablet) {
-    margin: 0 $tabletPadding;
-    width: calc(100% - #{2 * $tabletPadding});
+
   }
 }

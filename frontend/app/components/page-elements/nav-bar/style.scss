@@ -1,6 +1,5 @@
 @import 'AppStyles';
 
-
 .nav-bar {
   width: 100%;
   max-height: $nav-bar-min-height;
@@ -10,6 +9,16 @@
   align-items: center;
   justify-items: center;
   box-shadow: $box-shadow-secondary;
+
+  &--small {
+    .nav-bar__indicator {
+      width: 30px;
+    }
+
+    .nav-bar__element {
+      padding: 15px 5px 5px 0;
+    }
+  }
 
   &__indicator{
     position: absolute;
@@ -31,6 +40,7 @@
   }
 
   &__element {
+    transition: all 500ms;
     padding: 20px 5px 10px 5px;
   }
 

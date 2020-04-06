@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ReactSVG} from 'react-svg'
+import {ReactSVG} from 'react-svg';
 import {gsap} from 'gsap';
 
 import Text from 'CoreComponents/text';
@@ -39,7 +39,7 @@ class Main extends React.Component {
                     return element;
                 }
 
-                throw new Error()
+                throw new Error();
             });
         } catch ($error) {
             return false;
@@ -118,7 +118,7 @@ class Main extends React.Component {
                     </div>
                     <div className="landing-page__section landing-page__section--right">
                         <ReactSVG src={'Public/landing-page-svg.svg'}
-                                  afterInjection={this._handleAnimation.bind(this)}/>
+                            afterInjection={this._handleAnimation.bind(this)}/>
                     </div>
                 </div>
             </div>
@@ -127,5 +127,4 @@ class Main extends React.Component {
 }
 
 const MainComponent = connect(mapStateToProps)(Main);
-
 export default MainComponent;

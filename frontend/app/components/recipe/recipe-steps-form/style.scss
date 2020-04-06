@@ -1,5 +1,7 @@
 @import 'AppStyles';
 
 .recipe-steps-form {
-
+  &__title {
+    margin-bottom: size(2);
+  }
 }

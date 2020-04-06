@@ -3,30 +3,22 @@ import {connect} from 'react-redux';
 
 import Text from 'CoreComponents/text';
 import Tabs from 'CoreComponents/tabs';
-import {registerProduct} from 'AppDataLayer/products/actions';
 
-import ProductForm from '../../product/product-form';
 import ProductBase from '../../product/products-base';
-import ProductSearch from '../../product/products-search';
 
 import './style.scss';
+import ProductCollection from '../../product/products-collection';
 
-const RecipeProductsForm = ({dispatch}) => {
-    const submit = (data) => {
-        dispatch(registerProduct(data));
-    };
+const RecipeProductsForm = ({onSubmit}) => {
+
     const tabs = [
         {
-            title: 'Twoja baza produktow',
-            component: <ProductBase/>
+            title: 'Dodaj produkt do przepisu',
+            component: <ProductBase onSubmit={onSubmit}/>
         },
         {
-            title: 'Dodaj produkt',
-            component: <ProductForm inline={true} onSubmit={submit}/>
-        },
-        {
-            title: 'Wyszukaj produkt',
-            component: <ProductSearch/>
+            title: 'Baza produktow',
+            component: <ProductCollection onSubmit={onSubmit}/>
         },
     ];
 

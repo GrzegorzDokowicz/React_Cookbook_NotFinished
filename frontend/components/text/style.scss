@@ -3,6 +3,7 @@
 .text {
   font-family: "sans-serif";
   font-weight: 500;
+  display: inline-block;
 
   &--h1 {
     font-size: $header-fontSize;
@@ -20,6 +21,7 @@
   &--title-small {
     font-size: 18px;
     text-transform: uppercase;
+    text-align: center;
   }
 
   &--paragraph {

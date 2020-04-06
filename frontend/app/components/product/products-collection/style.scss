@@ -1,0 +1,12 @@
+@import 'AppStyles';
+
+.product-collection {
+  &__action {
+    text-align: center;
+    padding-bottom: size(3);
+  }
+
+  &__action-title {
+    margin-bottom: size(1);
+  }
+}

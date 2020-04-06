@@ -27,12 +27,12 @@ const Upload = ({onLoad, text}) => {
 
     useEffect(() => {
         if (onLoad) {
-           onLoad({
-               fileName,
-               result
-           })
+            onLoad({
+                fileName,
+                result
+            });
         }
-    }, [fileName])
+    }, [fileName]);
 
     return <InputWrapper text={text}>
         <div className="upload" {...getRootProps()}>

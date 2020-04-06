@@ -1,13 +1,8 @@
 @import 'AppStyles';
 
-.main {
-  &__results {
-    border: 1px solid $border-color;
-    margin-top: size(3);
-  }
-}
-
 .landing-page {
+  padding: size(4) 0;
+
   &__section-container {
     width: 100%;
     display: flex;
@@ -19,7 +14,7 @@
     }
 
     &--first {
-      max-height: 590px;
+      max-height: 360px;
     }
   }
 

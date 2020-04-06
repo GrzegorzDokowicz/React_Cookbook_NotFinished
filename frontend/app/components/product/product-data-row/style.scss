@@ -1,13 +1,23 @@
 @import 'AppStyles';
 
 .product-data-row {
-  display: flex;
+  &__row {
+    display: flex;
+    border-top: 1px solid $border-color;
+    border-left: 1px solid $border-color;
+
+    &:last-of-type {
+      border-bottom: 1px solid $border-color;
+    }
+  }
 
   &__cell {
+    padding: size(1);
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-right: 1px solid $border-color;
   }
 }
