@@ -1,5 +1,17 @@
 @import 'AppStyles';
 
 .recipe-steps {
+  &__title {
+    margin-bottom: size(2);
+  }
 
+  &__content {
+    padding: size(1);
+
+    &--items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

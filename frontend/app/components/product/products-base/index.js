@@ -7,8 +7,13 @@ import ProductsSelectFormComponent from '../products-select-form';
 
 import './style.scss';
 
-const ProductBase = () => {
+const ProductBase = ({onSubmit}) => {
     const [currentProduct, setProduct] = useState(false);
+    const submit = () => {
+        if (onSubmit) {
+            onSubmit(currentProduct);
+        }
+    };
 
     return <div className="product-base">
         <div className="product-base__description">
@@ -20,7 +25,7 @@ const ProductBase = () => {
             <ProductsSelectFormComponent onChange={product => setProduct(product)}/>
         </div>
         <div className="product-base__data">
-            <ProductDataRow product={currentProduct}/>
+            <ProductDataRow product={currentProduct} onSubmit={submit}/>
         </div>
     </div>;
 };

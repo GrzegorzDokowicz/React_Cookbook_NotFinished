@@ -2,19 +2,26 @@ import React from 'react';
 
 import Text from 'CoreComponents/text';
 
-const ProductRow = ({name}) => {
-    return <div className="recipe-products__product">
-        <Text>{name}</Text>
+import './style.scss';
+import ProductDataRow from '../../product/product-data-row';
+
+const ProductRow = (props) => {
+    return <div className='recipe-products__product'>
+        <ProductDataRow product={props}/>
     </div>;
 };
 
 const RecipeProducts = ({data}) => {
-    return <div className="recipe-products">
-        <Text type={'subheader'}>Lista produktow</Text>
-        <div className="recipe-products__products-list">
-            {
-                data ? data.map((element, index) => <ProductRow key={index} name={element.name}/>) : 'Brak'
-            }
+    const hasProduct = data && data.length > 0;
+    const noContent = <Text type={'title-small'}>Nie dodano produktow do przepisu.</Text>;
+    const content = hasProduct ? data.map((element, index) => <ProductRow key={index} {...element}/>) : noContent;
+
+    return <div className='recipe-products'>
+        <div className='recipe-products__title'>
+            <Text type={'subheader'}>Lista produktow</Text>
+        </div>
+        <div className={`recipe-products__content ${!hasProduct ? 'recipe-products__content--items' : ''} `}>
+            {content}
         </div>
     </div>;
 };

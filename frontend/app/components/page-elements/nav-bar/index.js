@@ -11,23 +11,37 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItemIndex: 0
+            activeItemIndex: 1
         };
 
         this.indicator = React.createRef();
 
-        this.elements = [{
+        this.leftElements = [{
+            id: 1,
             title: 'Strona Domowa',
             path: '/',
             iconName: 'home',
             ref: React.createRef()
         }, {
+            id: 2,
             title: 'Kategorie przepisów',
             path: '/recipe-categories',
             iconName: 'list',
             ref: React.createRef()
         }];
 
+        this.rightElements = [{
+            id: 3,
+            title: 'Zaloguj',
+            path: '/login',
+            iconName: 'user',
+            ref: React.createRef()
+        }];
+
+        this.elements = [
+            ...this.rightElements,
+            ...this.leftElements
+        ];
     }
 
     componentDidMount() {
@@ -42,19 +56,30 @@ class NavBar extends React.Component {
         }, 50);
     }
 
+    getElementById(id) {
+        return this.elements.find(element => element.id === id);
+    }
 
     //get current indicator position
     _getIndicatorPosition(index) {
-        const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
-        const {width: itemWidth, x: itemX} = this.elements[index].ref.current.getBoundingClientRect();
+        if (this.indicator && this.indicator.current) {
+            const currentElement = this.getElementById(index);
 
-        // change state
-        this.setState(prevState => ({
-            ...prevState,
-            activeItemIndex: index
-        }));
+            if (currentElement) {
+                const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
+                const {width: itemWidth, x: itemX} = currentElement.ref.current.getBoundingClientRect();
 
-        return itemX + itemWidth / 2 - indicatorWidth / 2;
+                // change state
+                this.setState(prevState => ({
+                    ...prevState,
+                    activeItemIndex: index
+                }));
+
+                return itemX + itemWidth / 2 - indicatorWidth / 2;
+            }
+        }
+
+        return 0;
     }
 
     //set indicator position
@@ -77,8 +102,8 @@ class NavBar extends React.Component {
         };
     }
 
-    prepareElements() {
-        return this.elements.map((element, index) =>
+    prepareElements(elements) {
+        return elements.map((element, index) =>
             <li key={index}
                 ref={element.ref}
                 className={'nav-bar__element'}>
@@ -86,7 +111,7 @@ class NavBar extends React.Component {
                     title={element.title}
                     path={element.path}
                     iconName={element.iconName}
-                    onClick={this._handleEvent(index)}
+                    onClick={this._handleEvent(element.id)}
                 />
             </li>
         );
@@ -96,10 +121,20 @@ class NavBar extends React.Component {
         return <nav className={'nav-bar'}>
             <ResponsiveAppContainer>
                 <span ref={this.indicator} className={'nav-bar__indicator'}/>
-                <div className="nav-bar__logo"><Logo/></div>
-                <ul className="nav-bar__list">
-                    {this.prepareElements()}
-                </ul>
+                <div className="nav-bar__list-container">
+                    <ul className="nav-bar__list">
+                        {this.prepareElements(this.leftElements)}
+                    </ul>
+                    <div className="nav-bar__logo-container">
+                        &nbsp;
+                        <div className="nav-bar__logo">
+                            <Logo/>
+                        </div>
+                    </div>
+                    <ul className="nav-bar__list nav-bar__list--right">
+                        {this.prepareElements(this.rightElements)}
+                    </ul>
+                </div>
             </ResponsiveAppContainer>
         </nav>;
     }

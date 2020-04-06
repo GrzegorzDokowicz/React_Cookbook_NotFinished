@@ -18,6 +18,7 @@ const ProductsSelectForm = ({products, dispatch, title, onChange}) => {
     }
 
     const change = currentName => {
+        console.log(products);
         onChange(products.find(({name}) => name === currentName));
     };
 

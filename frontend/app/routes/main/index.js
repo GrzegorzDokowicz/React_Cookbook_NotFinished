@@ -40,8 +40,7 @@ class Main extends React.Component {
                 }
 
                 throw new Error();
-            }
-            );
+            });
         } catch ($error) {
             return false;
         }
@@ -128,5 +127,4 @@ class Main extends React.Component {
 }
 
 const MainComponent = connect(mapStateToProps)(Main);
-
 export default MainComponent;

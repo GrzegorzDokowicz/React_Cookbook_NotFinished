@@ -4,8 +4,8 @@ import ReactQuill from 'react-quill';
 
 import Button from 'CoreComponents/button';
 
-import './style.scss';
 import 'react-quill/dist/quill.snow.css';
+import './style.scss';
 
 const StepForm = ({addStep}) => {
     const [form, setForm] = useState('');
@@ -21,8 +21,9 @@ const StepForm = ({addStep}) => {
     return <div className={'step-form'}>
         <form>
             <div className="step-form__form">
-                <ReactQuill value={form}
-                    onChange={onChange} />
+                <div className="step-form__input">
+                    <ReactQuill value={form} onChange={onChange} style={{height: 'calc(100% - 42px)'}}/>
+                </div>
                 <Button onClick={clickSubmit}>Dodaj</Button>
             </div>
         </form>

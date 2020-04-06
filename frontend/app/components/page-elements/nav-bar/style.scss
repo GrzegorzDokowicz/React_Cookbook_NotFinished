@@ -12,7 +12,17 @@
   position: relative;
   margin-bottom: 0.5 * $navbar-logo-height;
 
-  &__indicator {
+  &--small {
+    .nav-bar__indicator {
+      width: 30px;
+    }
+
+    .nav-bar__element {
+      padding: 15px 5px 5px 0;
+    }
+  }
+
+  &__indicator{
     position: absolute;
     left: 0;
     width: 43px;
@@ -23,25 +33,38 @@
     border-radius: 30px;
   }
 
-  &__list {
+  &__list-container {
     height: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 45%;
+
+    &--right {
+      justify-content: flex-end;
+    }
   }
 
   &__element {
+    transition: all 500ms;
     padding: 20px 5px 10px 5px;
+  }
+
+  &__logo-container {
+    position: relative;
+    width: 10%;
+    height: 100%;
   }
 
   &__logo {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 }
 
