@@ -12,7 +12,7 @@ const Loader = ({isLoading = false, children}) => {
     const [isRendered, setIsRendered] = useState(true);
 
     useEffect(() => {
-        setRender(isLoading)
+        setRender(isLoading);
     }, [isLoading]);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const Loader = ({isLoading = false, children}) => {
 
     const animationCallback = () => {
         if (renderRef.current) {
-            _handleAnimation()
+            _handleAnimation();
         } else {
             setIsRendered(true);
         }
@@ -37,7 +37,7 @@ const Loader = ({isLoading = false, children}) => {
         //todo animations - onComplete - wywolaj ponownie _handleAnimation
 
         //todo If/Else musi pojsc na onComplete
-        setTimeout(animationCallback, 1000)
+        setTimeout(animationCallback, 1000);
     };
     
     return <React.Fragment>

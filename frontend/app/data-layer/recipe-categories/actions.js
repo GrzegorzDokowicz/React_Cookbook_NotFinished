@@ -49,7 +49,7 @@ export const setRecipesInCategory = (id, recipes) => ({
     }
 });
 
-export const changeIsLoadingTo = payload => ({
-    type: CHANGE_IS_LOADING_TO,
-    payload
-});
+// export const changeIsLoadingTo = payload => ({
+//     type: CHANGE_IS_LOADING_TO,
+//     payload
+// });

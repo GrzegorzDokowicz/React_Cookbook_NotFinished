@@ -4,7 +4,7 @@ import {
     REGISTER_RECIPE_CATEGORY_ACTION,
     INIT_CATEGORY_DATA_ACTION,
     LOAD_RECIPES_IN_CATEGORY,
-    setCategoriesData, setRecipesInCategory, changeIsLoadingTo
+    setCategoriesData, setRecipesInCategory
 } from './actions';
 import urlsConfig from '../urls';
 

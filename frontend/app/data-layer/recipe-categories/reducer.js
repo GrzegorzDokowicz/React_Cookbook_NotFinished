@@ -12,11 +12,11 @@ const initialState = {
 
 const categoriesReducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case INIT_CATEGORY_DATA_ACTION:
-            return {
-                ...state,
-                isLoading: true
-            };
+    case INIT_CATEGORY_DATA_ACTION:
+        return {
+            ...state,
+            isLoading: true
+        };
     case ADD_RECIPE_CATEGORY_ACTION:
         return {
             ...state,
@@ -25,7 +25,7 @@ const categoriesReducer = (state = initialState, {type, payload}) => {
                 payload
             ]
         };
-        case SET_CATEGORY_DATA_ACTION:
+    case SET_CATEGORY_DATA_ACTION:
         return {
             ...state,
             isLoading: false,
