@@ -5,28 +5,43 @@ import ResponsiveAppContainer from 'AppComponents/containers/responsive-app-cont
 import NavBarElement from 'AppComponents/page-elements/nav-bar-element';
 
 import './style.scss';
+import Logo from '../../../../components/logo';
 
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activeItemIndex: 0
+            activeItemIndex: 1
         };
 
         this.indicator = React.createRef();
 
-        this.elements = [{
+        this.leftElements = [{
+            id: 1,
             title: 'Strona Domowa',
             path: '/',
             iconName: 'home',
             ref: React.createRef()
         }, {
+            id: 2,
             title: 'Kategorie przepisów',
             path: '/recipe-categories',
             iconName: 'list',
             ref: React.createRef()
         }];
 
+        this.rightElements = [{
+            id: 3,
+            title: 'Zaloguj',
+            path: '/login',
+            iconName: 'user',
+            ref: React.createRef()
+        }];
+
+        this.elements = [
+            ...this.rightElements,
+            ...this.leftElements
+        ];
     }
 
     componentDidMount() {
@@ -34,29 +49,42 @@ class NavBar extends React.Component {
         window.addEventListener('resize', () => this._setIndicatorPosition(this.state.activeItemIndex));
         //Todo change timeout to other function. It have to take care about indicator after render.
         setTimeout(() => {
-            gsap.set(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(this.state.activeItemIndex)});
+            gsap.set(this.indicator.current, {
+                duration: 0.2,
+                x: this._getIndicatorPosition(this.state.activeItemIndex)
+            });
         }, 50);
     }
 
-
+    getElementById(id) {
+        return this.elements.find(element => element.id === id);
+    }
 
     //get current indicator position
     _getIndicatorPosition(index) {
-        const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
-        const {width: itemWidth, x: itemX} = this.elements[index].ref.current.getBoundingClientRect();
+        if (this.indicator && this.indicator.current) {
+            const currentElement = this.getElementById(index);
 
-        // change state
-        this.setState(prevState => ({
-            ...prevState,
-            activeItemIndex: index
-        }));
+            if (currentElement) {
+                const {width: indicatorWidth} = this.indicator.current.getBoundingClientRect();
+                const {width: itemWidth, x: itemX} = currentElement.ref.current.getBoundingClientRect();
 
-        return itemX + itemWidth / 2 - indicatorWidth / 2;
+                // change state
+                this.setState(prevState => ({
+                    ...prevState,
+                    activeItemIndex: index
+                }));
+
+                return itemX + itemWidth / 2 - indicatorWidth / 2;
+            }
+        }
+
+        return 0;
     }
 
     //set indicator position
     _setIndicatorPosition(index) {
-        gsap.to(this.indicator.current, {duration: 0.2, x: this._getIndicatorPosition(index)});
+        gsap.to(this.indicator.current, {duration: 0.5, x: this._getIndicatorPosition(index)});
     }
 
 
@@ -74,8 +102,8 @@ class NavBar extends React.Component {
         };
     }
 
-    prepareElements() {
-        return this.elements.map((element, index) =>
+    prepareElements(elements) {
+        return elements.map((element, index) =>
             <li key={index}
                 ref={element.ref}
                 className={'nav-bar__element'}>
@@ -83,7 +111,7 @@ class NavBar extends React.Component {
                     title={element.title}
                     path={element.path}
                     iconName={element.iconName}
-                    onClick={this._handleEvent(index)}
+                    onClick={this._handleEvent(element.id)}
                 />
             </li>
         );
@@ -93,10 +121,20 @@ class NavBar extends React.Component {
         return <nav className={'nav-bar'}>
             <ResponsiveAppContainer>
                 <span ref={this.indicator} className={'nav-bar__indicator'}/>
-                <ul className="nav-bar__list">
-                    <li className={'nav-bar__element'}>LOGO</li>
-                    {this.prepareElements()}
-                </ul>
+                <div className="nav-bar__list-container">
+                    <ul className="nav-bar__list">
+                        {this.prepareElements(this.leftElements)}
+                    </ul>
+                    <div className="nav-bar__logo-container">
+                        &nbsp;
+                        <div className="nav-bar__logo">
+                            <Logo/>
+                        </div>
+                    </div>
+                    <ul className="nav-bar__list nav-bar__list--right">
+                        {this.prepareElements(this.rightElements)}
+                    </ul>
+                </div>
             </ResponsiveAppContainer>
         </nav>;
     }

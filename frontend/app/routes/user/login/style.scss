@@ -1,0 +1,48 @@
+@import 'AppStyles';
+
+.landing-page {
+  padding: size(4) 0;
+
+  &__section-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+      flex-direction: column-reverse;
+    }
+
+    &--first {
+      max-height: 360px;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &--left {
+      width: 40%;
+    }
+
+    &--right {
+      width: 60%;
+      margin-left: size(2);
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    @include tablet {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  &__buttons {
+    margin-top: size(3);
+  }
+}

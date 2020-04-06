@@ -11,9 +11,11 @@ import ActionBarPageContainer from 'AppComponents/containers/action-bar-page-con
 import {initCategoriesData, registerRecipeCategory} from 'AppDataLayer/recipe-categories/actions';
 
 import './style.scss';
+import Loader from '../../components/page-elements/loader';
 
 const mapStateToProps = state => ({
-    categories: state.categories.elements
+    categories: state.categories.elements,
+    isLoading: state.categories.isLoading
 });
 
 const CategoryListElement = ({id, name, image}) => <li className="recipe-categories-list__element">
@@ -56,14 +58,17 @@ class RecipeCategoriesList extends React.Component {
     }
 
     render() {
-        return <ActionBarPageContainer title={'Kategorie przepisow'}
+        return <ActionBarPageContainer
+            title={'Kategorie przepisow'}
             onClick={this.addCategory.bind(this)}
             onSearch={this.searchCategory.bind(this)}>
             <div className="recipe-categories-list">
                 <ul className="recipe-categories-list__elements">
-                    {
-                        (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
-                    }
+                    <Loader isLoading={this.props.isLoading}>
+                        {
+                            (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
+                        }
+                    </Loader>
                 </ul>
             </div>
             <Modal isOpen={this.state.isOpen} onClose={() => this.setModalState(false)}>

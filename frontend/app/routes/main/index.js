@@ -7,16 +7,16 @@ import Text from 'CoreComponents/text';
 import Button from 'CoreComponents/button';
 
 import ResponsiveAppContainer from 'AppComponents/containers/responsive-app-container';
-import {getTextData} from 'AppDataLayer/page/actions';
+import {getLandingPageTextData} from 'AppDataLayer/page/actions';
 
 import './style.scss';
 
-const mapStateToProps = state => ({state: getTextData(state.page.landingPageTextData)});
+
+const mapStateToProps = state => ({state: getLandingPageTextData(state.page.landingPageTextData)});
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
-
         this.textData = this.props.state.payload;
         this.leftSide = React.createRef();
     }

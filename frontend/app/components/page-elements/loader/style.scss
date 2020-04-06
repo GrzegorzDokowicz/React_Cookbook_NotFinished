@@ -12,17 +12,7 @@
   position: relative;
   margin-bottom: 0.5 * $navbar-logo-height;
 
-  &--small {
-    .nav-bar__indicator {
-      width: 30px;
-    }
-
-    .nav-bar__element {
-      padding: 15px 5px 5px 0;
-    }
-  }
-
-  &__indicator{
+  &__indicator {
     position: absolute;
     left: 0;
     width: 43px;
@@ -33,38 +23,23 @@
     border-radius: 30px;
   }
 
-  &__list-container {
+  &__list {
     height: 100%;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  &__list {
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    width: 45%;
-
-    &--right {
-      justify-content: flex-end;
-    }
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
   &__element {
-    transition: all 500ms;
     padding: 20px 5px 10px 5px;
-  }
-
-  &__logo-container {
-    position: relative;
-    width: 10%;
-    height: 100%;
   }
 
   &__logo {
     position: absolute;
     top: 0;
+    left: 50%;
+    margin-left: -0.5 * $navbar-logo-width; //need to be done, to center logo
   }
 }
 
