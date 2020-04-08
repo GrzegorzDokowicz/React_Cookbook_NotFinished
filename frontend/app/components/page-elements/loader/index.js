@@ -41,7 +41,7 @@ const Loader = ({isLoading = false, children}) => {
     };
     
     return <React.Fragment>
-        {isRendered ? <Element/> : children}
+        {!isRendered ? <Element/> : children}
     </React.Fragment>;
 };
 
