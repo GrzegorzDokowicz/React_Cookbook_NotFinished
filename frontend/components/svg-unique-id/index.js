@@ -1,10 +1,10 @@
-import React, {forwardRef} from 'react';
+import React from 'react';
 import './style.scss';
 import {ReactSVG} from 'react-svg';
 
 let idSuffix = 0;
 
-const SVGUniqueID = ({className, src}) => {
+const SVGUniqueID = ({className, src, onLoad}) => {
 
     const _handleUniqueId = (svg) => {
         idSuffix++;
@@ -15,7 +15,7 @@ const SVGUniqueID = ({className, src}) => {
     };
 
     return <div className='svg__wrapper'>
-        <ReactSVG beforeInjection={_handleUniqueId} className={className} src={src}/>
+        <ReactSVG beforeInjection={_handleUniqueId} afterInjection={onLoad} className={className} src={src}/>
     </div>;
 };
 
