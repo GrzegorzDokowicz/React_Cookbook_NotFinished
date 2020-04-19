@@ -3,11 +3,11 @@ import {gsap} from 'gsap';
 
 import './style.scss';
 
-const AnimationContainer = ({list, targetRef}) => {
+const AnimationContainer = ({list, targetRef, childrenSelector}) => {
     const [currentList, setCurrentList] = useState([]);
 
     const getTargets = () => {
-        return targetRef.current.querySelectorAll('.recipe-categories-list__element');
+        return targetRef.current.querySelectorAll(childrenSelector);
     };
 
     const getAnimationsConfig = () => {
@@ -22,19 +22,14 @@ const AnimationContainer = ({list, targetRef}) => {
                     axis: 'x'
                 }
             },
-            set: {opacity: 0, scale: 2.5, rotate: -180}
+            set: {scale: 2.5, rotate: -180}
         };
     };
 
     const renderAnimation = (elements, animationsConfig) => {
         const tl = gsap.timeline();
-        try {
-            if(elements.length > 0){
-                tl.set(elements, animationsConfig.set).to(elements, animationsConfig.to);
-            }
-            throw new Error();
-        } catch (e) {
-            return false;
+        if (elements && elements.length > 0) {
+            tl.set(elements, animationsConfig.set).to(elements, animationsConfig.to);
         }
     };
 

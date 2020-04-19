@@ -67,7 +67,7 @@ class RecipeCategoriesList extends React.Component {
             <div className="recipe-categories-list">
                 <ul ref={this.listAnimationsTargets} className="recipe-categories-list__elements">
                     <Loader isLoading={this.props.isLoading}>
-                        <AnimationContainer targetRef={this.listAnimationsTargets} list={(this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)}/>
+                        <AnimationContainer childrenSelector={'.recipe-categories-list__element'} targetRef={this.listAnimationsTargets} list={(this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)}/>
                     </Loader>
                 </ul>
             </div>

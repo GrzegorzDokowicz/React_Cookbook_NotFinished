@@ -10,6 +10,7 @@
     &__element {
       width: calc(25% - #{size(3)});;
       padding-bottom: size(3);
+      opacity: 0;
 
       @media screen and (max-width: $tablet) {
         width: calc(50% - #{size(2)});
