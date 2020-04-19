@@ -9,6 +9,7 @@ const Loader = ({isLoading = false, children}) => {
     const currentLoaderSVG = useRef();
     const [isRendering, setRender] = useState(false);
 
+    // eslint-disable-next-line
     const LoaderElement = forwardRef((props, ref) => {
         return <div ref={ref} className={'loader'}>
             <SVGUniqueID onLoad={_handleAnimation} className={'loader__logo'} src={'Public/logo_rhombus.svg'}/>
