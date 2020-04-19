@@ -41,9 +41,9 @@ const Loader = ({isLoading = false, children}) => {
 
         const rhombusTimeline = gsap.timeline({repeat: -1, paused:false});
         const animationConfig = {
-            to: {duration: 1, rotate: 360, transformOrigin: 'center center', ease: 'power2.inOut'}
+            from: {duration: 1, rotate: -360, transformOrigin: 'center center', ease: 'power2.inOut'}
         };
-        rhombusTimeline.to(rhombusTemp, animationConfig.to);
+        rhombusTimeline.from(rhombusTemp, animationConfig.from);
         rhombusTimeline.eventCallback('onStart', ()=>{
             if(!renderRef.current){
                 rhombusTimeline.kill();
