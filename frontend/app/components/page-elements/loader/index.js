@@ -8,7 +8,6 @@ import SVGUniqueID from 'CoreComponents/svg-unique-id';
 const Loader = ({isLoading = false, children}) => {
     const currentLoaderSVG = useRef();
     const [isRendering, setRender] = useState(false);
-    // const [isRendered, setIsRendered] = useState(true);
 
     const LoaderElement = forwardRef((props, ref) => {
         return <div ref={ref} className={'loader'}>
@@ -21,11 +20,6 @@ const Loader = ({isLoading = false, children}) => {
         setRender(isLoading);
     }, [isLoading]);
 
-    // useEffect(() => {
-    //     if (isRendering && isRendered) {
-    //         _handleAnimation();
-    //     }
-    // }, [isRendering]);
 
     // It have to be to properly change state inside callbacks
     const renderRef = useRef(isRendering);

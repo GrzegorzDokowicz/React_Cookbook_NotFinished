@@ -35,7 +35,9 @@ class RecipeCategoriesList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(initCategoriesData());
+        if(!this.props.categories || this.props.categories.length === 0){
+            this.props.dispatch(initCategoriesData());
+        }
     }
 
     setModalState(modalState) {
