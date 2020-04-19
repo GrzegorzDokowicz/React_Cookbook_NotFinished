@@ -12,6 +12,7 @@ import {initCategoriesData, registerRecipeCategory} from 'AppDataLayer/recipe-ca
 
 import './style.scss';
 import Loader from '../../components/page-elements/loader';
+import AnimationContainer from '../../components/containers/animation-container';
 
 const mapStateToProps = state => ({
     categories: state.categories.elements,
@@ -27,6 +28,7 @@ const CategoryListElement = ({id, name, image}) => <li className="recipe-categor
 class RecipeCategoriesList extends React.Component {
     constructor(props) {
         super(props);
+        this.listAnimationsTargets = React.createRef();
 
         this.state = {
             isOpen: false,
@@ -63,11 +65,9 @@ class RecipeCategoriesList extends React.Component {
             onClick={this.addCategory.bind(this)}
             onSearch={this.searchCategory.bind(this)}>
             <div className="recipe-categories-list">
-                <ul className="recipe-categories-list__elements">
+                <ul ref={this.listAnimationsTargets} className="recipe-categories-list__elements">
                     <Loader isLoading={this.props.isLoading}>
-                        {
-                            (this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)
-                        }
+                        <AnimationContainer targetRef={this.listAnimationsTargets} list={(this.props.categories || []).map(cat => <CategoryListElement key={cat.id} {...cat}/>)}/>
                     </Loader>
                 </ul>
             </div>
