@@ -1,0 +1,55 @@
+@import 'AppStyles';
+
+.side-bar {
+  width: 15%;
+  height: 70%;
+  margin: size(1);
+  border-radius: size(2);
+  background-color: $background-color;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+
+  &__bio {
+    width: 100%;
+    padding: size(0.5) 0 size(0.5) 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: size(0.3) solid $background-color-dark;
+  }
+
+  &__controls-list{
+    width: 100%;
+    padding: size(0.5) 0 size(0.5) 0;
+    align-items: center;
+    border-bottom: size(0.3) solid $background-color-dark;
+  }
+
+  &__avatar {
+    margin: size(1);
+  }
+
+  &__user-name{
+    margin: size(1);
+  }
+
+  &__link {
+    width: 100%;
+    padding: size(1) 0;
+    margin-top: size(1);
+    display: flex;
+    justify-content: center;
+
+    &:first-child{
+      margin-top: 0;
+    }
+
+    &:hover{
+      background-color: $background-color-dark;
+    }
+  }
+}

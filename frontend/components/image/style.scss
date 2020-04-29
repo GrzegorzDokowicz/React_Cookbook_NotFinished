@@ -26,5 +26,8 @@
     &--no-repeat {
       background-repeat: no-repeat;
     }
+    &--circle {
+      border-radius: 50%;
+    }
   }
 }
