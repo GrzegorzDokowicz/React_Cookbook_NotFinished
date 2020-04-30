@@ -1,0 +1,17 @@
+@import 'AppStyles';
+
+.user-dashboard__card{
+  display: flex;
+  background-color: $active-color;
+
+}
+
+.card{
+  &__link{
+    width: 100%;
+    padding: size(1) size(14) size(1) size(1);
+    margin-top: size(1);
+    display: flex;
+
+  }
+}
