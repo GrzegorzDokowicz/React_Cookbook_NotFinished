@@ -9,7 +9,7 @@
 
 .card {
   &__content {
-    background-color: $active-color;
+    background-color: $shadow-color;
     border-bottom-left-radius: size(0.5);
     border-bottom-right-radius: size(0.5);
     border-top-right-radius: size(0.5);
@@ -41,7 +41,7 @@
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-    background-color: $active-color;
+    background-color: $shadow-color;
     padding: size(2);
     border-top-left-radius: size(0.5);
     border-top-right-radius: size(0.5);

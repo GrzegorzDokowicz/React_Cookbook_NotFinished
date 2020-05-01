@@ -1,15 +1,15 @@
-$active-color: #6A8185;
-$inactive-color: #B6C5C8;
+$active-color: #2DCC70;
+$inactive-color: #90A1A0;
 $nav-bar-color: #fff;
-$background-color: #D9E2DC;
+$background-color: #7BAED1;
 $background-color-secondary: #f6f6f6;
-$background-color-dark: #6A8185;
+$background-color-dark: #233342;
 $background-half-transparent: rgba(0, 0, 0, 0.3);
 
 $shadow-color: darken($background-color, 15%);
 
 $border-color: #654857;
-$warning-color: #FB6B65;
+$warning-color: #EB463C;
 $text-color: #FFC9C8;
 
 $box-shadow: 3px 3px 3px 0px rgba(232, 229, 232, 1);
@@ -17,3 +17,6 @@ $box-shadow: 3px 3px 3px 0px rgba(232, 229, 232, 1);
 $box-shadow-secondary: 0 20px 20px -15px rgba($shadow-color, .5);
 $box-shadow-black: 0 20px 20px -15px black;
 
+@mixin background-gradient(){
+  background: linear-gradient(to bottom, #4D87C2, #B3C6D7);
+}
