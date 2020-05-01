@@ -15,19 +15,13 @@ class UserDashboard extends React.Component {
         super(props);
     }
 
-    filterRecipesData(data){
-        //TODO - it have to slice data according to last added
-        if(data && Array.isArray(data)){
-            return data.slice(0, 3);
-        }
-    }
 
     render() {
         return <ResponsiveAppContainer>
             <div className="user-dashboard">
                 <SideBar userData={this.props.userData}/>
                 <div className="user-dashboard__cards-field">
-                    <UserDashboardCard contentArray={this.filterRecipesData(this.props.userData.recipes)}/>
+                    <UserDashboardCard contentArray={this.props.userData.recipes} counterTitle={'recipes'}/>
                 </div>
             </div>
         </ResponsiveAppContainer>;

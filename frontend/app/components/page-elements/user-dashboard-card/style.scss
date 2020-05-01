@@ -1,17 +1,59 @@
 @import 'AppStyles';
 
-.user-dashboard__card{
+.user-dashboard__card {
   display: flex;
-  background-color: $active-color;
+  flex-direction: column;
+  margin: size(2);
 
 }
 
-.card{
-  &__link{
-    width: 100%;
-    padding: size(1) size(14) size(1) size(1);
-    margin-top: size(1);
-    display: flex;
+.card {
+  &__content {
+    background-color: $active-color;
+    border-bottom-left-radius: size(0.5);
+    border-bottom-right-radius: size(0.5);
+    border-top-right-radius: size(0.5);
+
+    &-button {
+      display: flex;
+      justify-content: flex-end;
+      padding: size(1);
+    }
 
   }
+
+  &__link {
+    width: 100%;
+    padding: size(1) 0 size(1) size(3);
+    margin-top: size(1);
+    display: flex;
+  }
+
+  &__action-field {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: size(15);
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: $active-color;
+    padding: size(2);
+    border-top-left-radius: size(0.5);
+    border-top-right-radius: size(0.5);
+    }
+
+  &__action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: size(2);
+  }
+
+
 }
+
