@@ -21,7 +21,7 @@ const SideBar = ({userData}) =>{
         <div className="side-bar">
             <div className="side-bar__bio">
                 <div className="side-bar__avatar">
-                    <Avatar photo={userData.photo} size={'normal'}/>
+                    <Avatar photo={userData.photo || 'Public/avatar.svg'} size={'normal'}/>
                 </div>
                 <div className="side-bar__user-name">
                     <Text type={'title'}>

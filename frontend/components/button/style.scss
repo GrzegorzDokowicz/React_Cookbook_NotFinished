@@ -28,13 +28,20 @@
     width: 40px;
   }
 
+  &--text {
+    background-color: transparent;
+    border: none;
+  }
+
   &--outlined {
     background-color: transparent;
     border: 0.2rem solid $active-color;
+
     &-hover {
       background-color: transparent;
       border: 0.2rem solid $active-color;
       transition: background-color 0.2s linear;
+
       &:hover {
         background-color: $active-color;
         transition: background-color 0.2s linear;
@@ -42,7 +49,7 @@
     }
   }
 
-  &--filled-hover{
+  &--filled-hover {
     &:hover {
       background-color: transparent;
       transition: background-color 0.2s linear;

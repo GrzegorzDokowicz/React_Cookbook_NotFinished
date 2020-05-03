@@ -6,7 +6,7 @@ import SideBar from '../../../components/page-elements/side-bar';
 import './style.scss';
 import UserDashboardCard from '../../../components/page-elements/user-dashboard-card';
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     userData: state.user.userData
 });
 
@@ -21,7 +21,11 @@ class UserDashboard extends React.Component {
             <div className="user-dashboard">
                 <SideBar userData={this.props.userData}/>
                 <div className="user-dashboard__cards-field">
-                    <UserDashboardCard contentArray={this.props.userData.recipes} counterTitle={'recipes'}/>
+                    <UserDashboardCard contentArray={this.props.userData.recipes}
+                        counterTitle={'recipes'}
+                        showMorePath={'/recipe-categories'}
+                        actionButtonOnClick={()=>{}}
+                    />
                 </div>
             </div>
         </ResponsiveAppContainer>;

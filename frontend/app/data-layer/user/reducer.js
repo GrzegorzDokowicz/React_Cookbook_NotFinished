@@ -5,8 +5,24 @@ const initialState = {
         userID: 1,
         name: 'John',
         lastName: 'Doe',
-        photo: 'Public/avatar.svg',
-        recipes: ['Tajna zupa', 'Dobra pyrka', 'Befsztyczek', 'Schabowy']
+        photo: 'Public/recipe-background.png',
+        recipes: [
+            {
+                title: 'Tajna zupa',
+                path: '/'
+            },
+            {
+                title: 'Dobra Pyrka',
+                path: '/'
+            },
+            {
+                title: 'Befsztyczek',
+                path: '/'
+            },
+            {
+                title: 'No i oczywiście Schabowy',
+                path: '/'
+            }]
     }
 };
 

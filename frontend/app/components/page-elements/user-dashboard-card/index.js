@@ -3,14 +3,17 @@ import React from 'react';
 import './style.scss';
 import Text from '../../../../components/text';
 import IconText from '../../../../components/icon-text';
+import {Link} from 'react-router-dom';
+import Button from '../../../../components/button';
 
-const UserDashboardCard = ({contentArray = [], counterTitle = ''}) => {
+const UserDashboardCard = ({contentArray = [], counterTitle = '', showMorePath = '/', actionButtonOnClick}) => {
 
-    const UserDashboardLink = ({children}) => {
+    const UserDashboardLink = ({children, childrenPath}) => {
         return <li className="card__link">
-            <Text type={'paragraph'}>
-                {children}
-            </Text>
+            <Link to={childrenPath || '/login'}>
+                <Text type={'paragraph'}>
+                    {children}
+                </Text></Link>
         </li>;
     };
 
@@ -47,23 +50,32 @@ const UserDashboardCard = ({contentArray = [], counterTitle = ''}) => {
                 {counter()}
             </div>
             <div className="card__action-button">
-                <IconText icon={'plus'} vertical={true} size={'big'}>
-                    {'Add new recipe'}
-                </IconText>
+                <Button style={['text']} onClick={actionButtonOnClick}>
+                    <Link to={'/recipe/add'}>
+                        <IconText icon={'plus'} vertical={true} size={'big'}>
+                            {'Add new recipe'}
+                        </IconText>
+                    </Link>
+                </Button>
             </div>
         </div>
         <div className="card__content">
             <ul className="card__link-list">
                 {(filterRecipesData(contentArray)).map((element, index) => {
-                    return <UserDashboardLink key={index}>{element}</UserDashboardLink>;
+                    return <UserDashboardLink key={index} childrenPath={element.path}>
+                        {element.title}
+                    </UserDashboardLink>;
                 })}
             </ul>
             <div className="card__content-button">
-                <Text type={'paragraph'}>
-                    {'Show more...'}
-                </Text>
+                <Link to={showMorePath}>
+                    <Text type={'paragraph'}>
+                        {'Show more...'}
+                    </Text>
+                </Link>
             </div>
         </div>
     </div>;
-};
+}
+;
 export default UserDashboardCard;

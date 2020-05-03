@@ -7,6 +7,7 @@ const IconText = ({type = 'icon', children, icon, vertical = false, size = 'norm
     const modifier = vertical ? 'icon-text--vertical' : '';
     const iconSize = `icon-text__icon--${size}`;
 
+
     return <div className={`icon-text ${modifier}`}>
         <div className={`icon-text__icon ${iconSize}`}>
             <Icons name={icon}/>
